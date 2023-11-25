@@ -1,9 +1,9 @@
-import InputLogin from "./UI/InputLogin"
+import AppRoutes from './routes/AppRoutes'
 
 function App () {
   return (
-    <div className="App">
-      <InputLogin/>
+    <div className="container">
+      <AppRoutes/>
     </div>
   )
 }

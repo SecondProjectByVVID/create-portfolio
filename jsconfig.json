@@ -9,7 +9,7 @@
       "@helpers/*": ["./helpers/*"],
       "@assets/*": ["./assets/*"],
       "@store/*": ["./store/*"],
-      "@ui/*":["./UI/*"],
+      "@ui/*":["./UI/*"]
     }
   }
 }

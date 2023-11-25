@@ -1,5 +1,5 @@
 const InputLogin = () => {
-  return <div>InputLogin</div>
+  return <div className="text-teal-500">InputLogin</div>
 }
 
 export default InputLogin

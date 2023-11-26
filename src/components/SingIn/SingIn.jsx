@@ -1,12 +1,17 @@
 import { Link } from 'react-router-dom'
-import './Login.scss'
+import { useState } from 'react'
+import { toast } from 'react-toastify'
 
+import './SingIn.scss'
 import UserIcon from './../../assets/icons/user-icon.svg'
 import PasswordIcon from './../../assets/icons/password-icon.svg'
-import { useState } from 'react'
-import InputForm from '../../UI/InputForm/InputForm'
 
-const Login = () => {
+import InputForm from '../../UI/InputForm/InputForm'
+import ButtonForm from '../../UI/ButtonForm/ButtonForm'
+import ForgetLink from '../../UI/ForgetLink/ForgetLink'
+import TitleForm from '../../UI/TitleForm/TitleForm'
+
+const SingIn = () => {
   const [auth, setAuth] = useState({
     email: '',
     password: ''
@@ -17,34 +22,38 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log(auth)
+    toast.success('Successful submit form', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      theme: 'dark'
+    })
   }
-  // useEffect(() => {
-  //   console.log(auth)
-  // }, [auth])
   return (
     <div className="login">
       <div className="login__inner">
-        <h1 className="login__title">Авторизация</h1>
+        <TitleForm textField={'Авторизация'} />
         <div className="login__form">
             <form className="form" onSubmit={(e) => handleSubmit(e)}>
             <InputForm img={UserIcon} value={auth.email} type={'email'}
               placeholder={'Почта'} onChange={handleChange} />
             <InputForm img={PasswordIcon} value={auth.password} type={'password'}
               placeholder={'Пароль'} onChange={handleChange} />
-                <div className="form__forget-password">
-                      <Link to="#">Забыли пароль?</Link>
-                </div>
-                <button className="form__sign-in" type='submit'>
-                  Войти
-                </button>
+              <ForgetLink/>
+            <Link to='/' className='link__sing-up'>
+                <ButtonForm textField={'Войти'} btnClass={'form__sign-in'}/>
+            </Link>
                 <div className="form__create-acc">
                     <p>
                       Нет аккаунта?
                     </p>
             </div>
-            <Link to='#' className="form__sign-up">
-              Регистрация
-              </Link>
+            <Link to='/signUp' className='link__sing-up'>
+              <ButtonForm textField={'Регистрация'} btnClass={'form__sign-up'} />
+            </Link>
             </form>
         </div>
       </div>
@@ -52,4 +61,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default SingIn

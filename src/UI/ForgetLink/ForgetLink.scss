@@ -1,0 +1,16 @@
+.form{
+  &__forget-password{
+    margin-left: auto;
+  }
+  &__forget-password a{
+    font-family: Inter,sans-serif;
+    font-size: clamp(12px,5vw,16px);
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 4px;
+    transition: all .5s ease;
+    &:hover{
+      color: #0889FF;
+    }
+  }
+}

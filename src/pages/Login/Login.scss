@@ -22,7 +22,7 @@
   &__title{
     color: #000;
     text-align: center;
-    font-size: clamp(1.4rem, 5vw, 4.8rem);
+    font-size: clamp(1.4rem, 4vw, 4.4rem);
     font-style: normal;
     font-weight: 500;
     letter-spacing: 12px;
@@ -89,13 +89,13 @@
   }
   &__sign-in,&__sign-up{
     width: 100%;
-    padding: 1rem 2rem;
+    padding: 1rem 1.8rem;
     border: 2px solid #0889FF;
     border-radius: 5px;
-    font-size: clamp(12px,5vw,32px);
+    font-size: clamp(12px,6vw,26px);
     font-style: normal;
     font-weight: 400;
-    letter-spacing: 6px;
+    letter-spacing: 5px;
     transition: all .5s ease;
     &:hover{
       background: #0889FF;

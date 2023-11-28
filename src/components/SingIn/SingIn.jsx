@@ -10,11 +10,17 @@ import InputForm from '../../UI/InputForm/InputForm'
 import ButtonForm from '../../UI/ButtonForm/ButtonForm'
 import ForgetLink from '../../UI/ForgetLink/ForgetLink'
 import TitleForm from '../../UI/TitleForm/TitleForm'
+import * as yup from 'yup'
 
 const SingIn = () => {
   const [auth, setAuth] = useState({
     email: '',
     password: ''
+  })
+  const [error, setError] = useState({})
+  const validateScheme = yup.object().shape({
+    password: yup.string().required('Пароль обязателен к заполнению').min(6, 'Минимальный размер 6 символов'),
+    email: yup.string().required('Электронная почта обязательна к заполнению').email('Email введён некорректно')
   })
   const handleChange = ({ target }) => {
     setAuth((prevState) => ({ ...prevState, [target.name]: target.value }))
@@ -22,6 +28,7 @@ const SingIn = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log(auth)
+    validateScheme.validate(auth).then((data) => setError({})).catch((data) => setError({ [data.path]: data.message }))
     toast.success('Successful submit form', {
       position: 'top-right',
       autoClose: 5000,
@@ -38,14 +45,12 @@ const SingIn = () => {
         <TitleForm textField={'Авторизация'} />
         <div className="login__form">
             <form className="form" onSubmit={(e) => handleSubmit(e)}>
-            <InputForm img={UserIcon} value={auth.email} type={'email'}
-              placeholder={'Почта'} onChange={handleChange} />
+            <InputForm img={UserIcon} value={auth.email} placeholder={'Почта'}
+              onChange={handleChange} error={error} id={'email'}/>
             <InputForm img={PasswordIcon} value={auth.password} type={'password'}
-              placeholder={'Пароль'} onChange={handleChange} />
+              placeholder={'Пароль'} onChange={handleChange} error={ error } id={'password'}/>
               <ForgetLink/>
-            <Link to='/' className='link__sing-up'>
                 <ButtonForm textField={'Войти'} btnClass={'form__sign-in'}/>
-            </Link>
                 <div className="form__create-acc">
                     <p>
                       Нет аккаунта?

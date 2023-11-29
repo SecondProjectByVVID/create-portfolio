@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
-import { toast } from 'react-toastify'
+// import { toast } from 'react-toastify'
 
 import './SingIn.scss'
 import UserIcon from './../../assets/icons/user-icon.svg'
@@ -10,34 +10,31 @@ import InputForm from '../../UI/InputForm/InputForm'
 import ButtonForm from '../../UI/ButtonForm/ButtonForm'
 import ForgetLink from '../../UI/ForgetLink/ForgetLink'
 import TitleForm from '../../UI/TitleForm/TitleForm'
-import * as yup from 'yup'
+
+import useValidate from '../../hooks/useValidate'
 
 const SingIn = () => {
   const [auth, setAuth] = useState({
     email: '',
     password: ''
   })
-  const [error, setError] = useState({})
-  const validateScheme = yup.object().shape({
-    password: yup.string().required('Пароль обязателен к заполнению').min(6, 'Минимальный размер 6 символов'),
-    email: yup.string().required('Электронная почта обязательна к заполнению').email('Email введён некорректно')
-  })
+  const { validate, error } = useValidate(auth)
   const handleChange = ({ target }) => {
     setAuth((prevState) => ({ ...prevState, [target.name]: target.value }))
   }
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log(auth)
-    validateScheme.validate(auth).then((data) => setError({})).catch((data) => setError({ [data.path]: data.message }))
-    toast.success('Successful submit form', {
-      position: 'top-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-      theme: 'dark'
-    })
+    validate()
+    // toast.success('Successful submit form', {
+    //   position: 'top-right',
+    //   autoClose: 5000,
+    //   hideProgressBar: false,
+    //   closeOnClick: true,
+    //   pauseOnHover: false,
+    //   draggable: true,
+    //   theme: 'dark'
+    // })
   }
   return (
     <div className="login">

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import './InputForm.scss';
+import './inputForm.scss';
 
 const InputForm = ({ img, value, type, placeholder, onChange, error, id }) => {
   return (

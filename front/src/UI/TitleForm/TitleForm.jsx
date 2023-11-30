@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import './TitleForm.scss';
+import './titleForm.scss';
 const TitleForm = ({ textField }) => {
   return <h1 className="login__title">{textField}</h1>;
 };

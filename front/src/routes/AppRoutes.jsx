@@ -1,9 +1,9 @@
 import { lazy } from 'react';
 import { useRoutes } from 'react-router-dom';
 
-const Login = lazy(() => import('./../pages/Login'));
-const Main = lazy(() => import('./../pages/Main'));
-const NotFound = lazy(() => import('./../pages/NotFound/NotFound'));
+const Login = lazy(() => import('../pages/login'));
+const Main = lazy(() => import('../pages/main'));
+const NotFound = lazy(() => import('../pages/notFound/notFound'));
 
 const AppRoutes = () => {
   const elements = useRoutes([

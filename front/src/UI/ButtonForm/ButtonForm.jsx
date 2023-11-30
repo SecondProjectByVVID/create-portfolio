@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import './ButtonForm.scss';
+import './buttonForm.scss';
 
 const ButtonForm = ({ textField, btnClass }) => {
   return (

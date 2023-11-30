@@ -2,14 +2,14 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 
-import './SingIn.scss';
+import './singIn.scss';
 import UserIcon from './../../assets/icons/user-icon.svg';
 import PasswordIcon from './../../assets/icons/password-icon.svg';
 
-import InputForm from '../../UI/InputForm/InputForm';
-import ButtonForm from '../../UI/ButtonForm/ButtonForm';
-import ForgetLink from '../../UI/ForgetLink/ForgetLink';
-import TitleForm from '../../UI/TitleForm/TitleForm';
+import InputForm from '../../ui/inputForm/InputForm';
+import ButtonForm from '../../ui/buttonForm/ButtonForm';
+import ForgetLink from '../../ui/forgetLink/ForgetLink';
+import TitleForm from '../../ui/titleForm/TitleForm';
 
 import useValidate from '../../hooks/useValidate';
 

@@ -19,4 +19,4 @@ class ProfileAdmin(admin.ModelAdmin):
 @admin.register(Portfolio)
 class UserAdmin(admin.ModelAdmin):
     '''Портфолио'''
-    list_display = ('id', 'title', 'descriptionfffff',)
+    list_display = ('id', 'title', 'description',)

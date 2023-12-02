@@ -1,0 +1,33 @@
+.registr{
+  background-image: url('./../../assets/background/login-bg.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  width:auto;
+  min-height: 100vh;
+  padding: 0 1rem 1rem;
+  align-items: center;
+}
+.registr__form{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 5rem;
+}
+.reg__sign_up{
+  display: flex;
+  justify-content: center;
+}
+.form__inner{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  column-gap: 3rem;
+  row-gap: 2rem;
+}
+.reg__sign_up{
+  max-width: 615px;
+  width: 100%;
+}

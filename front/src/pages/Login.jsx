@@ -1,4 +1,4 @@
-import SingIn from '../components/singIn/singIn';
+import SingIn from '../components/SingIn/SingIn';
 const Login = () => {
   return <SingIn />;
 };

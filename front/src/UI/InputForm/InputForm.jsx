@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import './inputForm.scss';
+import './InputForm.scss';
 
 const InputForm = ({ img, value, type, placeholder, onChange, error, id }) => {
   return (
@@ -19,7 +19,8 @@ const InputForm = ({ img, value, type, placeholder, onChange, error, id }) => {
   );
 };
 InputForm.defaultProps = {
-  type: 'text'
+  type: 'text',
+  img: ''
 };
 InputForm.propTypes = {
   img: PropTypes.string,

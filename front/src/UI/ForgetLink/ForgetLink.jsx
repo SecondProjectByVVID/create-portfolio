@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import './forgetLink.scss';
+import './ForgetLink.scss';
 const ForgetLink = () => {
   return (
     <div className="form__forget-password">

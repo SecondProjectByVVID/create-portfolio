@@ -12,6 +12,7 @@ module.exports = {
   plugins: ['react'],
   rules: {
     'react/react-in-jsx-scope': 'off',
-    'prettier/prettier': ['error', { endOfLine: 'auto' }]
+    'prettier/prettier': ['error', { endOfLine: 'auto' }],
+    'eslint-disable-next-line': 'off'
   }
 };

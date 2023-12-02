@@ -1,40 +1,39 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 
 import './singIn.scss';
 import UserIcon from './../../assets/icons/user-icon.svg';
 import PasswordIcon from './../../assets/icons/password-icon.svg';
 
-import InputForm from '../../ui/inputForm/InputForm';
-import ButtonForm from '../../ui/buttonForm/ButtonForm';
-import ForgetLink from '../../ui/forgetLink/ForgetLink';
-import TitleForm from '../../ui/titleForm/TitleForm';
+import InputForm from './../../ui/inputForm/InputForm';
+import ButtonForm from './../../ui/buttonForm/ButtonForm';
+import ForgetLink from './../../ui/forgetLink/ForgetLink';
+import TitleForm from './../../ui/titleForm/TitleForm';
 
-import useValidate from '../../hooks/useValidate';
+import useValidate from './../../hooks/useValidate';
 
 const SingIn = () => {
   const [auth, setAuth] = useState({
     email: '',
     password: ''
   });
-  const { validate, error } = useValidate(auth);
+  const { error } = useValidate(auth);
   const handleChange = ({ target }) => {
     setAuth((prevState) => ({ ...prevState, [target.name]: target.value }));
   };
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(auth);
-    validate();
-    toast.success('Successful submit form', {
-      position: 'top-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-      theme: 'dark'
-    });
+    // toast.success('Successful submit form', {
+    //   position: 'top-right',
+    //   autoClose: 5000,
+    //   hideProgressBar: false,
+    //   closeOnClick: true,
+    //   pauseOnHover: false,
+    //   draggable: true,
+    //   theme: 'dark'
+    // });
   };
   return (
     <div className="login">

@@ -1,18 +1,22 @@
 import * as yup from 'yup';
 import { useState } from 'react';
 
+const textErrorField = 'Поле обязательно к заполнению';
+
 const useValidate = (authData) => {
   const [error, setError] = useState({});
   const validateScheme = yup.object().shape({
-    password: yup
+    password: yup.string().required(textErrorField).min(6, 'Минимальный размер 6 символов'),
+    email: yup.string().required(textErrorField).email('Email введён некорректно'),
+    name: yup
       .string()
-      .required('Пароль обязателен к заполнению')
-      .min(6, 'Минимальный размер 6 символов'),
-    email: yup
+      .required(textErrorField)
+      .matches(/^[a-zA-Z\s]+$/),
+    surname: yup
       .string()
-      .required('Электронная почта обязательна к заполнению')
-      .email('Email введён некорректно'),
-    name: yup.string().min(3)
+      .required(textErrorField)
+      .matches(/^[a-zA-Z\s]+$/),
+    phoneNumber: yup.number().matches(/(?:\+|\d)[\d\-[\]([\]) ]{9,}\d/g)
   });
   const validate = () =>
     validateScheme

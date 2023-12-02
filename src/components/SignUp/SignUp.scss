@@ -1,0 +1,29 @@
+.registr{
+  background-image: url('./../../assets/background/login-bg.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  width:auto;
+  min-height: 100vh;
+  padding: 0 1rem 1rem;
+  align-items: center;
+}
+.registr__form{
+    padding-right: 41rem;
+}
+.reg__sign_up{
+  display: flex;
+  justify-content: center;
+  padding-left: 40rem;
+}
+.form{
+  display: grid;
+  grid-template-columns: 0.6fr 280px;
+  padding-left: 24rem;
+  padding-bottom: 100px;
+}
+.reg__sign_up button{
+    padding: 15px 150px 15px;
+}

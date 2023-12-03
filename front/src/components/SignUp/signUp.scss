@@ -28,6 +28,11 @@
   row-gap: 2rem;
 }
 .reg__sign_up{
-  max-width: 615px;
-  width: 100%;
+  width: clamp(250px,50vw,600px);
+}
+
+@media(max-width:1200px){
+  .form__inner{
+    grid-template-columns: repeat(1,1fr);
+  }
 }

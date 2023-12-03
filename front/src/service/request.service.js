@@ -6,9 +6,20 @@ const http = axios.create({
   baseURL: configApi.url
 });
 
+// http.interceptors.request.use(
+//   function (response) {
+//     console.log(response);
+//     toast.success('Вы успешно зарегистрированы');
+//     return response;
+//   },
+//   function (error) {
+//     console.log(error);
+//     return Promise.reject(error);
+//   }
+// );
+
 http.interceptors.response.use(
   function (response) {
-    console.log(response);
     toast.success('Вы успешно зарегистрированы');
     return response;
   },

@@ -5,38 +5,33 @@ import UserIcon from './../../assets/icons/user-icon.svg';
 import PhoneIcon from './../../assets/icons/phone-icon.svg';
 import PasswordIcon from './../../assets/icons/password-icon.svg';
 import useValidate from '../../hooks/useValidate';
-
-import userReq from './../../api/userReq';
+import useForm from '../../hooks/useForm';
 
 import './signUp.scss';
 import ButtonForm from '../../ui/ButtonForm/ButtonForm';
-import { useNavigate } from 'react-router-dom/dist/umd/react-router-dom.development';
+import { useAuth } from '../../hooks/useAuth';
 
 const SignUp = () => {
-  const [reg, setReg] = useState({
-    name: '',
-    email: '',
-    mobile: '',
-    surname: '',
-    password: ''
-  });
-  const navigate = useNavigate();
-  const { validate, error } = useValidate(reg);
-  const handleChange = ({ target }) => {
-    setReg((prevState) => ({ ...prevState, [target.name]: target.value }));
-  };
+  const [reg] = useState(
+    JSON.parse(localStorage.getItem('signUp')) || {
+      name: '',
+      email: '',
+      mobile: '',
+      surname: '',
+      password: ''
+    }
+  );
+  const { form, formChange } = useForm(reg);
+  const { validate, error } = useValidate(form);
+  const { signUp } = useAuth();
   const handleSubmit = async (e) => {
     e.preventDefault();
     validate();
   };
-
-  const registration = () => {
-    userReq.create(reg).then((data) => (data ? navigate('/') : null));
-  };
   useEffect(() => {
     const isValidate = Object.keys(error).length === 0;
     if (isValidate) {
-      registration();
+      signUp(form);
     }
   }, [error]);
   return (
@@ -47,43 +42,43 @@ const SignUp = () => {
           <form className="form" onSubmit={(e) => handleSubmit(e)}>
             <div className="form__inner">
               <InputForm
-                value={reg.name}
+                value={form.name}
                 type={'text'}
                 placeholder={'Имя'}
-                onChange={handleChange}
+                onChange={formChange}
                 error={error}
                 id={'name'}
               />
               <InputForm
-                value={reg.lastname}
+                value={form.surname}
                 type={'text'}
                 placeholder={'Фамилия'}
-                onChange={handleChange}
+                onChange={formChange}
                 error={error}
                 id={'surname'}
               />
               <InputForm
                 img={UserIcon}
-                value={reg.email}
+                value={form.email}
                 placeholder={'Почта'}
-                onChange={handleChange}
+                onChange={formChange}
                 error={error}
                 id={'email'}
               />
               <InputForm
                 img={PasswordIcon}
-                value={reg.password}
+                value={form.password}
                 type={'password'}
                 placeholder={'Пароль'}
-                onChange={handleChange}
+                onChange={formChange}
                 error={error}
                 id={'password'}
               />
               <InputForm
                 img={PhoneIcon}
-                value={reg.phone}
-                placeholder={'Номер телефона'}
-                onChange={handleChange}
+                value={form.mobile}
+                placeholder={'+79000000000'}
+                onChange={formChange}
                 error={error}
                 id={'mobile'}
               />

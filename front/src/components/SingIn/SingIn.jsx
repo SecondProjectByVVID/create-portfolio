@@ -1,6 +1,4 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import userReq from '../../api/userReq';
 
 import './singIn.scss';
 import UserIcon from './../../assets/icons/user-icon.svg';
@@ -12,21 +10,20 @@ import ForgetLink from '../../ui/ForgetLink/ForgetLink';
 import TitleForm from '../../ui/TitleForm/TitleForm';
 
 import useValidate from '../../hooks/useValidate';
-import { useNavigate } from 'react-router-dom/dist/umd/react-router-dom.development';
+import useForm from '../../hooks/useForm';
+import { useAuth } from '../../hooks/useAuth';
 
 const SingIn = () => {
-  const [auth, setAuth] = useState({
+  const auth = {
     email: '',
     password: ''
-  });
-  const navigate = useNavigate();
-  const { error } = useValidate(auth);
-  const handleChange = ({ target }) => {
-    setAuth((prevState) => ({ ...prevState, [target.name]: target.value }));
   };
+  const { form, formChange } = useForm(auth);
+  const { error } = useValidate(auth);
+  const { signIn } = useAuth();
   const handleSubmit = (e) => {
     e.preventDefault();
-    userReq.auth(auth).then((data) => (data ? navigate('/') : null));
+    signIn(form);
   };
   return (
     <div className="login">
@@ -36,18 +33,18 @@ const SingIn = () => {
           <form className="form" onSubmit={(e) => handleSubmit(e)}>
             <InputForm
               img={UserIcon}
-              value={auth.email}
+              value={form.email}
               placeholder={'Почта'}
-              onChange={handleChange}
+              onChange={formChange}
               error={error}
               id={'email'}
             />
             <InputForm
               img={PasswordIcon}
-              value={auth.password}
+              value={form.password}
               type={'password'}
               placeholder={'Пароль'}
-              onChange={handleChange}
+              onChange={formChange}
               error={error}
               id={'password'}
             />

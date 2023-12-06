@@ -18,13 +18,18 @@ const http = axios.create({
 //   }
 // );
 
+function getResponseText(response) {
+  return Object.values(response)[0][0];
+}
+
 http.interceptors.response.use(
   function (response) {
-    toast.success('Вы успешно зарегистрированы');
+    const successRequestsText = getResponseText(JSON.parse(response.request.response));
+    toast.success(successRequestsText);
     return response;
   },
   function (error) {
-    const textError = Object.values(error.response.data)[0][0];
+    const textError = getResponseText(error.response.data);
     toast.error(textError);
     return Promise.reject(error);
   }

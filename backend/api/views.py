@@ -37,7 +37,7 @@ class UserView(viewsets.ModelViewSet):
                 'profession': user.profession,
             }
 
-            return Response(response_data, status=status.HTTP_201_CREATED)
+            return Response({'message': ['Добро пожаловать 😎']}, status=status.HTTP_200_OK)
         except ValidationError as validation_error:
             return Response(validation_error.message_dict, status=status.HTTP_400_BAD_REQUEST)
 
@@ -53,7 +53,7 @@ class UserView(viewsets.ModelViewSet):
                 raise ValidationError({'error': ['Ошибка логина или пароля']})
             
             login(request, user)
-            return Response({'authenticated': True}, status=status.HTTP_200_OK)
+            return Response({'authenticated': ['Добро пожаловать 😎']}, status=status.HTTP_200_OK)
         except ValidationError as validation_error:
             return Response(validation_error.message_dict, status=status.HTTP_401_UNAUTHORIZED)
 

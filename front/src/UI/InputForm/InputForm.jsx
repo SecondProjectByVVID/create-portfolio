@@ -4,7 +4,7 @@ import './InputForm.scss';
 const InputForm = ({ img, value, type, placeholder, onChange, error, id }) => {
   return (
     <div className="form__email">
-      <img src={img} className="form__email-icon" />
+      {img ? <img src={img} className="form__email-icon" /> : ''}
       <input
         className={(error[id] ? 'error ' : '') + 'form__email-input'}
         value={value}
@@ -20,7 +20,8 @@ const InputForm = ({ img, value, type, placeholder, onChange, error, id }) => {
 };
 InputForm.defaultProps = {
   type: 'text',
-  img: ''
+  img: '',
+  error: {}
 };
 InputForm.propTypes = {
   img: PropTypes.string,

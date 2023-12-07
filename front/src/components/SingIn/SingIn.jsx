@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import './singIn.scss';
-import UserIcon from './../../assets/icons/user-icon.svg';
-import PasswordIcon from './../../assets/icons/password-icon.svg';
+import getIconKey from '../../helpers/getImageKey';
 
 import InputForm from '../../ui/inputForm/InputForm';
 import ButtonForm from '../../ui/ButtonForm/ButtonForm';
@@ -32,7 +31,7 @@ const SingIn = () => {
         <div className="login__form">
           <form className="form" onSubmit={(e) => handleSubmit(e)}>
             <InputForm
-              img={UserIcon}
+              img={getIconKey('UserIcon')}
               value={form.email}
               placeholder={'Почта'}
               onChange={formChange}
@@ -40,7 +39,7 @@ const SingIn = () => {
               id={'email'}
             />
             <InputForm
-              img={PasswordIcon}
+              img={getIconKey('PasswordIcon')}
               value={form.password}
               type={'password'}
               placeholder={'Пароль'}
@@ -48,7 +47,7 @@ const SingIn = () => {
               error={error}
               id={'password'}
             />
-            <ForgetLink />
+            <ForgetLink text={'Забыли пароль?'} type={'link'} />
             <ButtonForm textField={'Войти'} btnClass={'form__sign-in'} />
             <div className="form__create-acc">
               <p>Нет аккаунта?</p>

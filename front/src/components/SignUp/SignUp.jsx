@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
+
 import TitleForm from '../../ui/TitleForm/TitleForm';
 import InputForm from '../../ui/inputForm/InputForm';
-import UserIcon from './../../assets/icons/user-icon.svg';
-import PhoneIcon from './../../assets/icons/phone-icon.svg';
-import PasswordIcon from './../../assets/icons/password-icon.svg';
+import ButtonForm from '../../ui/ButtonForm/ButtonForm';
+
+import getIconKey from '../../helpers/getImageKey';
+
 import useValidate from '../../hooks/useValidate';
 import useForm from '../../hooks/useForm';
+import { useAuth } from '../../hooks/useAuth';
 
 import './signUp.scss';
-import ButtonForm from '../../ui/ButtonForm/ButtonForm';
-import { useAuth } from '../../hooks/useAuth';
 
 const SignUp = () => {
   const [reg] = useState(
@@ -18,13 +19,15 @@ const SignUp = () => {
       email: '',
       mobile: '',
       surname: '',
-      password: ''
+      password: '',
+      repeatPassword: '',
+      profession: ''
     }
   );
   const { form, formChange } = useForm(reg);
   const { validate, error } = useValidate(form);
   const { signUp } = useAuth();
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     validate();
   };
@@ -58,7 +61,7 @@ const SignUp = () => {
                 id={'surname'}
               />
               <InputForm
-                img={UserIcon}
+                img={getIconKey('UserIcon')}
                 value={form.email}
                 placeholder={'Почта'}
                 onChange={formChange}
@@ -66,7 +69,15 @@ const SignUp = () => {
                 id={'email'}
               />
               <InputForm
-                img={PasswordIcon}
+                img={getIconKey('PhoneIcon')}
+                value={form.mobile}
+                placeholder={'+79000000000'}
+                onChange={formChange}
+                error={error}
+                id={'mobile'}
+              />
+              <InputForm
+                img={getIconKey('PasswordIcon')}
                 value={form.password}
                 type={'password'}
                 placeholder={'Пароль'}
@@ -75,15 +86,24 @@ const SignUp = () => {
                 id={'password'}
               />
               <InputForm
-                img={PhoneIcon}
-                value={form.mobile}
-                placeholder={'+79000000000'}
+                img={getIconKey('PasswordIcon')}
+                value={form.repeatPassword}
+                type={'password'}
+                placeholder={'Повторите пароль'}
                 onChange={formChange}
                 error={error}
-                id={'mobile'}
+                id={'repeatPassword'}
+              />
+              <InputForm
+                img={getIconKey('WorkIcon')}
+                value={form.profession}
+                type={'text'}
+                placeholder={'Ваша профессия'}
+                onChange={formChange}
+                error={error}
+                id={'profession'}
               />
             </div>
-            {/* <Select /> */}
             <div className="reg__sign_up">
               <ButtonForm textField={'Регистрация'} btnClass={'form__sign-up'} />
             </div>

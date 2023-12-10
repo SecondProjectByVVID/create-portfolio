@@ -51,9 +51,18 @@ class UserView(viewsets.ModelViewSet):
         try:
             if user is None:
                 raise ValidationError({'error': ['Ошибка логина или пароля']})
-            
+
             login(request, user)
-            return Response({'authenticated': ['Добро пожаловать 😎']}, status=status.HTTP_200_OK)
+
+            user_serializer = UserSerializer(user)
+            user_data = user_serializer.data
+
+            response_data = {
+                'data': user_data,
+                'authenticated': 'Добро пожаловать 😎'
+            }
+
+            return Response(response_data, status=status.HTTP_200_OK)
         except ValidationError as validation_error:
             return Response(validation_error.message_dict, status=status.HTTP_401_UNAUTHORIZED)
 

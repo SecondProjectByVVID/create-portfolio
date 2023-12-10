@@ -10,21 +10,25 @@ import TitleForm from '../../ui/TitleForm/TitleForm';
 
 import useValidate from '../../hooks/useValidate';
 import useForm from '../../hooks/useForm';
-import { useAuth } from '../../hooks/useAuth';
-
+import { useSelector } from 'react-redux';
+import Loader from './../../ui/Loader/Loader';
+import { useNavigate } from 'react-router-dom/dist/umd/react-router-dom.development';
+import useActions from '../../hooks/useActions';
 const SingIn = () => {
   const auth = {
     email: '',
     password: ''
   };
+  const { loading } = useSelector((state) => state.signIn);
   const { form, formChange } = useForm(auth);
   const { error } = useValidate(auth);
-  const { signIn } = useAuth();
+  const navigate = useNavigate();
+  const { login } = useActions();
   const handleSubmit = (e) => {
     e.preventDefault();
-    signIn(form);
+    login(form).then(({ payload }) => (payload ? navigate('/') : null));
   };
-  return (
+  return !loading ? (
     <div className="login">
       <div className="login__inner">
         <TitleForm textField={'Авторизация'} />
@@ -59,6 +63,8 @@ const SingIn = () => {
         </div>
       </div>
     </div>
+  ) : (
+    <Loader />
   );
 };
 

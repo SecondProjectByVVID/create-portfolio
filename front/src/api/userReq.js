@@ -1,5 +1,5 @@
 import request from './../service/request.service';
-
+import { localStorageService } from '../service/localStorage.service';
 const createAndPoint = 'create_user/';
 const authenticateAndPoint = 'authenticate_user/';
 const usersAndPoint = 'users/';
@@ -15,16 +15,19 @@ const userReq = {
   },
   auth: async (postInfo) => {
     try {
-      await request.post(authenticateAndPoint, postInfo);
-      return true;
+      const { data } = await request.post(authenticateAndPoint, postInfo);
+      localStorageService.setIsLogin(JSON.stringify(true));
+      localStorageService.setUser(JSON.stringify(data.data));
+      localStorageService.setUserId(JSON.stringify(data.data.id));
+      return data.data;
     } catch {
       return false;
     }
   },
   get: async () => {
     try {
-      const dataUsers = await request.get(usersAndPoint);
-      return dataUsers;
+      const { data } = await request.get(usersAndPoint);
+      return data;
     } catch {
       return false;
     }

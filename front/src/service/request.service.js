@@ -29,7 +29,7 @@ http.interceptors.response.use(
     return response;
   },
   function (error) {
-    const textError = getResponseText(error.response.data);
+    const textError = getResponseText(error.response.data) || error.message;
     toast.error(textError);
     return Promise.reject(error);
   }

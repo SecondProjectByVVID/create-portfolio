@@ -40,7 +40,6 @@
     }
   }
   &__user{
-  padding: 6px;
   background: #FFF;
   border-radius: 50%;
   border: 2px solid #0889FF;
@@ -53,7 +52,8 @@
   }
   }
   &__user-icon{
-    width: 35px;
-    height: 35px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
   }
 }

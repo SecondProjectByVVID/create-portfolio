@@ -24,7 +24,8 @@ function getResponseText(response) {
 
 http.interceptors.response.use(
   function (response) {
-    const successRequestsText = getResponseText(JSON.parse(response.request.response));
+    const successRequestsText =
+      getResponseText(JSON.parse(response.request.response)) || Object.values(response.data)[1];
     toast.success(successRequestsText);
     return response;
   },

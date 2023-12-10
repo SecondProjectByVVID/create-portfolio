@@ -7,8 +7,8 @@ const NotFound = () => {
     <>
       <div id="bg-fon">
         <div className="top">
-          <h1>404</h1>
-          <h3>page not found</h3>
+          <h1 className="h1-title">404</h1>
+          <h3 className="h3-title">page not found</h3>
         </div>
         <div className="notfound__container">
           <div className="ghost-copy">

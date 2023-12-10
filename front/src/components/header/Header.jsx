@@ -1,17 +1,13 @@
 import { Link } from 'react-router-dom/dist/umd/react-router-dom.development';
 import getIconKey from './../../helpers/getImageKey';
-// import { localStorageService } from '../../service/localStorage.service';
 import { useSelector } from 'react-redux';
 import ButtonForm from '../../ui/ButtonForm/ButtonForm';
 import './Header.scss';
 import UserProfile from '../userProfile/userProfile';
-
+import usePosition from './../../hooks/usePosition';
 const Header = () => {
   const { isLogin } = useSelector((state) => state.signIn);
-  // const handleClick = () => {
-  //   localStorageService.removeAllAuth();
-  //   window.location.reload();
-  // };
+  const { position } = usePosition();
   return (
     <div className="header">
       <div className="header__inner">
@@ -37,7 +33,7 @@ const Header = () => {
               src={getIconKey('LocationIcon')}
               alt="icon location"
             />
-            <p className="header__location-text">Таганрог</p>
+            <p className="header__location-text">{position}</p>
           </div>
           {isLogin ? (
             <UserProfile />
@@ -46,7 +42,6 @@ const Header = () => {
               <ButtonForm textField={'Войти'} btnClass={'header__login-btn'} />
             </Link>
           )}
-          {/* <button onClick={() => handleClick()}>Logout</button> */}
         </nav>
       </div>
       <hr />

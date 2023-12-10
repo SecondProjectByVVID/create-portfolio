@@ -145,7 +145,7 @@ $body: 'Inter', sans-serif;
 }
 
 
-h1 {
+.h1-title {
   font-family: $big;
   color: $white;
   text-align: center;
@@ -153,7 +153,7 @@ h1 {
   margin: 0;
   text-shadow: -1px 0 $gray, 0 1px $gray, 1px 0 $gray, 0 -1px $gray;
 }
-h3 {
+.h3-title {
   font-family: $body;
   font-size: 3em;
   text-transform: uppercase;

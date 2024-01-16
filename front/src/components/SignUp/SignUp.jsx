@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import TitleForm from '../../ui/TitleForm/TitleForm';
+import TitleForm from '../../ui/titleForm/TitleForm';
 import InputForm from '../../ui/inputForm/InputForm';
-import ButtonForm from '../../ui/ButtonForm/ButtonForm';
+import ButtonForm from '../../ui/buttonForm/ButtonForm';
 
 import getIconKey from '../../helpers/getImageKey';
 

@@ -1,6 +1,6 @@
 import { useNavigate, Link } from 'react-router-dom/dist/umd/react-router-dom.development';
 
-import './notFound.scss';
+import './NotFound.scss';
 const NotFound = () => {
   const navigate = useNavigate();
   return (

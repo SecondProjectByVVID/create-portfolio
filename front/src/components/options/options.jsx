@@ -1,4 +1,4 @@
-import SearchInput from './../../ui/SearchInput/searchInput';
+import SearchInput from './../../ui/searchInput/searchInput';
 import getIconKey from '../../helpers/getImageKey';
 
 import './options.scss';

@@ -1,13 +1,13 @@
 import { useState } from 'react';
 
-import TitleForm from '../../ui/TitleForm/TitleForm';
+import TitleForm from '../../ui/titleForm/TitleForm';
 import InputForm from '../../ui/inputForm/InputForm';
-import ButtonForm from '../../ui/ButtonForm/ButtonForm';
+import ButtonForm from '../../ui/buttonForm/ButtonForm';
 
 import './restorePassword.scss';
 import useForm from '../../hooks/useForm';
 import getIconKey from '../../helpers/getImageKey';
-import ForgetLink from '../../ui/ForgetLink/ForgetLink';
+import ForgetLink from '../../ui/forgetLink/ForgetLink';
 
 const RestorePassword = () => {
   const [restoreForm] = useState({ email: '' });

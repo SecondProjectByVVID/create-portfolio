@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 
-import './singIn.scss';
+import './SingIn.scss';
 import getIconKey from '../../helpers/getImageKey';
 
 import InputForm from '../../ui/inputForm/InputForm';
-import ButtonForm from '../../ui/ButtonForm/ButtonForm';
-import ForgetLink from '../../ui/ForgetLink/ForgetLink';
-import TitleForm from '../../ui/TitleForm/TitleForm';
+import ButtonForm from '../../ui/buttonForm/ButtonForm';
+import ForgetLink from '../../ui/forgetLink/ForgetLink';
+import TitleForm from '../../ui/titleForm/TitleForm';
 
 import useForm from '../../hooks/useForm';
 import { useAuth } from './../../hooks/useAuth';

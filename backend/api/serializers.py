@@ -1,27 +1,16 @@
 from rest_framework import serializers
-from .models import User, Profile, Portfolio
+from .models import Profile, Portfolio
 from project import settings
-from phonenumber_field.serializerfields import PhoneNumberField
-
-
-
-class UserSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True)
-    mobile = PhoneNumberField()
-    email = serializers.EmailField(label="Почта")
-    class Meta:
-        model = User
-        fields = ('id', 'email', 'mobile', 'surname', 'name', 'profession', 'password',)
-
+from users.serializers import UserListSerializer
 
 class ProfileSerializer(serializers.ModelSerializer):
-    user = UserSerializer()
+    user = UserListSerializer()
     class Meta:
         model = Profile
         fields = ('__all__')
 
-
 class PortfolioSerializer(serializers.ModelSerializer):
+    user = UserListSerializer()
     class Meta:
         model = Portfolio
         fields = ('__all__')

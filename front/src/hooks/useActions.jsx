@@ -1,9 +1,8 @@
 import { bindActionCreators } from '@reduxjs/toolkit';
 import { useMemo } from 'react';
 import { useDispatch } from 'react-redux';
-import { login } from '../store/auth/SignIn';
 
-const rootActions = { login };
+const rootActions = {};
 
 const useActions = () => {
   const dispatch = useDispatch();

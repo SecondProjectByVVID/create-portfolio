@@ -1,37 +1,38 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import configApi from './../config/config.request.json';
+import { localStorageService } from './localStorage.service';
 
-const http = axios.create({
-  baseURL: configApi.url
-});
-
-// http.interceptors.request.use(
-//   function (response) {
-//     console.log(response);
-//     toast.success('Вы успешно зарегистрированы');
-//     return response;
-//   },
-//   function (error) {
-//     console.log(error);
-//     return Promise.reject(error);
-//   }
-// );
-
-function getResponseText(response) {
-  return Object.values(response)[0][0];
+function handlerCaptchaError({ data }) {
+  const countCaptchaError = data?.failed_attempts;
+  if (countCaptchaError >= 3) localStorageService.setCaptcha(true);
 }
 
+const http = axios.create({
+  baseURL: configApi.url,
+  xsrfHeaderName: 'X-CSRFToken',
+  xsrfCookieName: 'csrftoken'
+});
+http.interceptors.request.use(
+  function (request) {
+    console.log(request);
+    return request;
+  },
+  function (error) {
+    return Promise.reject(error);
+  }
+);
 http.interceptors.response.use(
   function (response) {
-    const successRequestsText =
-      getResponseText(JSON.parse(response.request.response)) || Object.values(response.data)[1];
-    toast.success(successRequestsText);
+    const { message } = response.data;
+    toast.success(message);
     return response;
   },
   function (error) {
-    const textError = getResponseText(error.response.data) || error.message;
-    toast.error(textError);
+    console.log(error);
+    handlerCaptchaError(error.response);
+    const { message } = error.response.data;
+    toast.error(message);
     return Promise.reject(error);
   }
 );

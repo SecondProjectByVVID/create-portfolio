@@ -1,15 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit';
-import signInReducer from './auth/SignIn';
-// import { signUpReducer } from './auth/SignUp';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { userAPI } from './user/UserSlice';
 
-const reducer = {
-  signIn: signInReducer // войти
-  // signUp: signUpReducer // зарегестрироваться
-};
-
-const store = configureStore({
-  reducer,
-  devTools: true
+const rootReducer = combineReducers({
+  [userAPI.reducerPath]: userAPI.reducer
 });
 
-export default store;
+export const store = configureStore({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(userAPI.middleware)
+});

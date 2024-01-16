@@ -1,18 +1,19 @@
 import { Link } from 'react-router-dom/dist/umd/react-router-dom.development';
 import getIconKey from './../../helpers/getImageKey';
-import { useSelector } from 'react-redux';
 import ButtonForm from '../../ui/ButtonForm/ButtonForm';
 import './Header.scss';
 import UserProfile from '../userProfile/userProfile';
 import usePosition from './../../hooks/usePosition';
+import { useState } from 'react';
+import { localStorageService } from '../../service/localStorage.service';
 const Header = () => {
-  const { isLogin } = useSelector((state) => state.signIn);
+  const [isLogin] = useState(localStorageService.getIsLogin());
   const { position } = usePosition();
   return (
     <div className="header">
       <div className="header__inner">
         <div className="header__logo">
-          <img className="header__logo-img" src="" alt="header logo" />
+          <img className="header__logo-img" src={getIconKey('LogoIcon')} alt="header logo" />
         </div>
         <nav className="header__navbar">
           <ul className="header__list">

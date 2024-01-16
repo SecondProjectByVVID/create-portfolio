@@ -1,39 +1,38 @@
-const IS_LOGIN_KEY = 'isLoading';
+const IS_LOGIN_KEY = 'isLogin';
 const USER_ID_KEY = 'userId';
-const USER_INFO_KEY = 'user';
+const isCaptcha = false;
 
 function setIsLogin(data) {
-  localStorage.setItem(IS_LOGIN_KEY, data);
+  localStorage.setItem(IS_LOGIN_KEY, JSON.stringify(data));
 }
 function setUserId(data) {
-  localStorage.setItem(USER_ID_KEY, data);
+  localStorage.setItem(USER_ID_KEY, JSON.stringify(data));
 }
-function setUser(data) {
-  localStorage.setItem(USER_INFO_KEY, data);
+function setCaptcha(data) {
+  localStorage.setItem(isCaptcha, JSON.stringify(data));
 }
 
 function getIsLogin() {
-  return localStorage.getItem(IS_LOGIN_KEY);
+  return JSON.parse(localStorage.getItem(IS_LOGIN_KEY));
 }
 function getUserId() {
-  return localStorage.getItem(USER_ID_KEY);
+  return JSON.parse(localStorage.getItem(USER_ID_KEY));
 }
-function getUser() {
-  return localStorage.getItem(USER_INFO_KEY);
+function getCaptcha() {
+  return JSON.parse(localStorage.getItem(isCaptcha));
 }
-
 function removeAllAuth() {
   localStorage.removeItem(IS_LOGIN_KEY);
   localStorage.removeItem(USER_ID_KEY);
-  localStorage.removeItem(USER_INFO_KEY);
+  localStorage.removeItem(isCaptcha);
 }
 
 export const localStorageService = {
   getIsLogin,
   getUserId,
-  getUser,
+  getCaptcha,
   setIsLogin,
   setUserId,
-  setUser,
+  setCaptcha,
   removeAllAuth
 };

@@ -2,6 +2,7 @@
   position: sticky;
   top: 0;
   background: #FFF;
+  z-index: 100;
   & hr{
     background: #9D9D9D;
     height: 1.5px;
@@ -15,17 +16,12 @@
     font-family: Arimo,sans-serif;
     position: relative;
   }
-  &__logo{
-    width: 8rem;
-    height: 3rem;
-    background: #000000;
-  }
   &__navbar{
     display: flex;
     justify-content: start;
     align-items: center;
     width: 100%;
-    margin-left: clamp(0.8rem,5vw,4rem);
+    margin-left: clamp(0.8rem,5vw,3rem);
   }
   &__list{
     display: flex;
@@ -80,7 +76,7 @@
     letter-spacing: 1.316px;
   }
   &__location-img{
-    width: 35px;
-    height: 35px;
+    width: 32px;
+    height: 32px;
   }
 }

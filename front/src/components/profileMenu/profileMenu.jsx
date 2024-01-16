@@ -1,15 +1,13 @@
-import { useSelector } from 'react-redux';
 import getIconKey from '../../helpers/getImageKey';
 import { Link } from 'react-router-dom/dist/umd/react-router-dom.development';
-import { localStorageService } from './../../service/localStorage.service';
-
+import PropTypes from 'prop-types';
 import './profileMenu.scss';
+import { useAuth } from '../../hooks/useAuth';
 
-const ProfileMenu = () => {
-  const { user } = useSelector((state) => state.signIn);
+const ProfileMenu = ({ name, surname, email, error }) => {
+  const { logout } = useAuth();
   const handleClick = () => {
-    localStorageService.removeAllAuth();
-    window.location.reload();
+    logout();
   };
   return (
     <div className="profile">
@@ -18,8 +16,14 @@ const ProfileMenu = () => {
           <img className="profile__user-icon" src={getIconKey('AvatarIcon')} alt="avatar icon" />
         </div>
         <div className="profile__user-info">
-          <h3 className="profile__user-name">{`${user.name}  ${user.surname}`}</h3>
-          <p className="profile__user-email">{user.email}</p>
+          {error && 'Ошибка загрузки данных'}
+          <h3 className="profile__user-name">
+            <abbr title={`${name} ${surname}`}>{`${name} ${surname}`}</abbr>
+          </h3>
+          <p className="profile__user-email">
+            {' '}
+            <abbr title={`${email}`}>{`${email}`}</abbr>
+          </p>
         </div>
       </div>
       <ul className="profile__list">
@@ -43,5 +47,10 @@ const ProfileMenu = () => {
     </div>
   );
 };
-
+ProfileMenu.propTypes = {
+  name: PropTypes.string,
+  surname: PropTypes.string,
+  email: PropTypes.string,
+  error: PropTypes.string
+};
 export default ProfileMenu;

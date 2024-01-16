@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import TitleForm from '../../ui/TitleForm/TitleForm';
 import InputForm from '../../ui/inputForm/InputForm';
@@ -6,7 +6,6 @@ import ButtonForm from '../../ui/ButtonForm/ButtonForm';
 
 import getIconKey from '../../helpers/getImageKey';
 
-import useValidate from '../../hooks/useValidate';
 import useForm from '../../hooks/useForm';
 import { useAuth } from '../../hooks/useAuth';
 
@@ -15,28 +14,23 @@ import './signUp.scss';
 const SignUp = () => {
   const [reg] = useState(
     JSON.parse(localStorage.getItem('signUp')) || {
-      name: '',
+      first_name: '',
+      username: '',
       email: '',
       mobile: '',
-      surname: '',
+      last_name: '',
       password: '',
-      repeatPassword: '',
-      profession: ''
+      password2: '',
+      profession: '',
+      location: ''
     }
   );
   const { form, formChange } = useForm(reg);
-  const { validate, error } = useValidate(form);
-  const { signUp } = useAuth();
+  const { signUp, errors } = useAuth();
   const handleSubmit = (e) => {
     e.preventDefault();
-    validate();
+    signUp(form);
   };
-  useEffect(() => {
-    const isValidate = Object.keys(error).length === 0;
-    if (isValidate) {
-      signUp(form);
-    }
-  }, [error]);
   return (
     <div className="registr">
       <div className="registr__inner">
@@ -45,35 +39,34 @@ const SignUp = () => {
           <form className="form" onSubmit={(e) => handleSubmit(e)}>
             <div className="form__inner">
               <InputForm
-                value={form.name}
+                value={form.first_name}
                 type={'text'}
                 placeholder={'Имя'}
                 onChange={formChange}
-                error={error}
-                id={'name'}
+                id={'first_name'}
+                error={errors?.first_name?.[0] || ''}
               />
               <InputForm
-                value={form.surname}
+                value={form.last_name}
                 type={'text'}
                 placeholder={'Фамилия'}
                 onChange={formChange}
-                error={error}
-                id={'surname'}
+                id={'last_name'}
+                error={errors?.last_name?.[0] || ''}
               />
               <InputForm
                 img={getIconKey('UserIcon')}
                 value={form.email}
                 placeholder={'Почта'}
                 onChange={formChange}
-                error={error}
                 id={'email'}
+                error={errors?.email?.[0] || ''}
               />
               <InputForm
                 img={getIconKey('PhoneIcon')}
                 value={form.mobile}
                 placeholder={'+79000000000'}
                 onChange={formChange}
-                error={error}
                 id={'mobile'}
               />
               <InputForm
@@ -82,17 +75,17 @@ const SignUp = () => {
                 type={'password'}
                 placeholder={'Пароль'}
                 onChange={formChange}
-                error={error}
                 id={'password'}
+                error={errors?.password?.[0] || ''}
               />
               <InputForm
                 img={getIconKey('PasswordIcon')}
-                value={form.repeatPassword}
+                value={form.password2}
                 type={'password'}
                 placeholder={'Повторите пароль'}
                 onChange={formChange}
-                error={error}
-                id={'repeatPassword'}
+                id={'password2'}
+                error={errors?.password2?.[0] || ''}
               />
               <InputForm
                 img={getIconKey('WorkIcon')}
@@ -100,7 +93,6 @@ const SignUp = () => {
                 type={'text'}
                 placeholder={'Ваша профессия'}
                 onChange={formChange}
-                error={error}
                 id={'profession'}
               />
             </div>

@@ -8,27 +8,27 @@ import ButtonForm from '../../ui/ButtonForm/ButtonForm';
 import ForgetLink from '../../ui/ForgetLink/ForgetLink';
 import TitleForm from '../../ui/TitleForm/TitleForm';
 
-import useValidate from '../../hooks/useValidate';
 import useForm from '../../hooks/useForm';
-import { useSelector } from 'react-redux';
-import Loader from './../../ui/Loader/Loader';
-import { useNavigate } from 'react-router-dom/dist/umd/react-router-dom.development';
-import useActions from '../../hooks/useActions';
+import { useAuth } from './../../hooks/useAuth';
+import ReCAPTCHA from 'react-google-recaptcha';
+import { localStorageService } from '../../service/localStorage.service';
+import apiConfig from './../../config/config.request.json';
+import { useState } from 'react';
 const SingIn = () => {
-  const auth = {
+  const [auth] = useState({
     email: '',
     password: ''
-  };
-  const { loading } = useSelector((state) => state.signIn);
-  const { form, formChange } = useForm(auth);
-  const { error } = useValidate(auth);
-  const navigate = useNavigate();
-  const { login } = useActions();
+  });
+  const { signIn } = useAuth();
+  const { form, formChange, setForm } = useForm(auth);
   const handleSubmit = (e) => {
     e.preventDefault();
-    login(form).then(({ payload }) => (payload ? navigate('/') : null));
+    signIn(form);
   };
-  return !loading ? (
+  const captchaChange = (e) => {
+    setForm((prevState) => ({ ...prevState, 'g-recaptcha-response': e }));
+  };
+  return (
     <div className="login">
       <div className="login__inner">
         <TitleForm textField={'Авторизация'} />
@@ -39,7 +39,6 @@ const SingIn = () => {
               value={form.email}
               placeholder={'Почта'}
               onChange={formChange}
-              error={error}
               id={'email'}
             />
             <InputForm
@@ -48,11 +47,17 @@ const SingIn = () => {
               type={'password'}
               placeholder={'Пароль'}
               onChange={formChange}
-              error={error}
               id={'password'}
             />
             <ForgetLink text={'Забыли пароль?'} type={'link'} />
             <ButtonForm textField={'Войти'} btnClass={'form__sign-in'} />
+            {localStorageService.getCaptcha() && (
+              <ReCAPTCHA
+                sitekey={apiConfig.keyCaptcha}
+                onChange={captchaChange}
+                name="g-recaptcha-response"
+              />
+            )}
             <div className="form__create-acc">
               <p>Нет аккаунта?</p>
             </div>
@@ -63,8 +68,6 @@ const SingIn = () => {
         </div>
       </div>
     </div>
-  ) : (
-    <Loader />
   );
 };
 

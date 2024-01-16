@@ -35,14 +35,21 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'api',
+    'users',
     'corsheaders',
     'rest_framework',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'phonenumber_field',
+    'captcha',
 ]
 
-AUTH_USER_MODEL = 'api.User'
+AUTH_USER_MODEL = 'users.CustomUser'
 
 SITE_ID = 1
 
@@ -55,16 +62,41 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'allauth.account.middleware.AccountMiddleware'
 ]
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
-    ]
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+    ],
 }
 
+CORS_ORIGIN_WHITELIST = [
+    'http://127.0.0.1:3000',
+    'http://localhost:3000',
+    'http://127.0.0.1:8000',
+    'http://localhost:8000',
+]
+
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
+    'http://127.0.0.1:3000',
+    'http://localhost:3000',
+    'http://127.0.0.1:8000',
+    'http://localhost:8000',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://127.0.0.1:3000', 
+    'http://localhost:3000',
+    'http://127.0.0.1:8000', 
+    'http://localhost:8000',
+]
+
+AUTHENTICATION_BACKENDS = [
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 ROOT_URLCONF = 'project.urls'
@@ -72,7 +104,7 @@ ROOT_URLCONF = 'project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'frontend', 'build')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -94,9 +126,11 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'portData',
+        'NAME': 'django',
         'USER': 'postgres',
         'PASSWORD': '12345',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -131,16 +165,72 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
 
-
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+RECAPTCHA_PUBLIC_KEY = '6LcfxkopAAAAAHRGGDR2r1OjBmt5wyH5WAipiPL1'
+RECAPTCHA_PRIVATE_KEY = '6LcfxkopAAAAADvhS_IEDevylkxhjJJAWTY5wX37'
+SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
+
+#Cookie and session 
+
+SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
+
+
+
+
+
+
+
+CORS_ALLOW_HEADERS = ('Access-Control-Allow-Origin', 
+                      'Access-Control-Allow-Credentials', 
+                      'Authorization', 
+                      'Content-Type', 
+                      'Cache-Control', 
+                      'X-Requested-With', 
+                      'x-csrftoken',
+                      'X-CSRFTOKEN',
+                      'xsrfheadername',
+                      'xsrfcookiename',
+                      'content-type',
+                      'XSRF-TOKEN',)
+
+SESSION_COOKIE_HTTPONLY = False
+CSRF_USE_SESSIONS = False
+CSRF_COOKIE_SECURE = False
+
+
+
+
+
+
+
+
+SESSION_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SECURE = True
+
+CSRF_COOKIE_NAME = "csrftoken"
+CSRF_COOKIE_HTTPONLY = False
+CORS_EXPOSE_HEADERS = ["Content-Type", "X-CSRFToken"]
+CORS_ALLOW_CREDENTIALS = True
+
+# Emailing settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_FROM = 'tigr12112004@gmail.com'
+EMAIL_HOST_USER = 'tigr12112004@gmail.com'
+EMAIL_HOST_PASSWORD = 'zarstwdvbqimrmxk'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+
+PASSWORD_RESET_TIMEOUT = 14400
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

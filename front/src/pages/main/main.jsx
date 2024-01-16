@@ -1,8 +1,10 @@
-import Header from '../../components/header/Header';
+import Options from './../../components/options/options';
+import CardList from './../../components/cardList/cardList';
 const Main = () => {
   return (
     <>
-      <Header />
+      <Options />
+      <CardList />
     </>
   );
 };

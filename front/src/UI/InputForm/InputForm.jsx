@@ -14,14 +14,14 @@ const InputForm = ({ img, value, type, placeholder, onChange, error, id }) => {
         name={id}
       />
       {/* Error text message  */}
-      {error[id] ? <p className="error__message">{error[id]}</p> : ''}
+      {error ? <p className="error__message">{error}</p> : ''}
     </div>
   );
 };
 InputForm.defaultProps = {
   type: 'text',
   img: '',
-  error: {}
+  error: ''
 };
 InputForm.propTypes = {
   img: PropTypes.string,
@@ -29,7 +29,7 @@ InputForm.propTypes = {
   type: PropTypes.string,
   placeholder: PropTypes.string,
   onChange: PropTypes.func,
-  error: PropTypes.object,
+  error: PropTypes.string,
   id: PropTypes.string
 };
 

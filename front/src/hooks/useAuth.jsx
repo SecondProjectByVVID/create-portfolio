@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom/dist/umd/react-router-dom.developm
 import userReq from './../api/userReq';
 import PropTypes from 'prop-types';
 import Loader from '../ui/Loader/Loader';
+import getCookie from '../helpers/getCsrfToken';
+import { localStorageService } from './../service/localStorage.service';
 const AuthContext = React.createContext();
 
 export const useAuth = () => {
@@ -11,29 +13,37 @@ export const useAuth = () => {
 
 const AuthProvider = ({ children }) => {
   const [isLoading, setLoading] = useState(true);
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
-  const signUp = (form) => {
+
+  const signUp = async (form) => {
     setLoading(false);
     localStorage.setItem('signUp', JSON.stringify(form));
-    userReq.create(form).then((data) => {
-      if (data) {
-        navigate('/');
-        setLoading(true);
-        localStorage.clear();
-      } else setLoading(true);
-    });
+    const { response } = await userReq.create(form);
+    if (response && response?.status !== 200) {
+      setErrors((prevState) => ({ ...prevState, ...response?.data?.message }));
+    } else {
+      navigate('/');
+      localStorage.clear();
+    }
+    setLoading(true);
   };
-  const signIn = (form) => {
+  const signIn = async (form) => {
     setLoading(false);
-    userReq.auth(form).then((data) => {
-      if (data) {
-        navigate('/');
-        setLoading(true);
-      } else setLoading(true);
-    });
+    const response = await userReq.auth(form);
+    if (response) {
+      navigate('/');
+    }
+    setLoading(true);
+  };
+  const logout = async () => {
+    localStorageService.removeAllAuth();
+    const csrftoken = getCookie('csrftoken');
+    await userReq.logout(csrftoken);
+    window.location.reload();
   };
   return (
-    <AuthContext.Provider value={{ signUp, signIn }}>
+    <AuthContext.Provider value={{ signUp, signIn, logout, errors }}>
       {isLoading ? children : <Loader />}
     </AuthContext.Provider>
   );

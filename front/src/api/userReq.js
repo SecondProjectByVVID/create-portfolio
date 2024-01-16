@@ -1,32 +1,46 @@
 import request from './../service/request.service';
 import { localStorageService } from '../service/localStorage.service';
-const createAndPoint = 'create_user/';
-const authenticateAndPoint = 'authenticate_user/';
-const usersAndPoint = 'users/';
+import configApi from './../config/config.request.json';
 
 const userReq = {
   create: async (postInfo) => {
     try {
-      await request.post(createAndPoint, postInfo);
+      await request.post(configApi.createAndPoint, postInfo);
+      return true;
+    } catch (error) {
+      return error;
+    }
+  },
+  auth: async (postInfo) => {
+    try {
+      const { data } = await request.post(configApi.authenticateAndPoint, postInfo);
+      localStorageService.setIsLogin(true);
+      localStorageService.setUserId(data.id);
       return true;
     } catch {
       return false;
     }
   },
-  auth: async (postInfo) => {
+  logout: async (token) => {
     try {
-      const { data } = await request.post(authenticateAndPoint, postInfo);
-      localStorageService.setIsLogin(JSON.stringify(true));
-      localStorageService.setUser(JSON.stringify(data.data));
-      localStorageService.setUserId(JSON.stringify(data.data.id));
-      return data.data;
-    } catch {
-      return false;
+      const data = await request.post(
+        configApi.logout,
+        {},
+        {
+          headers: {
+            'X-CSRFToken': token
+          },
+          withCredentials: true
+        }
+      );
+      console.log(data);
+    } catch (error) {
+      console.log(error);
     }
   },
   get: async () => {
     try {
-      const { data } = await request.get(usersAndPoint);
+      const { data } = await request.get(configApi.users);
       return data;
     } catch {
       return false;

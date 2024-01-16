@@ -8,6 +8,11 @@ import CreateIcon from './../assets/icons/create-icon.svg';
 import ProfileIcon from './../assets/icons/profile-icon.svg';
 import ChatIcon from './../assets/icons/chat-icon.svg';
 import LogoutIcon from './../assets/icons/logout-icon.svg';
+import SearchIcon from './../assets/icons/search-icon.svg';
+import SortIcon from './../assets/icons/sort-icon.svg';
+import LogoIcon from './../assets/icons/logo-icon.svg';
+
+import CardDefaultBg from './../assets/background/default-card-bg.jpg';
 
 const getIcon = {
   UserIcon,
@@ -19,7 +24,11 @@ const getIcon = {
   CreateIcon,
   ProfileIcon,
   ChatIcon,
-  LogoutIcon
+  LogoutIcon,
+  SearchIcon,
+  SortIcon,
+  LogoIcon,
+  CardDefaultBg
 };
 
 function getIconKey(keyIcon) {

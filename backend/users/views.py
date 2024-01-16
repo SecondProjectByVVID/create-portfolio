@@ -89,8 +89,7 @@ class LoginView(APIView):
             return Response({"message": "Неправильная почта или пароль.", "failed_attempts": failed_attempts}, status=status.HTTP_400_BAD_REQUEST)
 
 class LogoutView(APIView):
-    authentication_classes = (JWTCookieAuthentication,)
-    permission_classes = [IsAuthenticated,]
+    #permission_classes = [IsAuthenticated,]
 
     def post(self, request):
         logout(request)

@@ -68,7 +68,7 @@ const ProfileMenu = () => {
         </li>
         <li className="profile__list-item" onClick={() => handleClick()}>
           <p className="profile__list-text">Выход</p>
-          <AppImage 
+          <AppImage
             alt={'logout icon'}
             fallback={<Skeleton size={{ width: '28px', height: '28px', borderRadius: '5px' }} />}
           />

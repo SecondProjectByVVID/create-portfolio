@@ -1,0 +1,15 @@
+django
+django-tinymce
+fontawesomefree
+django-crispy-forms
+django-recaptcha
+pillow
+six
+djangorestframework
+django-cors-headers
+django-allauth
+fontawesomefree
+django-phonenumber-field
+phonenumbers
+django-recaptcha
+six

@@ -1,0 +1,19 @@
+$loader-background:#EEEEEE;
+$loader-highlight:#dbdbdb;
+
+
+.cover-skeleton {
+  background: linear-gradient(90deg, $loader-background 25%,
+   $loader-highlight 50%, $loader-background 75%);
+  background-size: 200% 100%;
+  animation: loading 2s infinite ease-in-out;
+}
+
+@keyframes loading {
+  0% {
+      background-position: 200% 0;
+  }
+  100% {
+      background-position: -200% 0;
+  }
+}

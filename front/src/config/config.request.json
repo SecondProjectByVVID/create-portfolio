@@ -1,0 +1,10 @@
+{
+  "url":"http://localhost:8000/",
+  "users":"user/",
+  "profile":"profile/",
+  "portfolio":"portfolio/",
+  "authenticateAndPoint":"login/",
+  "logout":"logout/",
+  "createAndPoint":"register/",
+  "keyCaptcha":"6LcfxkopAAAAAHRGGDR2r1OjBmt5wyH5WAipiPL1"
+}

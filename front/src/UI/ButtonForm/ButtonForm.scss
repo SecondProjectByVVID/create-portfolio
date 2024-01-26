@@ -1,0 +1,42 @@
+.form{
+&__sign-in,&__sign-up{
+    width: 100%;
+    padding: 0.7rem 1.5rem;
+    border: 2px solid #0889FF;
+    border-radius: 5px;
+    font-size: clamp(12px,6vw,24px);
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 5px;
+    transition: all .5s ease;
+    &:hover{
+      background: #0889FF;
+      color: #fff;
+    }
+  }
+  &__sign-up{
+    text-align: center;
+    border: 2px solid #000;
+    &:hover{
+      background: transparent;
+      color: #000;
+      border-color: transparent;
+      box-shadow: 0 0 0.15rem 0.35rem rgba(76, 76, 76, 0.35);
+    }
+  }
+}
+
+.header__login-btn{
+  padding: 0.4rem 1.5rem;
+  border: 2px solid #0889FF;
+  border-radius: 5px;
+  font-size: clamp(10px,4vw,18px);
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 2px;
+  transition: all .5s ease;
+  &:hover{
+    background: #0889FF;
+    color: #fff;
+  }
+}

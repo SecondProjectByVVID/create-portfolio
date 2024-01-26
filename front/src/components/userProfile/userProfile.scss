@@ -1,0 +1,61 @@
+.header{
+  &__auth{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+  &__create-btn{
+    padding: 8px 35px 8px 8px;
+    border-radius: 20px;
+    border: 2px solid #0889FF;
+    background: #FFF;
+    color: #575757;
+    font-family: Inter,sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 2px;
+    position: relative;
+    transition: all .5s ease;
+    margin-right: clamp(0.5rem,5vw,2rem);
+    &::after{
+      content: url('./../../assets/icons/create-icon.svg');
+      position:absolute;
+      width: 25px;
+      height: 25px;
+      right: 7px;
+      bottom: 6px;
+      transition: all .5s ease;
+      transform: rotate(45deg);
+    }
+    &:hover::after{
+      transition: all .5s ease;
+      transform: rotate(0deg);
+    }
+    &:hover{
+      background: #EEF4F8;
+      border-color: #41BBFF;
+    }
+  }
+  &__user{
+  background: #FFF;
+  transition: all .5s ease;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  &:hover{
+    transition: all .5s ease;
+    border-color: #41BBFF;
+    background: #EEF4F8;
+  }
+  }
+  &__user-icon{
+    width: 40px;
+    height: 40px;
+    border: 2px solid #0889FF;
+    border-radius: 50%;
+  }
+}

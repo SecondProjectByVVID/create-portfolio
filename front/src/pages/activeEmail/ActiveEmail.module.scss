@@ -1,0 +1,36 @@
+.active__container{
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.active__block{
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+.active__email-title{
+  font-family: 'Arimo',sans-serif;
+  font-size: 1.6em;
+  font-weight: 700;
+  margin-bottom: 0.6em;
+}
+.active__login{
+  margin-top: 1em;
+  padding: 0.4rem 1.5rem;
+  border: 2px solid #0889FF;
+  border-radius: 5px;
+  font-size: clamp(14px,4vw,22px);
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 2px;
+  transition: all .5s ease;
+  &:hover{
+    background: #0889FF;
+    color: #fff;
+  }
+}

@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth import get_user_model
 
+
 class Profile(models.Model):
     """Профиль пользователя"""
     user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE, null=True)

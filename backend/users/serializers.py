@@ -2,10 +2,12 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from .models import CustomUser
 
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         exclude = ['password']
+
 
 class UserListSerializer(serializers.ModelSerializer):
     password2 = serializers.CharField(style={'input_type': 'password'}, write_only=True)

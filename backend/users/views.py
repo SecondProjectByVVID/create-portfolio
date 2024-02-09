@@ -20,8 +20,8 @@ from .models import CustomUser
 from .serializers import UserSerializer, UserListSerializer
 from .tokens import account_activation_token
 from .utils import check_captcha
-from dj_rest_auth.jwt_auth import JWTCookieAuthentication
 import requests
+
 
 class RegisterView(APIView):
     permission_classes = [IsNotAuthenticated]
@@ -43,14 +43,17 @@ class RegisterView(APIView):
             return Response({"message": f"Добро пожаловать {user.first_name}! Пожалуйста, подтвердите свою электронную почту."}, status=status.HTTP_201_CREATED)
         else:
             return Response({"message": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
-    
+
+
 class UserView(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     queryset = CustomUser.objects.all()
-    
+
+
 class UserListView(viewsets.ModelViewSet):
     serializer_class = UserListSerializer
     queryset = get_user_model().objects.all()
+
 
 class LoginView(APIView):
     permission_classes = [IsNotAuthenticated]
@@ -88,13 +91,14 @@ class LoginView(APIView):
             request.session['failed_attempts'] = failed_attempts
             return Response({"message": "Неправильная почта или пароль.", "failed_attempts": failed_attempts}, status=status.HTTP_400_BAD_REQUEST)
 
+
 class LogoutView(APIView):
-    authentication_classes = (JWTCookieAuthentication,)
     permission_classes = [IsAuthenticated,]
 
     def post(self, request):
         logout(request)
         return Response({"message": "Вы успешно вышли из системы."}, status=status.HTTP_200_OK)
+
 
 class ActivateAccount(APIView):
     def get(self, request, uidb64, token):
@@ -112,7 +116,8 @@ class ActivateAccount(APIView):
             return redirect(f'http://127.0.0.1:3000/account-activation/Благодарим вас за подтверждение электронной почты. Теперь вы можете войти в свой аккаунт.')
         else:
             return redirect('http://127.0.0.1:3000/account-activation/Ссылка активации недействительна!')
-        
+
+
 def activateEmail(request, user):
     mail_subject = 'Активируйте свою учетную запись пользователя.'
     domain = get_current_site(request).domain

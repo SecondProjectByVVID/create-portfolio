@@ -11,13 +11,14 @@ class UserSerializer(serializers.ModelSerializer):
 
 class UserListSerializer(serializers.ModelSerializer):
     password2 = serializers.CharField(style={'input_type': 'password'}, write_only=True)
+
     class Meta:
         model = get_user_model()
         fields = ['id', 'first_name', 'last_name', 'email', 'mobile', 'profession', 'location', 'password', 'password2']
         extra_kwargs = {
             'password': {'write_only': True}
         }
-        
+
     def save(self):
         user = CustomUser(
             username=self.validated_data['email'],
@@ -37,4 +38,3 @@ class UserListSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
         return user
-    

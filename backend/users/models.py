@@ -2,17 +2,16 @@ from django.contrib.auth.models import AbstractUser
 from phonenumber_field.modelfields import PhoneNumberField
 from django.db import models
 
+
 # Create your models here.
 
-
 class CustomUser(AbstractUser):
-
     STATUS = (
         ('regular', 'regular'),
         ('subscriber', 'subscriber'),
         ('moderator', 'moderator'),
     )
-        
+
     first_name = models.CharField(max_length=30, default='Пользователь')
     last_name = models.CharField(max_length=150, default='')
     email = models.EmailField(unique=True)

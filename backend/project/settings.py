@@ -42,9 +42,6 @@ INSTALLED_APPS = [
     'users',
     'corsheaders',
     'rest_framework',
-    'rest_framework.authtoken',
-    'dj_rest_auth',
-    'dj_rest_auth.registration',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -55,8 +52,6 @@ INSTALLED_APPS = [
 AUTH_USER_MODEL = 'users.CustomUser'
 
 SITE_ID = 1
-
-REST_USE_JWT = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -76,7 +71,6 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',
-        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
     ],
 }
 
@@ -188,12 +182,6 @@ SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
 
 SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
 
-
-
-
-
-
-
 CORS_ALLOW_HEADERS = ('Access-Control-Allow-Origin', 
                       'Access-Control-Allow-Credentials', 
                       'Authorization', 
@@ -210,13 +198,6 @@ CORS_ALLOW_HEADERS = ('Access-Control-Allow-Origin',
 SESSION_COOKIE_HTTPONLY = False
 CSRF_USE_SESSIONS = False
 CSRF_COOKIE_SECURE = False
-
-
-
-
-
-
-
 
 SESSION_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_SECURE = True

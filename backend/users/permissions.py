@@ -1,6 +1,5 @@
 from rest_framework import permissions
 
-
 class IsNotAuthenticated(permissions.BasePermission):
     """
     Custom permission to only allow access to non-authenticated users.

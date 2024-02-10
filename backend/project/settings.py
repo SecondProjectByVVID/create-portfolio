@@ -223,3 +223,7 @@ PASSWORD_RESET_TIMEOUT = 14400
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+VK_CLIENT_ID = '51853648'
+VK_CLIENT_SECRET = 'bmMf6IyfeuN3BUUS2PJI'
+VK_REDIRECT_URI = 'https://localhost/vk/callback'

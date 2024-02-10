@@ -1,4 +1,5 @@
-from django.shortcuts import render
+import requests
+from django.shortcuts import render, redirect
 
 from rest_framework import serializers, viewsets
 
@@ -14,3 +15,4 @@ class PortfolioView(viewsets.ModelViewSet):
 class ProfileView(viewsets.ModelViewSet):
     serializer_class = ProfileSerializer
     queryset = Profile.objects.all()
+

@@ -15,6 +15,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 
+from project import settings
 from .permissions import IsNotAuthenticated
 from .models import CustomUser
 from .serializers import UserSerializer, UserListSerializer
@@ -156,3 +157,21 @@ def activateEmail(request, user):
         return Response({
                             "message": f"Проблема с отправкой подтверждающего письма на {user.email}, проверьте, правильно ли вы его ввели."},
                         status=status.HTTP_400_BAD_REQUEST)
+
+
+def vk_login(request):
+    return redirect(f'https://oauth.vk.com/authorize?client_id={settings.VK_CLIENT_ID}&redirect_uri={settings.VK_REDIRECT_URI}&response_type=code')
+
+
+def vk_callback(request):
+    code = request.GET.get('code')
+    if code:
+        try:
+            response = requests.get(f'https://oauth.vk.com/access_token?client_id={settings.VK_CLIENT_ID}&client_secret={settings.VK_CLIENT_SECRET}&redirect_uri={settings.VK_REDIRECT_URI}&code={code}')
+            response.raise_for_status()
+            access_token = response.json().get('access_token')
+            return redirect('/')
+        except requests.RequestException as e:
+            print(f'Ошибка при выполнении запроса к VK API: {e}')
+    return redirect('/')
+

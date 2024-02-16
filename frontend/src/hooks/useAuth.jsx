@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom/dist/umd/react-router-dom.development';
 import userReq from './../api/userReq';
 import PropTypes from 'prop-types';
-import Loader from '../ui/loader/Loader';
+import Loader from '../UI/Loader/Loader';
 import getCookie from '../helpers/getCsrfToken';
 import { localStorageService } from './../service/localStorage.service';
 const AuthContext = React.createContext();

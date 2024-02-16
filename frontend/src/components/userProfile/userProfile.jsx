@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { getIconKey } from './../../helpers/getImageKey';
 
-import Skeleton from '../../ui/skeleton/Skeleton';
-import AppImage from '../../ui/appImages/AppImage';
+import Skeleton from '../../UI/skeleton/Skeleton';
+import AppImage from '../../UI/appImages/AppImage';
 import ProfileMenu from '../profileMenu/profileMenu';
 
 import './userProfile.scss';

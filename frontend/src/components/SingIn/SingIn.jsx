@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import './SingIn.scss';
 import { getIconKey } from '../../helpers/getImageKey';
 
-import InputForm from '../../ui/inputForm/InputForm';
-import ButtonForm from '../../ui/buttonForm/ButtonForm';
-import ForgetLink from '../../ui/forgetLink/ForgetLink';
-import TitleForm from '../../ui/titleForm/TitleForm';
+import InputForm from '../../UI/InputForm/InputForm';
+import ButtonForm from '../../UI/ButtonForm/ButtonForm';
+import ForgetLink from '../../UI/ForgetLink/ForgetLink';
+import TitleForm from '../../UI/TitleForm/TitleForm';
 
 import useForm from '../../hooks/useForm';
 import { useAuth } from './../../hooks/useAuth';

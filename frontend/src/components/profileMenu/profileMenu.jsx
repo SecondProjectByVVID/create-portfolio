@@ -2,8 +2,8 @@ import { getIconKey } from '../../helpers/getImageKey';
 import { Link } from 'react-router-dom/dist/umd/react-router-dom.development';
 import './profileMenu.scss';
 import { useAuth } from '../../hooks/useAuth';
-import AppImage from '../../ui/appImages/AppImage';
-import Skeleton from './../../ui/skeleton/Skeleton';
+import AppImage from '../../UI/appImages/AppImage';
+import Skeleton from './../../UI/skeleton/Skeleton';
 import { localStorageService } from './../../service/localStorage.service';
 import { useFetchInfoUserQuery } from './../../store/user/UserSlice';
 const ProfileMenu = () => {

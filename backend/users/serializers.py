@@ -1,6 +1,9 @@
 from rest_framework import serializers
+
 from django.contrib.auth import get_user_model
+
 from .models import CustomUser
+from api.models import Profile  
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -34,5 +37,8 @@ class UserListSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError({"message": "Пароли не совпадают"})
         user.set_password(password)
         user.save()
+        
+        Profile.objects.create(user=user)
+        
         return user
     

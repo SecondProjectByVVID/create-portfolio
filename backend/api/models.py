@@ -13,8 +13,8 @@ class Profile(models.Model):
         'Portfolio', verbose_name="Избранные портфолио", related_name='portfolio_favorites_users', max_length=20, blank=True)
 
     vk = models.URLField("Вконтакте", blank=True, default='')
-    wa = models.URLField("WhatsApp", blank=True, default='')
-    tg = models.URLField("Telegram", blank=True, default='')
+    wa = models.CharField("WhatsApp", max_length=15, blank=True, default='')  
+    tg = models.URLField("Telegram", blank=True, default='')  
     
     def __str__(self):
         return f"{self.user} - {self.user.email}"
@@ -26,7 +26,7 @@ class Profile(models.Model):
 
 class Portfolio(models.Model):
     """Портфолио"""
-    user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True)
     title = models.CharField(
         "Название проекта", null=True, blank=True)
     description = models.TextField(

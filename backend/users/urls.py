@@ -8,6 +8,8 @@ urlpatterns = [
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('activate/<uidb64>/<token>', ActivateAccount.as_view(), name='activate'),
+    path('vk/login/', views.vk_login, name='vk_login'),
+    path('vk/callback/', views.vk_callback, name='vk_callback'),
 ]
 
 router = DefaultRouter()

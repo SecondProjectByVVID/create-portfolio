@@ -182,12 +182,6 @@ SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
 
 SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
 
-
-
-
-
-
-
 CORS_ALLOW_HEADERS = ('Access-Control-Allow-Origin', 
                       'Access-Control-Allow-Credentials', 
                       'Authorization', 
@@ -204,13 +198,6 @@ CORS_ALLOW_HEADERS = ('Access-Control-Allow-Origin',
 SESSION_COOKIE_HTTPONLY = False
 CSRF_USE_SESSIONS = False
 CSRF_COOKIE_SECURE = False
-
-
-
-
-
-
-
 
 SESSION_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_SECURE = True
@@ -236,3 +223,7 @@ PASSWORD_RESET_TIMEOUT = 14400
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+VK_CLIENT_ID = '51853648'
+VK_CLIENT_SECRET = 'bmMf6IyfeuN3BUUS2PJI'
+VK_REDIRECT_URI = 'https://localhost/vk/callback'

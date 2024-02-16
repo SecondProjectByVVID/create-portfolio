@@ -20,7 +20,7 @@ from .models import CustomUser
 from .serializers import UserSerializer, UserListSerializer
 from .tokens import account_activation_token
 from .utils import check_captcha
-from dj_rest_auth.jwt_auth import JWTCookieAuthentication
+
 import requests
 
 class RegisterView(APIView):
@@ -47,7 +47,7 @@ class RegisterView(APIView):
 class UserView(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     queryset = CustomUser.objects.all()
-    
+
 class UserListView(viewsets.ModelViewSet):
     serializer_class = UserListSerializer
     queryset = get_user_model().objects.all()
@@ -71,7 +71,7 @@ class LoginView(APIView):
                 return captcha_response
             return Response({"message": "Неправильная почта или пароль.", "failed_attempts": failed_attempts}, status=status.HTTP_400_BAD_REQUEST)
     
-        if failed_attempts >= 3:
+        if failed_attempts >= 10:
             captcha_response = check_captcha(request, failed_attempts)
             if captcha_response is not None:
                 return captcha_response
@@ -80,6 +80,7 @@ class LoginView(APIView):
             if user.is_active:
                 request.session['failed_attempts'] = 0
                 login(request, user)
+                
                 return Response({"message": f"Добро пожаловать {user.first_name}!", "id": user.id}, status=status.HTTP_200_OK)
             else:
                 return Response({"message": "Пожалуйста, подтвердите свой аккаунт перед входом в систему."}, status=status.HTTP_400_BAD_REQUEST)
@@ -89,10 +90,10 @@ class LoginView(APIView):
             return Response({"message": "Неправильная почта или пароль.", "failed_attempts": failed_attempts}, status=status.HTTP_400_BAD_REQUEST)
 
 class LogoutView(APIView):
-    authentication_classes = (JWTCookieAuthentication,)
-    permission_classes = [IsAuthenticated,]
+    # permission_classes = [IsAuthenticated]
 
     def post(self, request):
+        
         logout(request)
         return Response({"message": "Вы успешно вышли из системы."}, status=status.HTTP_200_OK)
 
@@ -137,3 +138,20 @@ def activateEmail(request, user):
         return Response({"message": f"Дорогой {user.first_name}, пожалуйста, перейдите в свой почтовый ящик {user.email} и нажмите на полученную ссылку активации, чтобы подтвердить и завершить регистрацию. Примечание: проверьте папку со спамом."}, status=status.HTTP_200_OK)
     else:
         return Response({"message": f"Проблема с отправкой подтверждающего письма на {user.email}, проверьте, правильно ли вы его ввели."}, status=status.HTTP_400_BAD_REQUEST)
+
+
+def vk_login(request):
+    return redirect(f'https://oauth.vk.com/authorize?client_id={settings.VK_CLIENT_ID}&redirect_uri={settings.VK_REDIRECT_URI}&response_type=code')
+
+
+def vk_callback(request):
+    code = request.GET.get('code')
+    if code:
+        try:
+            response = requests.get(f'https://oauth.vk.com/access_token?client_id={settings.VK_CLIENT_ID}&client_secret={settings.VK_CLIENT_SECRET}&redirect_uri={settings.VK_REDIRECT_URI}&code={code}')
+            response.raise_for_status()
+            access_token = response.json().get('access_token')
+            return redirect('/')
+        except requests.RequestException as e:
+            print(f'Ошибка при выполнении запроса к VK API: {e}')
+    return redirect('/')

@@ -1,4 +1,4 @@
-import getIconKey from '../../helpers/getImageKey';
+import { getIconKey } from '../../helpers/getImageKey';
 import { Link } from 'react-router-dom/dist/umd/react-router-dom.development';
 import './profileMenu.scss';
 import { useAuth } from '../../hooks/useAuth';
@@ -69,6 +69,7 @@ const ProfileMenu = () => {
         <li className="profile__list-item" onClick={() => handleClick()}>
           <p className="profile__list-text">Выход</p>
           <AppImage
+            src={getIconKey('LogoutIcon')}
             alt={'logout icon'}
             fallback={<Skeleton size={{ width: '28px', height: '28px', borderRadius: '5px' }} />}
           />

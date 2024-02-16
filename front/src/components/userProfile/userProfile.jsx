@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import getIconKey from './../../helpers/getImageKey';
+import { getIconKey } from './../../helpers/getImageKey';
 
 import Skeleton from '../../ui/skeleton/Skeleton';
 import AppImage from '../../ui/appImages/AppImage';

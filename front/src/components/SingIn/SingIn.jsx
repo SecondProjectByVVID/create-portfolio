@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import './SingIn.scss';
-import getIconKey from '../../helpers/getImageKey';
+import { getIconKey } from '../../helpers/getImageKey';
 
 import InputForm from '../../ui/inputForm/InputForm';
 import ButtonForm from '../../ui/buttonForm/ButtonForm';

@@ -1,5 +1,5 @@
-import SearchInput from './../../ui/searchInput/searchInput';
-import getIconKey from '../../helpers/getImageKey';
+import SearchInput from './../../ui/SearchInput/searchInput';
+import { getIconKey } from '../../helpers/getImageKey';
 
 import './options.scss';
 const Options = () => {
@@ -7,7 +7,9 @@ const Options = () => {
     <>
       <div className="options__inner">
         <SearchInput />
-        <img src={getIconKey('SortIcon')} alt="" className="sort-icon" />
+        <div className="options__bg-img">
+          <img src={getIconKey('SortIcon')} alt="sort icon" className="sort-icon" />
+        </div>
       </div>
     </>
   );

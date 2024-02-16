@@ -6,7 +6,6 @@
   width:auto;
   min-height: 100vh;
   padding: 0 1rem 1rem;
-  font-family: Arimo;
   font-family: Arimo,sans-serif;
   display: flex;
   justify-content: center;
@@ -47,7 +46,7 @@
   }
   &__create-acc p{
     font-family: Inter,sans-serif;
-    font-size: clamp(8px,5vw,18px);
+    font-size: clamp(8px,4vw,18px);
     font-style: normal;
     font-weight: 400;
     letter-spacing: 4px;
@@ -65,4 +64,15 @@
 
 .css-b62m3t-container{
   width: 100%;
+}
+
+@media(max-width:440px){
+  .login{
+    background-image: url('./../../assets/background/login-mobile.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width:auto;
+    min-height: 100vh;
+  }
 }

@@ -3,10 +3,23 @@
   justify-content: center;
   align-items: center;
   margin: clamp(1rem,4vw,1.8rem) auto;
-  column-gap: 1.5rem;
-  padding: 0 1rem;
+  column-gap: 0.8rem;
+}
+.options__bg-img{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all .5s ease;
+  &:hover{
+    transition: all .5s ease;
+    background-color: #dddddd;
+  }
 }
 .sort-icon{
-  width: 45px;
-  height: 45px;
+  width: 38px;
+  height: 38px;
 }

@@ -30,9 +30,13 @@ const getIcon = {
   LogoIcon,
   CardDefaultBg
 };
+const getBg = {
+  CardDefaultBg
+};
 
-function getIconKey(keyIcon) {
+export const getIconKey = (keyIcon) => {
   return getIcon[keyIcon];
-}
-
-export default getIconKey;
+};
+export const getBgKey = (keyIcon) => {
+  return getBg[keyIcon];
+};

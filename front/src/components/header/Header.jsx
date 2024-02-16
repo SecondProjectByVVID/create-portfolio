@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom/dist/umd/react-router-dom.development';
-import getIconKey from './../../helpers/getImageKey';
+import { getIconKey } from './../../helpers/getImageKey';
 import ButtonForm from '../../ui/buttonForm/ButtonForm';
 import UserProfile from '../userProfile/userProfile';
 import usePosition from './../../hooks/usePosition';

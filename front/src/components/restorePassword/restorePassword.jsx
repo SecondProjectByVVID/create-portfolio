@@ -6,7 +6,7 @@ import ButtonForm from '../../ui/buttonForm/ButtonForm';
 
 import './restorePassword.scss';
 import useForm from '../../hooks/useForm';
-import getIconKey from '../../helpers/getImageKey';
+import { getIconKey } from '../../helpers/getImageKey';
 import ForgetLink from '../../ui/forgetLink/ForgetLink';
 
 const RestorePassword = () => {

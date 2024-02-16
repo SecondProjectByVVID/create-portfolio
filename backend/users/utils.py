@@ -3,9 +3,8 @@ from rest_framework import status
 from django.conf import settings
 import requests
 
-
 def check_captcha(request, failed_attempts):
-    if failed_attempts >= 3:
+    if failed_attempts >= 10:
         recaptcha_response = request.data.get('g-recaptcha-response')
         data = {
             'secret': settings.RECAPTCHA_PRIVATE_KEY,

@@ -1,24 +1,24 @@
 from rest_framework import serializers
-from django.contrib.auth import get_user_model
-from .models import CustomUser
 
+from django.contrib.auth import get_user_model
+
+from .models import CustomUser
+from api.models import Profile  
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         exclude = ['password']
 
-
 class UserListSerializer(serializers.ModelSerializer):
     password2 = serializers.CharField(style={'input_type': 'password'}, write_only=True)
-
     class Meta:
         model = get_user_model()
         fields = ['id', 'first_name', 'last_name', 'email', 'mobile', 'profession', 'location', 'password', 'password2']
         extra_kwargs = {
             'password': {'write_only': True}
         }
-
+        
     def save(self):
         user = CustomUser(
             username=self.validated_data['email'],
@@ -37,4 +37,8 @@ class UserListSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError({"message": "Пароли не совпадают"})
         user.set_password(password)
         user.save()
+        
+        Profile.objects.create(user=user)
+        
         return user
+    

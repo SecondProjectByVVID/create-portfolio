@@ -1,0 +1,12 @@
+.options__inner{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: clamp(1rem,4vw,1.8rem) auto;
+  column-gap: 1.5rem;
+  padding: 0 1rem;
+}
+.sort-icon{
+  width: 45px;
+  height: 45px;
+}

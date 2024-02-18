@@ -1,12 +1,6 @@
 from django.contrib import admin
-from .models import Profile, Portfolio, PortfolioImage
+from .models import Profile, Portfolio
 
-class PortfolioImageInline(admin.TabularInline):
-    model = PortfolioImage
-    extra = 1
-
-class PortfolioAdmin(admin.ModelAdmin):
-    inlines = [PortfolioImageInline]
-
+# Register your models here.
 admin.site.register(Profile)
-admin.site.register(Portfolio, PortfolioAdmin)
+admin.site.register(Portfolio)

@@ -12,9 +12,12 @@ class Profile(models.Model):
     portfolio_favorites = models.ManyToManyField(
         'Portfolio', verbose_name="Избранные портфолио", related_name='portfolio_favorites_users', max_length=20, blank=True)
 
-    vk = models.URLField("Вконтакте", blank=True, default='')
-    wa = models.CharField("WhatsApp", max_length=15, blank=True, default='')  
-    tg = models.URLField("Telegram", blank=True, default='')  
+    vk = models.URLField(
+        "Вконтакте", blank=True, default='')
+    wa = models.CharField(
+        "WhatsApp", max_length=20, blank=True, default='')  
+    tg = models.URLField(
+        "Telegram", blank=True, default='')  
     
     def __str__(self):
         return f"{self.user} - {self.user.email}"
@@ -31,8 +34,8 @@ class Portfolio(models.Model):
         "Название проекта", null=True, blank=True)
     description = models.TextField(
         "Описание", null=True, blank=True)
-    image = models.ImageField(
-        "Изображение", upload_to="portfolio_images/", blank=True, null=True)
+    date = models.DateField(
+        "Дата реализации", auto_now=False, auto_now_add=False, null=True, blank=True)
     
     def __str__(self):
         return f"{self.title} - {self.user}"
@@ -40,3 +43,17 @@ class Portfolio(models.Model):
     class Meta:
         verbose_name = 'Портфолио'
         verbose_name_plural = 'Портфолио'
+        
+class PortfolioImage(models.Model):
+    """Изображение портфолио"""
+    image = models.ImageField(
+        "Изображение", upload_to="portfolio_images/", blank=True, null=True)
+    portfolio = models.ForeignKey(
+        'Portfolio', related_name='images', on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return f"{self.portfolio} - {self.image}"
+
+    class Meta:
+        verbose_name = 'Портфолио изображение'
+        verbose_name_plural = 'Портфолио изображения'

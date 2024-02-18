@@ -22,8 +22,9 @@ body {
 
 .client__bg{
   background-image: url('./assets/background/client-bg.png');
-  background-repeat: repeat-y;
-  background-size: contain;
-  min-height: 920px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
   width: 100%;
+  background-attachment: fixed;
 }

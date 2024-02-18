@@ -26,7 +26,7 @@ const SingIn = () => {
     signIn(form);
   };
   const captchaChange = (e) => {
-    setForm((prevState) => ({ ...prevState, 'g-recaptcha-response': e }));
+    setForm((prevState) => ({ ...prevState, g_recaptcha_response: e }));
   };
   return (
     <div className="login">

@@ -15,7 +15,6 @@ const http = axios.create({
 });
 http.interceptors.request.use(
   function (request) {
-    console.log(request);
     return request;
   },
   function (error) {

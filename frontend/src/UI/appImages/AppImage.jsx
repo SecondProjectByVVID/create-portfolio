@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import { useLayoutEffect, useState } from 'react';
 const AppImage = (props) => {
   const { src, alt, className, fallback, errFallback } = props;
-  console.log(fallback);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
 

@@ -11,7 +11,14 @@ import LogoutIcon from './../assets/icons/logout-icon.svg';
 import SearchIcon from './../assets/icons/search-icon.svg';
 import SortIcon from './../assets/icons/sort-icon.svg';
 import LogoIcon from './../assets/icons/logo-icon.svg';
+<<<<<<< HEAD
 
+=======
+import TelegramIcon from './../assets/icons/telegram-icon.svg';
+import WhatsappIcon from './../assets/icons/whatsapp-icon.svg';
+import VkontakteIcon from './../assets/icons/vkontakte-icon.svg';
+import ProfileDefaultIcon from './../assets/icons/profileDefault-icon.svg';
+>>>>>>> 7bf1cc9c (Подключил страницу профиля)
 import CardDefaultBg from './../assets/background/default-card-bg.jpg';
 
 const getIcon = {
@@ -28,6 +35,16 @@ const getIcon = {
   SearchIcon,
   SortIcon,
   LogoIcon,
+<<<<<<< HEAD
+=======
+  CardDefaultBg,
+  TelegramIcon,
+  WhatsappIcon,
+  VkontakteIcon,
+  ProfileDefaultIcon
+};
+const getBg = {
+>>>>>>> 7bf1cc9c (Подключил страницу профиля)
   CardDefaultBg
 };
 

@@ -6,7 +6,11 @@ const InputForm = ({ img, value, type, placeholder, onChange, error, id }) => {
     <div className="form__email">
       {img ? <img src={img} className="form__email-icon" /> : ''}
       <input
-        className={(error[id] ? 'error ' : '') + 'form__email-input'}
+        className={
+          (error[id] ? 'error ' : '') + img
+            ? 'form__email-input'
+            : 'form__email-input form__no-image'
+        }
         value={value}
         onChange={(e) => onChange(e)}
         type={type}

@@ -1,11 +1,10 @@
 import request from './../service/request.service';
-
-const profileAndPoint = 'profile/';
+import ConfigApi from './../config/config.request.json';
 
 const profileReq = {
-  get: async () => {
+  getUserProfile: async (id) => {
     try {
-      const { data } = await request.get(profileAndPoint);
+      const { data } = await request.get(`${ConfigApi.profile}/${id}`);
       return data;
     } catch (error) {
       return false;

@@ -1,0 +1,136 @@
+.profile__card{
+  padding: 30px;
+  &-container{
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    column-gap: 30px;
+  }
+}
+.profile__card-description{
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+}
+.profile__description{
+  font-family: Arimo,sans-serif;
+  &-title{
+    color: rgb(0, 0, 0);
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 62px;
+    letter-spacing: 5%;
+    margin-bottom: 20px;
+  }
+  &-form{
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    justify-content: space-between;
+    row-gap: 30px;
+  }
+  &-label{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    column-gap: 20px;
+    color: rgb(52, 98, 161);
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 37px;
+    letter-spacing: 15%;
+  }
+  &-label p{
+    min-width: 160px;
+    width: 100%;
+  }
+  &-subtitle{
+    color: rgb(0, 0, 0);
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 62px;
+    letter-spacing: 5%;
+  }
+  &-textarea{
+    max-width: 800px;
+    width: 100%;
+    border: 2px solid #717171;
+    border-radius: 10px;
+    background: rgb(255, 255, 255);
+    resize: none;
+    padding: 20px;
+
+    color: rgb(104, 104, 104);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+    letter-spacing: 5%;
+    outline: none;
+    transition: all .5s ease;
+  }
+  &-textarea:focus{
+    transition: all .5s ease;
+    border: 2px solid #0889FF;
+    box-shadow: 0 0 0 0.25rem rgba(158, 158, 158, 0.25);
+  }
+  &-textarea::placeholder{
+    color: #4f4f4f;
+  }
+  &-btns{
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+  }
+}
+
+.profile{
+  &__btn-save{
+    outline: none;
+    padding: 9px 34px 9px 9px;
+
+    border: 2px solid rgb(8, 137, 255);
+    border-radius: 20px;
+    background: rgb(255, 255, 255);
+    
+    color: rgb(87, 87, 87);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 10%;
+    position: relative;
+    transition: all .5s ease;
+  }
+  &__btn-save::after{
+    content: '';
+    position: absolute;
+    background-image: url('./../../assets/icons/save-icon.svg');
+    background-position: top center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    right: 5px;
+    top: 13px;
+    width: 22px;
+    height: 22px;
+  }
+  &__btn-save:hover{
+    transition: all .5s ease;
+    background: rgb(24, 143, 255);
+    color: #fff;
+  }
+  &__btn-cancel{
+    outline: none;
+    padding: 9px;
+
+    border-radius: 20px;
+    color: rgb(87, 87, 87);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 10%;
+    border: 2px solid transparent;
+    transition: all .5s ease;
+  }
+  &__btn-cancel:hover{
+    transition: all .5s ease;
+    border-color: rgb(87, 87, 87);
+  }
+}

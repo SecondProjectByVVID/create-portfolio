@@ -8,6 +8,7 @@ const NotFound = lazy(() => import('../pages/NotFound/NotFound'));
 const Registration = lazy(() => import('../pages/registration/registration'));
 const Restore = lazy(() => import('../pages/restore/restore'));
 const Reset = lazy(() => import('../pages/reset/reset'));
+const Profile = lazy(() => import('../pages/profile/Profile'));
 
 const Layout = lazy(() => import('./../components/layout/Layout'));
 const ActiveEmail = lazy(() => import('./../pages/activeEmail/ActiveEmail'));
@@ -20,6 +21,7 @@ const AppRoutes = () => {
         <Route element={<Layout />}>
           <Route index path="/" element={<Main />} />
           <Route path="/user-portfolio" element={<Portfolio />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
         <Route path="/signUp" element={<Registration />} />
         <Route path="/login" element={<Login />} />

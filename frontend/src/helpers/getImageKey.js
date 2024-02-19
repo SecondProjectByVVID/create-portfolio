@@ -14,6 +14,7 @@ import LogoIcon from './../assets/icons/logo-icon.svg';
 import TelegramIcon from './../assets/icons/telegram-icon.svg';
 import WhatsappIcon from './../assets/icons/whatsapp-icon.svg';
 import VkontakteIcon from './../assets/icons/vkontakte-icon.svg';
+import ProfileDefaultIcon from './../assets/icons/profileDefault-icon.svg';
 import CardDefaultBg from './../assets/background/default-card-bg.jpg';
 
 const getIcon = {
@@ -33,7 +34,8 @@ const getIcon = {
   CardDefaultBg,
   TelegramIcon,
   WhatsappIcon,
-  VkontakteIcon
+  VkontakteIcon,
+  ProfileDefaultIcon
 };
 const getBg = {
   CardDefaultBg

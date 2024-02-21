@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom/dist/umd/react-router-dom.development';
-import { getIconKey } from './../../helpers/getImageKey';
-import ButtonForm from '../../UI/ButtonForm/ButtonForm';
+import getIconKey from './../../helpers/getImageKey';
+import ButtonForm from '../../ui/buttonForm/ButtonForm';
 import UserProfile from '../userProfile/userProfile';
 import usePosition from './../../hooks/usePosition';
 import { useState } from 'react';
 import { localStorageService } from '../../service/localStorage.service';
-import Skeleton from './../../UI/skeleton/Skeleton';
-import AppImage from './../../UI/appImages/AppImage';
+import Skeleton from './../../ui/skeleton/Skeleton';
+import AppImage from './../../ui/appImages/AppImage';
 import './Header.scss';
 const Header = () => {
   const [isLogin] = useState(localStorageService.getIsLogin());

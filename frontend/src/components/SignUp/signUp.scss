@@ -35,14 +35,3 @@
     grid-template-columns: repeat(1,1fr);
   }
 }
-
-@media(max-width:440px){
-  .registr{
-    background-image: url('./../../assets/background/login-mobile.png');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    width:auto;
-    min-height: 100vh;
-  }
-}

@@ -1,4 +1,4 @@
-import { getIconKey } from '../../helpers/getImageKey';
+import getIconKey from '../../helpers/getImageKey';
 import './searchInput.scss';
 const SearchInput = () => {
   return (

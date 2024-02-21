@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-import TitleForm from '../../UI/TitleForm/TitleForm';
-import InputForm from '../../UI/InputForm/InputForm';
-import ButtonForm from '../../UI/ButtonForm/ButtonForm';
+import TitleForm from '../../ui/titleForm/TitleForm';
+import InputForm from '../../ui/inputForm/InputForm';
+import ButtonForm from '../../ui/buttonForm/ButtonForm';
 
-import { getIconKey } from '../../helpers/getImageKey';
+import getIconKey from '../../helpers/getImageKey';
 
 import useForm from '../../hooks/useForm';
 import { useAuth } from '../../hooks/useAuth';

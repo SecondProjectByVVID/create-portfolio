@@ -38,13 +38,13 @@ class RegisterView(APIView):
             return Response({"message": "Пользователь с таким номером телефона уже существует."}, status=status.HTTP_400_BAD_REQUEST)
         if serializer.is_valid():
             user = serializer.save()
-            user.is_active = False  
-            user.save()  
-            activateEmail(request, user)  
+            user.is_active = False
+            user.save()
+            activateEmail(request, user)
             return Response({"message": f"Добро пожаловать {user.first_name}! Пожалуйста, подтвердите свою электронную почту."}, status=status.HTTP_201_CREATED)
         else:
             return Response({"message": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
-    
+
 class LoginView(APIView):
     def post(self, request):
         if request.user.is_authenticated:
@@ -110,31 +110,42 @@ class ActivateAccount(APIView):
         
 class ChangePasswordView(APIView):
     def post(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return Response({"message": "Вы должны войти в систему, чтобы изменить пароль"}, status=status.HTTP_403_FORBIDDEN)
         serializer = ChangePasswordSerializer(data=request.data, context={'request': request})
         if serializer.is_valid():
             user = serializer.save()
             return Response({"message": "Пароль успешно изменён"}, status=status.HTTP_200_OK)
-        return Response({"message": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({"message": next(iter(serializer.errors.values()))[0]}, status=status.HTTP_400_BAD_REQUEST)
 
 class PasswordResetRequestView(APIView):
     def post(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return Response({"message": "Вы должны выйти из системы, чтобы сбросить пароль"}, status=status.HTTP_403_FORBIDDEN)        
         serializer = PasswordResetRequestSerializer(data=request.data, context={'request': request})
         if serializer.is_valid():
-            serializer.save()
+            user = serializer.save()
+            user.password_reset_token_used = False
+            user.save()
             return Response({"message": "Письмо для сброса пароля отправлено"}, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response({"message": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
 class PasswordResetConfirmView(APIView):
     def post(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return Response({"message": "Вы должны выйти из системы, чтобы установить новый пароль"}, status=status.HTTP_403_FORBIDDEN) 
         serializer = PasswordResetConfirmSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
+            if user.password_reset_token_used:
+                return Response({"message": "Ссылка для сброса пароля уже была использована"}, status=status.HTTP_400_BAD_REQUEST)
+            user.password_reset_token_used = True
+            user.save()
             return Response({"message": "Пароль успешно изменён"}, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+        return Response({"message": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+
 def vk_login(request):
     return redirect(f'https://oauth.vk.com/authorize?client_id={settings.VK_CLIENT_ID}&redirect_uri={settings.VK_REDIRECT_URI}&response_type=code')
-
 
 def vk_callback(request):
     code = request.GET.get('code')
@@ -147,3 +158,6 @@ def vk_callback(request):
         except requests.RequestException as e:
             print(f'Ошибка при выполнении запроса к VK API: {e}')
     return redirect('/')
+
+
+    

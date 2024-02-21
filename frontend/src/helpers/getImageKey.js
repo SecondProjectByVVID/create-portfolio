@@ -37,13 +37,9 @@ const getIcon = {
   VkontakteIcon,
   ProfileDefaultIcon
 };
-const getBg = {
-  CardDefaultBg
-};
 
-export const getIconKey = (keyIcon) => {
+function getIconKey(keyIcon) {
   return getIcon[keyIcon];
-};
-export const getBgKey = (keyIcon) => {
-  return getBg[keyIcon];
-};
+}
+
+export default getIconKey;

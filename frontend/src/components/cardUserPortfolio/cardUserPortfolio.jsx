@@ -1,5 +1,4 @@
-import { getBgKey, getIconKey } from '../../helpers/getImageKey';
-
+import getIconKey from '../../helpers/getImageKey';
 import styles from './cardUserPortfolio.module.scss';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -27,13 +26,25 @@ const CardUserPortfolio = () => {
               modules={[Pagination, Navigation]}
               className="mySwiper">
               <SwiperSlide>
-                <img className={styles.slider__img} src={getBgKey('CardDefaultBg')} alt="card bg" />
+                <img
+                  className={styles.slider__img}
+                  src={getIconKey('CardDefaultBg')}
+                  alt="card bg"
+                />
               </SwiperSlide>
               <SwiperSlide>
-                <img className={styles.slider__img} src={getBgKey('CardDefaultBg')} alt="card bg" />
+                <img
+                  className={styles.slider__img}
+                  src={getIconKey('CardDefaultBg')}
+                  alt="card bg"
+                />
               </SwiperSlide>
               <SwiperSlide>
-                <img className={styles.slider__img} src={getBgKey('CardDefaultBg')} alt="card bg" />
+                <img
+                  className={styles.slider__img}
+                  src={getIconKey('CardDefaultBg')}
+                  alt="card bg"
+                />
               </SwiperSlide>
             </Swiper>
           </div>

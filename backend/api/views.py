@@ -1,20 +1,21 @@
 from django.shortcuts import render
 
-from rest_framework import serializers, viewsets, status
+from rest_framework import serializers, viewsets, generics, status
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from .models import Profile, Portfolio
-from .serializers import ProfileSerializer, PortfolioSerializer
-
-import os
+from .serializers import ProfileSerializer, PortfolioSerializer, PortfolioListSerializer, UserProfileSerializer
+from django.contrib.auth import get_user_model
 from uuid import uuid4
-
+from users.models import CustomUser
+from users.serializers import UserUpdateSerializer
+import os
 
 class PortfolioView(viewsets.ModelViewSet):
     serializer_class = PortfolioSerializer
     queryset = Portfolio.objects.all()
 
-    
     def create(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             return Response({"message": "Вы должны войти в систему, чтобы создать портфолио"}, status=status.HTTP_403_FORBIDDEN)
@@ -58,18 +59,53 @@ class PortfolioView(viewsets.ModelViewSet):
             return Response({"message": "Вы не можете удалить портфолио другого пользователя"}, status=status.HTTP_403_FORBIDDEN)
         return super().destroy(request, *args, **kwargs)
 
+class PortfolioListView(generics.ListAPIView):
+    serializer_class = PortfolioListSerializer
+
+    def get_queryset(self):
+        queryset = Portfolio.objects.all().order_by('-date')
+
+        search = self.request.query_params.get('search', None)
+
+        if search is not None:
+            queryset = queryset.filter(title__icontains=search)
+
+        return queryset
+
 class ProfileView(viewsets.ModelViewSet):
     serializer_class = ProfileSerializer
     queryset = Profile.objects.all()
+    
+class UserProfileView(APIView):
+    def get(self, request, pk=None, format=None):
+        if pk:
+            user = CustomUser.objects.get(pk=pk)
+            users = [user]
+        else:
+            users = CustomUser.objects.all()
+        user_profile_list = []
+        for user in users:
+            try:
+                profile = Profile.objects.get(user=user)
+                serializer = UserProfileSerializer(profile)
+                user_profile_list.append(serializer.data)
+            except Profile.DoesNotExist:
+                user_serializer = UserUpdateSerializer(user)
+                user_profile_list.append(user_serializer.data)
+        return Response(user_profile_list)
 
-    def update(self, request, *args, **kwargs):
+    def patch(self, request, pk, format=None):
         if not request.user.is_authenticated:
-            return Response({"message": "Вы должны войти в систему, чтобы обновить профиль"}, status=status.HTTP_403_FORBIDDEN)
-        profile = self.get_object()
-        
-        if request.user != profile.user:
+            return Response({"message": "Вы должны войти в систему, чтобы изменить профиль"}, status=status.HTTP_403_FORBIDDEN)
+
+        user = CustomUser.objects.get(pk=pk)
+        if request.user != user:
             return Response({"message": "Вы не можете изменить профиль другого пользователя"}, status=status.HTTP_403_FORBIDDEN)
-        return super().update(request, *args, **kwargs)
+
+        try:
+            profile = Profile.objects.get(user=user)
+        except Profile.DoesNotExist:
+            return Response({'message': "Профиль этого пользователя не существует"}, status=status.HTTP_404_NOT_FOUND)
 
         if 'image' in request.FILES:
             file_obj = request.FILES['image']
@@ -86,15 +122,13 @@ class ProfileView(viewsets.ModelViewSet):
             profile.image.save(file_obj.name, file_obj)
             profile.save()
 
-        return super().update(request, *args, **kwargs)
-    
-    def destroy(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            return Response({"message": "Вы должны войти в систему, чтобы удалить профиль"}, status=status.HTTP_403_FORBIDDEN)
-        profile = self.get_object()
-        
-        if request.user != profile.user:
-            return Response({"message": "Вы не можете удалить профиль другого пользователя"}, status=status.HTTP_403_FORBIDDEN)
-        return super().destroy(request, *args, **kwargs)
-    
-    
+        user_serializer = UserUpdateSerializer(user, data=request.data, partial=True)
+        profile_serializer = ProfileSerializer(profile, data=request.data, partial=True)
+
+        if user_serializer.is_valid() and profile_serializer.is_valid():
+            user_serializer.save()
+            profile_serializer.save()
+            return Response({"message": "Данные успешно изменены"}, status=status.HTTP_200_OK)
+        else:
+            error_message = ', '.join([str(err[0]) for err in user_serializer.errors.values()] + [str(err[0]) for err in profile_serializer.errors.values()])
+            return Response({"message": error_message}, status=status.HTTP_400_BAD_REQUEST)

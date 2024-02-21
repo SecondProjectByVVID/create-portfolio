@@ -11,7 +11,7 @@ class Profile(models.Model):
         "Фото", upload_to="user_images/", blank=True, null=True)
     portfolio_favorites = models.ManyToManyField(
         'Portfolio', verbose_name="Избранные портфолио", related_name='portfolio_favorites_users', max_length=20, blank=True)
-
+    
     vk = models.URLField(
         "Вконтакте", blank=True, default='')
     wa = models.CharField(
@@ -34,8 +34,10 @@ class Portfolio(models.Model):
         "Название проекта", null=True, blank=True)
     description = models.TextField(
         "Описание", null=True, blank=True)
-    date = models.DateField(
+    date_work = models.DateField(
         "Дата реализации", auto_now=False, auto_now_add=False, null=True, blank=True)
+    date = models.DateField(
+        "Дата публикации проекта", auto_now=False, auto_now_add=True, null=True, blank=True)    
     
     def __str__(self):
         return f"{self.title} - {self.user}"

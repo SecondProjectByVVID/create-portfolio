@@ -1,21 +1,29 @@
 import { useState } from 'react';
+import { getIconKey } from '../../helpers/getImageKey';
+import useForm from '../../hooks/useForm';
+import ReCAPTCHA from 'react-google-recaptcha';
+import userReq from '../../api/userReq';
 
-import TitleForm from '../../ui/titleForm/TitleForm';
-import InputForm from '../../ui/inputForm/InputForm';
-import ButtonForm from '../../ui/buttonForm/ButtonForm';
+import apiConfig from './../../config/config.request.json';
+
+import TitleForm from '../../UI/TitleForm/TitleForm';
+import InputForm from '../../UI/InputForm/InputForm';
+import ButtonForm from '../../UI/ButtonForm/ButtonForm';
+import ForgetLink from '../../UI/ForgetLink/ForgetLink';
 
 import './restorePassword.scss';
-import useForm from '../../hooks/useForm';
-import getIconKey from '../../helpers/getImageKey';
-import ForgetLink from '../../ui/forgetLink/ForgetLink';
 
 const RestorePassword = () => {
   const [restoreForm] = useState({ email: '' });
-  const { form, formChange } = useForm(restoreForm);
+  const { form, formChange, setForm } = useForm(restoreForm);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(form);
+    userReq.reset(form);
+  };
+  const captchaChange = (e) => {
+    setForm((prevState) => ({ ...prevState, g_recaptcha_response: e }));
   };
   return (
     <div className="restore">
@@ -34,6 +42,11 @@ const RestorePassword = () => {
           </div>
           <ForgetLink text={'Вернуться назад'} type={'nav'} />
           <ButtonForm textField={'Восстановить'} btnClass={'form__sign-in'} />
+          <ReCAPTCHA
+            sitekey={apiConfig.keyCaptcha}
+            onChange={captchaChange}
+            name="g-recaptcha-response"
+          />
         </form>
       </div>
     </div>

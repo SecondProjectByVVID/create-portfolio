@@ -19,3 +19,12 @@ body {
   max-width:1920px;
   width:100%;
 }
+
+.client__bg{
+  background-image: url('./assets/background/client-bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  width: 100%;
+  background-attachment: fixed;
+}

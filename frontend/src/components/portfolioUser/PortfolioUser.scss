@@ -1,0 +1,204 @@
+.portfolio__container{
+  font-family: 'Arimo',sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 23px;
+  letter-spacing: 8%;
+  color: rgb(46, 46, 46);
+  padding: 20px;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  column-gap: 35px;
+}
+
+.user__block{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  row-gap: 20px;
+}
+.user__connect{
+  display: flex;
+  align-items: center;
+  column-gap: 40px;
+  &-image{
+    width: 280px;
+    height: 310px;
+    border-radius: 22px;
+  }
+  &-btn{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    row-gap: 20px;
+  }
+  &-tel{
+    padding: 15px;
+    border-radius: 5px;
+    background: rgb(34, 216, 74);
+    font-family: inherit;
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 23px;
+    letter-spacing: 3px;
+    transition: all .5s ease;
+  }
+  &-tel:hover{
+    transition: all .5s ease;
+    background: rgb(27, 172, 58);
+  }
+  &-write{
+    outline: none;
+    border: 2px solid transparent;
+    max-width: 220px;
+    width: 100%;
+    font-family: inherit;
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 23px;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    background: rgb(8, 137, 255);
+    padding: 18px 0;
+    transition: all .5s ease;
+  }
+  &-write:hover{
+    transition: all .5s ease;
+    background:rgb(6, 98, 183); 
+  }
+}
+.user__description{
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  &-title{
+    color: rgb(0, 0, 0);
+    font-family: Inter,sans-serif;
+    text-align: center;
+    width: 100%;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 48px;
+    margin-bottom: 15px;
+  }
+  &-text{
+    max-width: 420px;
+    width: 100%;
+    border: 2px solid rgb(8, 137, 255);
+    border-radius: 7px;
+    background: rgb(255, 255, 255);
+    padding: 10px;
+    color: rgb(0, 0, 0);
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 33px;
+    margin-bottom: 20px;
+  }
+  &-email{
+    font-family: inherit;
+    color: rgb(3, 163, 253);
+    font-size: 28px;
+  }
+  &-email span{
+    color: rgb(90, 90, 90);
+    margin-right: 10px;
+  }
+  &-links{
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    margin-top: 20px;
+  }
+  &-link{
+    width: 55px;
+    height: 55px;
+    padding: 7px 7px 7px 6px;
+    border-radius: 50%;
+    background-color: transparent;
+    transition: all .5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &-link:nth-child(1):hover{
+    transition: all .5s ease;
+    background-color: #00e677a2;
+  }
+  &-link:nth-child(2):hover{
+    transition: all .5s ease;
+    background-color: #4291ff61;
+  }
+  &-link:nth-child(3):hover{
+    transition: all .5s ease;
+    background-color: #4291ff88;
+  }
+}
+
+
+.portfolio__block{
+  background-color: white;
+  border-radius: 20px;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &-list{
+    max-width: 1250px;
+    width: 100%;
+    border: 2px solid rgb(8, 137, 255);
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    column-gap: 20px;
+  }
+}
+.portfolio__gallery{
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  max-width: 800px;
+  width: 100%;
+  column-gap: 10px;
+  row-gap: 10px;
+  &-item{
+    height: 170px;
+    display: flex;
+    justify-content: center;
+  }
+  & img{
+    border-radius: 20px;
+  }
+}
+.portfolio__description{
+  max-width: 500px;
+  &-title{
+    font-family: 'Inter',sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  &-text{
+    font-family: 'Inter',sans-serif;
+    color: #1e1e1e;
+    font-weight: 400;
+    text-align: justify;
+    width: 100%;
+    max-height: 550px;
+    overflow: hidden;
+    position: relative;
+  }
+  &-text:after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(180deg, transparent, #ffffff 40%);
+  }
+}

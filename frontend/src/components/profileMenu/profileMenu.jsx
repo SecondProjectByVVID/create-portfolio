@@ -12,6 +12,7 @@ const ProfileMenu = () => {
     error,
     isLoading
   } = useFetchInfoUserQuery(localStorageService.getUserId()?.toString() || 1);
+  console.log(userInfo);
   const { logout } = useAuth();
   const handleClick = () => {
     logout();

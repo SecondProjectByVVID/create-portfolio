@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 
 const useForm = (initialState) => {
+  console.log(initialState);
   const [form, setForm] = useState(initialState);
   const formChange = useCallback(({ target }) => {
     setForm((prevState) => ({ ...prevState, [target.name]: target.value }));

@@ -1,4 +1,4 @@
-import getIconKey from '../../helpers/getImageKey';
+import { getIconKey } from '../../helpers/getImageKey';
 import styles from './cardUserPortfolio.module.scss';
 
 import { Swiper, SwiperSlide } from 'swiper/react';

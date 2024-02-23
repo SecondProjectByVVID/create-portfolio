@@ -4,7 +4,7 @@ import AuthProvider from './../hooks/useAuth';
 
 const Login = lazy(() => import('./../pages/login/login'));
 const Main = lazy(() => import('../pages/main/main'));
-const NotFound = lazy(() => import('../pages/notFound/NotFound'));
+const NotFound = lazy(() => import('../pages/NotFound/NotFound'));
 const Registration = lazy(() => import('../pages/registration/registration'));
 const Restore = lazy(() => import('../pages/restore/restore'));
 const Reset = lazy(() => import('../pages/reset/reset'));

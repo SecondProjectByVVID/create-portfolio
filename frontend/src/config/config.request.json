@@ -1,7 +1,7 @@
 {
   "url":"http://127.0.0.1:8000/",
   "users":"user-list/",
-  "profile":"profile/",
+  "profile":"user-profile/",
   "portfolio":"portfolio/",
   "authenticateAndPoint":"login/",
   "logout":"logout/",

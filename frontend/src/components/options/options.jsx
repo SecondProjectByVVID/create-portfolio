@@ -1,5 +1,5 @@
-import SearchInput from './../../ui/searchInput/searchInput';
-import getIconKey from '../../helpers/getImageKey';
+import SearchInput from './../../UI/SearchInput/searchInput';
+import { getIconKey } from '../../helpers/getImageKey';
 
 import './options.scss';
 const Options = () => {

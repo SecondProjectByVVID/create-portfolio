@@ -6,7 +6,7 @@ class Profile(models.Model):
     """Профиль пользователя"""
     user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE, null=True)
     description = models.TextField(
-        "Описание", max_length=600, null=True, blank=True)
+        "Описание",default='', max_length=600, null=True, blank=True)
     image = models.ImageField(
         "Фото", upload_to="user_images/", blank=True, null=True)
     portfolio_favorites = models.ManyToManyField(

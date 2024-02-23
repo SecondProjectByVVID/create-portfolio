@@ -1,32 +1,51 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import InputForm from './../../UI/InputForm/InputForm';
 import UploadFile from './../../UI/chooseFile/UploadFile';
 import usePosition from '../../hooks/usePosition';
-
+import { useFetchInfoProfileQuery } from '../../store/profile/ProfileSlice';
+import { localStorageService } from '../../service/localStorage.service';
+import Loader from './../../UI/Loader/Loader';
 import './ProfileCard.scss';
-
-// import { useFetchInfoProfileQuery } from '../../store/profile/ProfileSlice';
+import { uploadImage } from '../../helpers/uploadImage';
+import profileReq from '../../api/profileReq';
 const ProfileCard = () => {
-  // const { data: userProfile, isLoading, error } = useFetchInfoProfileQuery();
+  const {
+    data: userProfile,
+    isLoading,
+    isError,
+    refetch
+  } = useFetchInfoProfileQuery(localStorageService.getUserId());
   const { position } = usePosition();
-  const [profile] = useState({
-    id: 0,
-    username: '',
-    first_name: '',
-    last_name: '',
-    email: '',
-    mobile: '',
-    profession: '',
-    location: position
-  });
+  const [profile, setProfile] = useState({});
   const [image, setImage] = useState(null);
-  const profileChange = () => {};
+  useEffect(() => {
+    if (position) {
+      setProfile((prevState) => ({ ...prevState, location: position }));
+    }
+    if (userProfile) {
+      setProfile((prevState) => ({ ...userProfile[0], ...prevState }));
+    }
+  }, [userProfile]);
+  const profileChange = ({ target }) => {
+    if (target.name !== 'image') {
+      setProfile((prevState) => ({ ...prevState, [target.name]: target.value }));
+    } else {
+      uploadImage(target, setImage);
+      setProfile((prevState) => ({ ...prevState, [target.name]: target.files[0] }));
+    }
+  };
   const profileSubmit = (e) => {
     e.preventDefault();
+    profileReq.updateProfile(localStorageService.getUserId(), profile);
   };
-  const cancelProfile = () => {
+  const cancelProfile = async () => {
     setImage(null);
+    const { data } = await refetch();
+    setProfile((prevState) => ({ ...data[0], ...prevState }));
   };
+  if (isLoading || isError) {
+    return <Loader />;
+  }
   return (
     <div className="profile__card">
       <div className="profile__card-container">
@@ -36,6 +55,7 @@ const ProfileCard = () => {
             extendedText={'Добавьте фото'}
             image={image}
             setImage={setImage}
+            onChange={profileChange}
             id={'profile-image__upload'}
           />
         </div>
@@ -94,12 +114,14 @@ const ProfileCard = () => {
               id="description"
               cols="30"
               rows="10"
+              value={profile.description}
+              onChange={profileChange}
               placeholder="Добавьте описание о себе и ваших навыках..."></textarea>
             <div className="profile__description-btns">
               <button className="profile__btn-save" type="submit">
                 Сохранить
               </button>
-              <button className="profile__btn-cancel" onClick={cancelProfile}>
+              <button className="profile__btn-cancel" type="button" onClick={cancelProfile}>
                 Отменить
               </button>
             </div>

@@ -1,9 +1,9 @@
-import getIconKey from '../../helpers/getImageKey';
+import { getIconKey } from '../../helpers/getImageKey';
 import { Link } from 'react-router-dom/dist/umd/react-router-dom.development';
 import './profileMenu.scss';
 import { useAuth } from '../../hooks/useAuth';
-import AppImage from '../../ui/appImages/AppImage';
-import Skeleton from './../../ui/skeleton/Skeleton';
+import AppImage from '../../UI/appImages/AppImage';
+import Skeleton from './../../UI/skeleton/Skeleton';
 import { localStorageService } from './../../service/localStorage.service';
 import { useFetchInfoUserQuery } from './../../store/user/UserSlice';
 const ProfileMenu = () => {
@@ -12,7 +12,6 @@ const ProfileMenu = () => {
     error,
     isLoading
   } = useFetchInfoUserQuery(localStorageService.getUserId()?.toString() || 1);
-  console.log(userInfo);
   const { logout } = useAuth();
   const handleClick = () => {
     logout();
@@ -70,6 +69,7 @@ const ProfileMenu = () => {
         <li className="profile__list-item" onClick={() => handleClick()}>
           <p className="profile__list-text">Выход</p>
           <AppImage
+            src={getIconKey('LogoutIcon')}
             alt={'logout icon'}
             fallback={<Skeleton size={{ width: '28px', height: '28px', borderRadius: '5px' }} />}
           />

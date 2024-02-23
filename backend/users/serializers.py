@@ -1,11 +1,11 @@
-from rest_framework import serializers
-from rest_framework import status
-from rest_framework.response import Response
-
 from django.contrib.auth import get_user_model
 from django.utils.http import urlsafe_base64_decode
 from django.utils.encoding import force_str
 from django.core.exceptions import ObjectDoesNotExist
+
+from rest_framework import serializers
+from rest_framework import status
+from rest_framework.response import Response
 
 from deep_translator import GoogleTranslator
 
@@ -151,4 +151,3 @@ class UserUpdateSerializer(serializers.ModelSerializer):
             'profession': {'required': False},
             'location': {'required': False},
         }
-

@@ -1,12 +1,12 @@
-from rest_framework.response import Response
-from rest_framework import status
-from rest_framework import serializers
-
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from django.core.mail import EmailMessage
 from django.conf import settings
+
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework import serializers
 
 from .tokens import account_activation_token
 
@@ -89,4 +89,3 @@ def send_reset_password_email(request, user):
         return Response({"message": f"Дорогой {user.first_name}, пожалуйста, перейдите в свой почтовый ящик {user.email} и нажмите на полученную ссылку для сброса пароля."}, status=status.HTTP_200_OK)
     else:
         return Response({"message": f"Проблема с отправкой письма для сброса пароля на {user.email}, проверьте, правильно ли вы его ввели."}, status=status.HTTP_400_BAD_REQUEST)
-

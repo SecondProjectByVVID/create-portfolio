@@ -6,8 +6,6 @@ from django.utils.encoding import force_str
 from django.core.mail import EmailMessage
 from django.conf import settings
 
-from django.http import HttpResponse
-
 from rest_framework import status, serializers, viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -158,6 +156,3 @@ def vk_callback(request):
         except requests.RequestException as e:
             print(f'Ошибка при выполнении запроса к VK API: {e}')
     return redirect('/')
-
-
-    

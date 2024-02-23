@@ -6,7 +6,7 @@ class Profile(models.Model):
     """Профиль пользователя"""
     user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE, null=True)
     description = models.TextField(
-        "Описание", null=True, blank=True)
+        "Описание", max_length=600, null=True, blank=True)
     image = models.ImageField(
         "Фото", upload_to="user_images/", blank=True, null=True)
     portfolio_favorites = models.ManyToManyField(
@@ -26,7 +26,6 @@ class Profile(models.Model):
         verbose_name = 'Профиль'
         verbose_name_plural = 'Профили'
 
-
 class Portfolio(models.Model):
     """Портфолио"""
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True)
@@ -36,7 +35,7 @@ class Portfolio(models.Model):
         "Описание", null=True, blank=True)
     date_work = models.DateField(
         "Дата реализации", auto_now=False, auto_now_add=False, null=True, blank=True)
-    date = models.DateField(
+    created_at = models.DateField(
         "Дата публикации проекта", auto_now=False, auto_now_add=True, null=True, blank=True)    
     
     def __str__(self):
@@ -59,3 +58,33 @@ class PortfolioImage(models.Model):
     class Meta:
         verbose_name = 'Портфолио изображение'
         verbose_name_plural = 'Портфолио изображения'
+        
+class Playlist(models.Model):
+    """Плейлист"""
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    title = models.CharField("Название плейлиста", max_length=255)
+    projects = models.ManyToManyField(Portfolio)
+
+    def __str__(self):
+        return self.title
+    
+    class Meta:
+        verbose_name = 'Плейлист проектов'
+        verbose_name_plural = 'Плейлисты проектов'
+
+class ContactUs(models.Model):
+    """Связаться с нами"""
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    email = models.EmailField(
+        "Контактная почта", max_length=255)
+    description = models.TextField(
+        "Сообщение", max_length=600, null=True, blank=True)
+    created_at = models.DateTimeField(
+        "Дата и время отправки заявки", auto_now=False, auto_now_add=False, null=True, blank=True)
+
+    def __str__(self):
+        return f"Сообщение - {self.user} - {self.created_at}"
+    
+    class Meta:
+        verbose_name = 'Связаться с нами'
+        verbose_name_plural = 'Связаться с нами'

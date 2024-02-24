@@ -11,6 +11,7 @@ import './Header.scss';
 const Header = () => {
   const [isLogin] = useState(localStorageService.getIsLogin());
   const { position } = usePosition();
+
   return (
     <div className="header">
       <div className="header__inner">

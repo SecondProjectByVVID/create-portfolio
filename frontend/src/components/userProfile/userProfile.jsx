@@ -19,7 +19,6 @@ const UserProfile = () => {
     if (ref.current && ref.current.contains(target)) {
       setOpen((state) => !state);
     }
-    console.log(ref.current && !ref.current.contains(target));
   };
   return (
     <div className="header__auth">

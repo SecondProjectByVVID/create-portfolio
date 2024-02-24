@@ -23,6 +23,7 @@ const SingIn = () => {
   const { form, formChange, setForm } = useForm(auth);
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(form);
     signIn(form);
   };
   const captchaChange = (e) => {

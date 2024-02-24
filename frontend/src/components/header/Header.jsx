@@ -15,12 +15,14 @@ const Header = () => {
     <div className="header">
       <div className="header__inner">
         <div className="header__logo">
-          <AppImage
-            src={getIconKey('LogoIcon')}
-            alt={'header logo'}
-            className={'header__logo-img'}
-            fallback={<Skeleton size={{ width: '100%', height: '50px', borderRadius: '5%' }} />}
-          />
+          <Link to="/">
+            <AppImage
+              src={getIconKey('LogoIcon')}
+              alt={'header logo'}
+              className={'header__logo-img'}
+              fallback={<Skeleton size={{ width: '100%', height: '50px', borderRadius: '5%' }} />}
+            />
+          </Link>
         </div>
         <nav className="header__navbar">
           <ul className="header__list">

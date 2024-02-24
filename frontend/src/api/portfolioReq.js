@@ -1,13 +1,21 @@
 import request from './../service/request.service';
+import ConfigApi from './../config/config.request.json';
+import getCookie from '../helpers/getCsrfToken';
 
-const portfolioAndPoint = 'portfolio/';
+const csrftoken = getCookie('csrftoken');
 
 const portfolio = {
-  get: async () => {
+  createPortfolio: async (newPortfolio) => {
     try {
-      const { data } = await request.get(portfolioAndPoint);
+      const { data } = await request.post(`${ConfigApi.portfolio}`, newPortfolio, {
+        headers: {
+          'X-CSRFToken': csrftoken
+        },
+        withCredentials: true
+      });
+      console.log(data);
       return data;
-    } catch {
+    } catch (error) {
       return false;
     }
   }

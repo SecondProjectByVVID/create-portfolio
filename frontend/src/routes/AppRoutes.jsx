@@ -9,6 +9,7 @@ const Registration = lazy(() => import('../pages/registration/registration'));
 const Restore = lazy(() => import('../pages/restore/restore'));
 const Reset = lazy(() => import('../pages/reset/reset'));
 const Profile = lazy(() => import('../pages/profile/Profile'));
+const AddPortfolio = lazy(() => import('../pages/addPortfolio/AddPortfolio'));
 
 const Layout = lazy(() => import('./../components/layout/Layout'));
 const ActiveEmail = lazy(() => import('./../pages/activeEmail/ActiveEmail'));
@@ -22,6 +23,7 @@ const AppRoutes = () => {
           <Route index path="/" element={<Main />} />
           <Route path="/user-portfolio" element={<Portfolio />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/add-portfolio" element={<AddPortfolio />} />
         </Route>
         <Route path="/signUp" element={<Registration />} />
         <Route path="/login" element={<Login />} />

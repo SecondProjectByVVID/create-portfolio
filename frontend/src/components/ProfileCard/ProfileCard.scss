@@ -134,3 +134,27 @@
     border-color: rgb(87, 87, 87);
   }
 }
+
+@media(max-width:480px){
+  .profile__card-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .profile__description-title{
+    text-align: center;
+    width: 100%;
+  }
+  .profile__description-label{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 100%;
+  }
+  .profile__description-label input{
+    width: 100%;
+  }
+  .profile__description-form{
+    row-gap: 0.7rem;
+  }
+}

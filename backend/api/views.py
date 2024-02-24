@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth import get_user_model
 from django.utils import timezone
+from django.conf import settings
 
 from rest_framework import serializers, viewsets, generics, status
 from rest_framework.response import Response

@@ -4,7 +4,6 @@ const useScrollToTop = () => {
   const [toTop, setToTop] = useState(false);
   useEffect(() => {
     window.addEventListener('scroll', () => {
-      console.log(window.pageYOffset, window.innerHeight);
       if (window.pageYOffset >= 360) {
         setToTop(true);
       } else {

@@ -6,6 +6,9 @@
     justify-content: center;
     column-gap: 30px;
   }
+  &-image{
+    width: 390px;
+  }
 }
 .profile__card-description{
   display: flex;

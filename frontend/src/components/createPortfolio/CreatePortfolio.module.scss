@@ -1,0 +1,130 @@
+.create{
+  &__portfolio{
+    padding: 1rem;
+    font-family: 'Arimo',sans-serif;
+  }
+  &__portfolio-top{
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    column-gap: 3rem;
+  }
+  &__top-info{
+    width: 500px;
+  }
+  &__images{
+    max-width: 1000px;
+    width:100%;
+  }
+  &__input{
+    width: 100%;
+  }
+  &__content{
+    display: flex;
+    align-items: start;
+    column-gap: 3rem;
+  }
+  &__description-title{
+    color: rgb(79, 79, 79);
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 62px;
+    letter-spacing: 5%;
+  }
+  &__textarea{
+    max-width: 1000px;
+    width: 100%;
+    border: 2px solid #717171;
+    border-radius: 10px;
+    background: rgb(255, 255, 255);
+    resize: none;
+    padding: 15px;
+    height: 200px;
+
+    color: rgb(104, 104, 104);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 28px;
+    letter-spacing: 5%;
+    outline: none;
+    transition: all .5s ease;
+  }
+  &__textarea:focus{
+    transition: all .5s ease;
+    border: 2px solid #0889FF;
+    box-shadow: 0 0 0 0.25rem rgba(158, 158, 158, 0.25);
+  }
+  &__description-btns{
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+  }
+  &__btn-save{
+    outline: none;
+    padding: 7px 34px 7px 7px;
+
+    border: 2px solid rgb(8, 137, 255);
+    border-radius: 20px;
+    background: rgb(255, 255, 255);
+    
+    color: rgb(87, 87, 87);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 10%;
+    position: relative;
+    transition: all .5s ease;
+  }
+  &__btn-save::after{
+    content: '';
+    position: absolute;
+    background-image: url('./../../assets/icons/save-icon.svg');
+    background-position: top center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    right: 5px;
+    top: 11px;
+    width: 20px;
+    height: 20px;
+  }
+  &__btn-save:hover{
+    transition: all .5s ease;
+    background: rgb(24, 143, 255);
+    color: #fff;
+  }
+  &__btn-cancel{
+    outline: none;
+    padding: 7px;
+
+    border-radius: 20px;
+    color: rgb(87, 87, 87);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 10%;
+    border: 2px solid transparent;
+    transition: all .5s ease;
+  }
+  &__btn-cancel:hover{
+    transition: all .5s ease;
+    border-color: rgb(87, 87, 87);
+  }
+}
+
+.calendar {
+  margin-top: 1.5rem;
+  width: 100%;
+  & input{
+    font-size: 1rem;
+    color: #4b5563;
+    background: #ffffff;
+    padding: 0.75rem 0.75rem;
+    border: 2px solid #d1d5db;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    appearance: none;
+    border-radius: 6px 0px 0px 6px;
+  }
+  & button{
+    color: #ffffff;
+    background: #06b6d4;
+    border: 1px solid #06b6d4;
+  }
+}

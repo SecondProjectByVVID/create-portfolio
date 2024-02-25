@@ -13,6 +13,7 @@ module.exports = {
   rules: {
     'react/react-in-jsx-scope': 'off',
     'prettier/prettier': ['error', { endOfLine: 'auto' }],
-    'eslint-disable-next-line': 'off'
+    'eslint-disable-next-line': 'off',
+    'react/prop-types': 'off'
   }
 };

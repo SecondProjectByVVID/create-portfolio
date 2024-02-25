@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import { Calendar } from 'primereact/calendar';
 import { localStorageService } from '../../service/localStorage.service';
-import UploadFile from '../../UI/chooseFile/UploadFile';
-import { uploadImage } from '../../helpers/uploadImage';
-
 import InputForm from '../../UI/InputForm/InputForm';
 
 import styles from './CreatePortfolio.module.scss';
+import MyFileUpload from './MyFileUpload';
 
 const CreatePortfolio = () => {
   const [create, setCreate] = useState({
@@ -16,14 +14,9 @@ const CreatePortfolio = () => {
     images: [],
     date_work: null
   });
-  const [image, setImage] = useState(null);
+
   const createChange = ({ target }) => {
-    if (target.name !== 'image') {
-      setCreate((prevState) => ({ ...prevState, [target.name]: target.value }));
-    } else {
-      uploadImage(target, setImage);
-      setCreate((prevState) => ({ ...prevState, [target.name]: target.files[0] }));
-    }
+    setCreate((prevState) => ({ ...prevState, [target.name]: target.value }));
   };
   const cancelCreate = () => {};
   const createForm = (e) => {
@@ -35,14 +28,7 @@ const CreatePortfolio = () => {
       <form className="create__form" onSubmit={createForm}>
         <div className={styles['create__portfolio-top']}>
           <div className={styles.create__images}>
-            <UploadFile
-              withExtendedField={true}
-              extendedText={'Добавьте фото'}
-              image={image}
-              setImage={setImage}
-              onChange={createChange}
-              id={'create-image__upload'}
-            />
+            <MyFileUpload />
           </div>
           <div className={styles['create__top-info']}>
             <InputForm

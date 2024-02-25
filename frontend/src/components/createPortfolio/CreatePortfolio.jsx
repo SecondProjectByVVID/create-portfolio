@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { Calendar } from 'primereact/calendar';
 import { localStorageService } from '../../service/localStorage.service';
 import InputForm from '../../UI/InputForm/InputForm';
-
+import portfolio from '../../api/portfolioReq';
+import formatDate from './../../helpers/getFormatDate';
 import styles from './CreatePortfolio.module.scss';
 import MyFileUpload from './MyFileUpload';
 
@@ -12,9 +13,18 @@ const CreatePortfolio = () => {
     title: '',
     description: '',
     images: [],
-    date_work: null
+    date_work: formatDate(new Date())
   });
-
+  const [date, setDate] = useState({
+    date_work: new Date()
+  });
+  const changeDate = (e) => {
+    setCreate((prevState) => ({
+      ...prevState,
+      date_work: formatDate(e.value)
+    }));
+    setDate((prevState) => ({ ...prevState, date_work: e.value }));
+  };
   const createChange = ({ target }) => {
     setCreate((prevState) => ({ ...prevState, [target.name]: target.value }));
   };
@@ -22,13 +32,14 @@ const CreatePortfolio = () => {
   const createForm = (e) => {
     e.preventDefault();
     console.log(create);
+    portfolio.createPortfolio(create);
   };
   return (
     <div className={styles.create__portfolio}>
       <form className="create__form" onSubmit={createForm}>
         <div className={styles['create__portfolio-top']}>
           <div className={styles.create__images}>
-            <MyFileUpload />
+            <MyFileUpload setCreate={setCreate} />
           </div>
           <div className={styles['create__top-info']}>
             <InputForm
@@ -41,8 +52,8 @@ const CreatePortfolio = () => {
             <Calendar
               id="buttondisplay"
               className={styles.calendar}
-              value={create.date_work}
-              onChange={(e) => setCreate((prevState) => ({ ...prevState, date_work: e.value }))}
+              value={date.date_work}
+              onChange={changeDate}
               showIcon
             />
           </div>

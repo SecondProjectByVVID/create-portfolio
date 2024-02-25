@@ -1,6 +1,6 @@
 import { getIconKey } from '../../helpers/getImageKey';
 import styles from './cardUserPortfolio.module.scss';
-
+import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
@@ -11,7 +11,7 @@ import 'swiper/css/navigation';
 // import required modules
 import { Pagination, Navigation } from 'swiper/modules';
 
-const CardUserPortfolio = () => {
+const CardUserPortfolio = ({ title, description, id }) => {
   return (
     <div className={styles.container}>
       <div className={styles.card__items}>
@@ -50,22 +50,22 @@ const CardUserPortfolio = () => {
           </div>
           <div className={styles['card__item-user']}>
             <div className={styles['card__user-avatar']}>
-              <img
-                className={styles['card__user-icon']}
-                src={getIconKey('AvatarIcon')}
-                alt="icon avatar"
-              />
+              <Link to={`/portfolio/${id}`}>
+                <img
+                  className={styles['card__user-icon']}
+                  src={getIconKey('AvatarIcon')}
+                  alt="icon avatar"
+                />
+              </Link>
             </div>
             <p className={styles.card__id}>#25353663</p>
           </div>
         </div>
         <div className={styles['card__item-right']}>
-          <h3 className={styles['card__item-title']}>Наковальня</h3>
-          <p className={styles['card__item-text']}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus mollitia ratione odio
-            iusto necessitatibus asperiores blanditiis non facere ipsa. Vel voluptatibus soluta est
-            harum ratione laborum voluptatum ducimus fugiat minus.
-          </p>
+          <h3 className={styles['card__item-title']}>
+            <abbr title={title}>{title}</abbr>
+          </h3>
+          <p className={styles['card__item-text']}>{description}</p>
         </div>
       </div>
     </div>

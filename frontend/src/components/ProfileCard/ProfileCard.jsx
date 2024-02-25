@@ -39,7 +39,7 @@ const ProfileCard = () => {
     e.preventDefault();
     const formDataWithImage = new FormData();
 
-    formDataWithImage.append('image', profile.image);
+    // formDataWithImage.append('image', profile.image);
 
     for (const key in profile) {
       formDataWithImage.append(key, profile[key]);

@@ -3,6 +3,7 @@ import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import 'primereact/resources/primereact.css';
 import 'primeflex/primeflex.css';
 
+import PropTypes from 'prop-types';
 import { useRef, useState } from 'react';
 import { FileUpload } from 'primereact/fileupload';
 import { ProgressBar } from 'primereact/progressbar';
@@ -10,16 +11,18 @@ import { Button } from 'primereact/button';
 import { Tag } from 'primereact/tag';
 import { toast } from 'react-toastify';
 
-export const MyFileUpload = () => {
+export const MyFileUpload = ({ setCreate }) => {
   const [totalSize, setTotalSize] = useState(0);
   const fileUploadRef = useRef(null);
 
   const onTemplateSelect = (e) => {
+    // const tempImages = [];
+    // e.files.map((file) => tempImages.push({ image: file }));
     let _totalSize = totalSize;
     e.files.forEach((file) => {
       _totalSize += file.size;
     });
-    console.log(e.files);
+    setCreate((prevState) => ({ ...prevState, images: e.files }));
     setTotalSize(_totalSize);
 
     toast.success(`Select ${e.files.length} images`);
@@ -143,4 +146,7 @@ export const MyFileUpload = () => {
   );
 };
 
+MyFileUpload.propTypes = {
+  setCreate: PropTypes.func
+};
 export default MyFileUpload;

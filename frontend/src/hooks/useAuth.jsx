@@ -31,7 +31,6 @@ const AuthProvider = ({ children }) => {
   const signIn = async (form) => {
     setLoading(false);
     const response = await userReq.auth(form);
-    console.log(response);
     if (response) {
       navigate('/');
     }

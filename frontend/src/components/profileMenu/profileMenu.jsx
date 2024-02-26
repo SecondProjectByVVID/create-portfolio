@@ -8,7 +8,7 @@ import { localStorageService } from './../../service/localStorage.service';
 import { useFetchInfoUserQuery } from './../../store/user/UserSlice';
 import PropTypes from 'prop-types';
 import useWindowSize from '../../hooks/useWindowSize';
-const ProfileMenu = ({ refProp, handleClickOutside }) => {
+const ProfileMenu = ({ refProp, handleClickOutside, setVisible }) => {
   const {
     data: userInfo,
     error,
@@ -19,6 +19,7 @@ const ProfileMenu = ({ refProp, handleClickOutside }) => {
   const handleClick = () => {
     logout();
   };
+  console.log(userInfo);
   return (
     <div className="profile__container" ref={refProp} onClick={handleClickOutside}>
       <div className="profile">
@@ -73,6 +74,14 @@ const ProfileMenu = ({ refProp, handleClickOutside }) => {
                 }
               />
             </Link>
+          </li>
+          <li className="profile__list-item" onClick={() => setVisible(true)}>
+            <p className="profile__list-text">Сообщения</p>
+            <AppImage
+              src={getIconKey('ContactIcon')}
+              alt={'chat icon'}
+              fallback={<Skeleton size={{ width: '28px', height: '28px', borderRadius: '5px' }} />}
+            />
           </li>
           {windowSize.width <= 480 && (
             <>

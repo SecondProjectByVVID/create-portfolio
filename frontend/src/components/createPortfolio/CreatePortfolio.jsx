@@ -31,6 +31,7 @@ const CreatePortfolio = () => {
   const cancelCreate = () => {};
   const createForm = (e) => {
     e.preventDefault();
+
     console.log(create);
     portfolio.createPortfolio(create);
   };

@@ -17,11 +17,14 @@ export const MyFileUpload = ({ setCreate }) => {
 
   const onTemplateSelect = (e) => {
     const tempImages = [];
-    e.files.map((file) => tempImages.push({ image: file }));
     let _totalSize = totalSize;
+
     e.files.forEach((file) => {
+      tempImages.push({ image: new File([''], file.name, { type: file.type }) });
+
       _totalSize += file.size;
     });
+
     setCreate((prevState) => ({ ...prevState, images: tempImages }));
     setTotalSize(_totalSize);
 

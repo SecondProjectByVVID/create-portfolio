@@ -7,9 +7,21 @@ import { useFetchInfoProfileQuery } from '../../store/profile/ProfileSlice';
 import { useGetPortfolioOnIdQuery } from '../../store/portfolio/PortfolioSlice';
 import { Message } from 'primereact/message';
 import { useState } from 'react';
+import ConfigApi from './../../config/config.request.json';
+import { Dialog } from 'primereact/dialog';
+import InputForm from '../../UI/InputForm/InputForm';
+import useForm from '../../hooks/useForm';
+import ButtonForm from '../../UI/ButtonForm/ButtonForm';
+import profileReq from '../../api/profileReq';
 const PortfolioUser = () => {
-  const [open, setOpen] = useState(false);
   const { id, portfolioId } = useParams();
+  const [open, setOpen] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const { form, formChange } = useForm({
+    user: id,
+    email: '',
+    description: ''
+  });
   const { data, isLoading, isError } = useFetchInfoProfileQuery(id);
   const {
     data: portfolio,
@@ -27,12 +39,19 @@ const PortfolioUser = () => {
   const handleDateMessage = () => {
     setOpen((prevState) => !prevState);
   };
+  const handleContactUs = () => {
+    setVisible((prevState) => !prevState);
+  };
+  const contactSubmit = (e) => {
+    console.log(form);
+    profileReq.sendContactUs(form);
+  };
   return (
     <div className="portfolio__container">
       <div className="user__block">
         <div className="user__connect">
           <img
-            src={`http://localhost:3000${data[0].image}` ?? getBgKey('CardDefaultBg')}
+            src={`${ConfigApi.url}${data[0].image}` ?? getBgKey('CardDefaultBg')}
             alt="bg user profile"
             className="user__connect-image"
           />
@@ -41,6 +60,9 @@ const PortfolioUser = () => {
               {data[0].mobile}
             </Link>
             <button className="user__connect-write">Написать</button>
+            <button className="user__connect-contact" onClick={handleContactUs}>
+              Связаться
+            </button>
           </div>
         </div>
         <div className="user__description">
@@ -144,6 +166,31 @@ const PortfolioUser = () => {
           </div>
         </div>
       </div>
+      <Dialog
+        header="Свяжитесь со мной"
+        visible={visible}
+        style={{ maxWidth: '600px', width: '100%' }}
+        onHide={handleContactUs}
+        modal>
+        <InputForm
+          img={getIconKey('UserIcon')}
+          value={form.email}
+          placeholder={'Почта'}
+          onChange={formChange}
+          id={'email'}
+          wi
+        />
+        <textarea
+          id="contact_description"
+          className="contact__textarea"
+          value={form.description}
+          onChange={formChange}
+          name="description"
+          cols="30"
+          rows="7"
+          placeholder="Ваше сообщение пользователю"></textarea>
+        <ButtonForm textField={'Отправить'} btnClass={'form__contact'} onClick={contactSubmit} />
+      </Dialog>
     </div>
   );
 };

@@ -8,7 +8,7 @@ import Loader from './../../UI/Loader/Loader';
 import './ProfileCard.scss';
 import { uploadImage } from '../../helpers/uploadImage';
 import profileReq from '../../api/profileReq';
-// import ApiConfig from './../../config/config.request.json';
+import ApiConfig from './../../config/config.request.json';
 const ProfileCard = () => {
   const {
     data: userProfile,
@@ -56,6 +56,7 @@ const ProfileCard = () => {
   if (isLoading || isError) {
     return <Loader />;
   }
+  console.log(userProfile);
   return (
     <div className="profile__card">
       <div className="profile__card-container">
@@ -63,7 +64,7 @@ const ProfileCard = () => {
           <UploadFile
             withExtendedField={true}
             extendedText={'Добавьте фото'}
-            image={image}
+            image={profile.image ? `${ApiConfig.url}${profile.image}` : image}
             setImage={setImage}
             onChange={profileChange}
             id={'profile-image__upload'}

@@ -30,8 +30,9 @@ http.interceptors.response.use(
   function (error) {
     console.log(error);
     handlerCaptchaError(error.response);
+    const otherMessage = Object.values(error.response.data);
     const { message } = error.response.data;
-    toast.error(message);
+    toast.error(message || otherMessage[0][0]);
     return Promise.reject(error);
   }
 );

@@ -1,5 +1,5 @@
 .form{
-&__sign-in,&__sign-up{
+&__sign-in,&__sign-up,&__contact{
     width: 100%;
     padding: 0.7rem 1.5rem;
     border: 2px solid #0889FF;
@@ -23,6 +23,10 @@
       border-color: transparent;
       box-shadow: 0 0 0.15rem 0.35rem rgba(76, 76, 76, 0.35);
     }
+  }
+  &__contact{
+    padding: 0.4rem 1.1rem;
+    letter-spacing: 2px;
   }
 }
 

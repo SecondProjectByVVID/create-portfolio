@@ -219,6 +219,7 @@ $body: 'Inter', sans-serif;
   background: $white;
   padding: 15px 25px;
   border: 1px solid transparent;
+  border-radius: 10px;
   color: $light;
   font-family: $body;
   text-transform: uppercase;
@@ -228,7 +229,6 @@ $body: 'Inter', sans-serif;
   font-weight: 500;
   &:hover {
     background: $gray;
-    border: 1px solid #686868;
     color: #fff;
   }
 }

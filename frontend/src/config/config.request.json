@@ -3,6 +3,7 @@
   "users":"user-list/",
   "profile":"user-profile/",
   "portfolio":"portfolio/",
+  "contactUs":"contact-us/",
   "authenticateAndPoint":"login/",
   "logout":"logout/",
   "createAndPoint":"register/",

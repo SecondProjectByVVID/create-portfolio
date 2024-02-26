@@ -17,6 +17,20 @@ const profileReq = {
     } catch (error) {
       return false;
     }
+  },
+  sendContactUs: async (contact) => {
+    try {
+      const { data } = await request.post(`${ConfigApi.contactUs}`, contact, {
+        headers: {
+          'X-CSRFToken': csrftoken
+        },
+        withCredentials: true
+      });
+      console.log(data);
+      return data;
+    } catch (error) {
+      return false;
+    }
   }
 };
 

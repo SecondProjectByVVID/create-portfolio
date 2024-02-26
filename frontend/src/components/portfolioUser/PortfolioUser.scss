@@ -147,6 +147,7 @@
   flex-direction: column;
   align-items: center;
   &-list{
+    overflow: hidden;
     max-width: 1250px;
     width: 100%;
     border: 2px solid rgb(8, 137, 255);
@@ -175,12 +176,17 @@
 }
 .portfolio__description{
   max-width: 500px;
+  position: relative;
   &-title{
     font-family: 'Inter',sans-serif;
     font-weight: 700;
     font-size: 30px;
     text-align: center;
     margin-bottom: 15px;
+    -webkit-line-clamp: 1; /* Число отображаемых строк */
+    display: -webkit-box; /* Включаем флексбоксы */
+    -webkit-box-orient: vertical; /* Вертикальная ориентация */
+    overflow: hidden;
   }
   &-text{
     font-family: 'Inter',sans-serif;
@@ -188,7 +194,7 @@
     font-weight: 400;
     text-align: justify;
     width: 100%;
-    max-height: 550px;
+    height: 550px;
     overflow: hidden;
     position: relative;
   }
@@ -201,4 +207,32 @@
     height: 50px;
     background: linear-gradient(180deg, transparent, #ffffff 40%);
   }
+}
+.portfolio__date-work{
+  position: absolute;
+  right: -14px;
+  top: -18px;
+  width: 40px;
+  height: 40px;
+  outline: none;
+  padding: 5px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all .5s ease;
+  &:hover{
+    transition: all .5s ease;
+    background-color: #cececed0;
+  }
+}
+.date-message{
+  position: absolute;
+  background-color: rgb(219 234 254);
+  border: 2px solid #0889FF;
+  z-index: 100;
+  transform: translateY(-200%);
+  transition: all .5s ease;
+}
+.date-message--open{
+  transition: all .5s ease;
+  transform: translateY(0);
 }

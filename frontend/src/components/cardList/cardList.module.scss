@@ -1,7 +1,8 @@
 .card__list{
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
   row-gap: 3rem;
   margin-bottom: 1.5rem;
 }

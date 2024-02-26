@@ -21,7 +21,7 @@ const AppRoutes = () => {
       <Routes>
         <Route element={<Layout />}>
           <Route index path="/" element={<Main />} />
-          <Route path="/user-portfolio" element={<Portfolio />} />
+          <Route path="/user-portfolio/:id/:portfolioId" element={<Portfolio />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/add-portfolio" element={<AddPortfolio />} />
         </Route>

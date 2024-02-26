@@ -11,7 +11,7 @@ import 'swiper/css/navigation';
 // import required modules
 import { Pagination, Navigation } from 'swiper/modules';
 
-const CardUserPortfolio = ({ title, description, id }) => {
+const CardUserPortfolio = ({ title, description, id, portfolioId }) => {
   return (
     <div className={styles.container}>
       <div className={styles.card__items}>
@@ -50,7 +50,7 @@ const CardUserPortfolio = ({ title, description, id }) => {
           </div>
           <div className={styles['card__item-user']}>
             <div className={styles['card__user-avatar']}>
-              <Link to={`/portfolio/${id}`}>
+              <Link to={`/user-portfolio/${id}/${portfolioId}`}>
                 <img
                   className={styles['card__user-icon']}
                   src={getIconKey('AvatarIcon')}

@@ -16,6 +16,7 @@ import WhatsappIcon from './../assets/icons/whatsapp-icon.svg';
 import VkontakteIcon from './../assets/icons/vkontakte-icon.svg';
 import ProfileDefaultIcon from './../assets/icons/profileDefault-icon.svg';
 import HomeIcon from './../assets/icons/home-icon.svg';
+import CalendarIcon from './../assets/icons/calendar-icon.svg';
 import FavoritesIcon from './../assets/icons/favorites-icon.svg';
 import CardDefaultBg from './../assets/background/default-card-bg.jpg';
 
@@ -39,7 +40,8 @@ const getIcon = {
   VkontakteIcon,
   ProfileDefaultIcon,
   FavoritesIcon,
-  HomeIcon
+  HomeIcon,
+  CalendarIcon
 };
 const getBg = {};
 

@@ -15,7 +15,13 @@ const CardList = () => {
   return (
     <div className={styles.card__list}>
       {allPortfolio.map((item) => (
-        <CardUserPortfolio key={item.id} title={item.title} description={item.description} />
+        <CardUserPortfolio
+          key={item.id}
+          portfolioId={item.id}
+          title={item.title}
+          description={item.description}
+          id={item.user}
+        />
       ))}
     </div>
   );

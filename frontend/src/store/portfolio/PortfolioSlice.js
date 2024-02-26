@@ -7,9 +7,11 @@ export const portfolioAPI = createApi({
   tagTypes: ['Portfolio'],
   endpoints: (build) => ({
     getAllPortfolio: build.query({
-      query: () => `${configApi.portfolio}`,
-      providesTags: ['Portfolio']
+      query: () => `${configApi.portfolio}`
+    }),
+    getPortfolioOnId: build.query({
+      query: (id) => `${configApi.portfolio}${id}/`
     })
   })
 });
-export const { useGetAllPortfolioQuery } = portfolioAPI;
+export const { useGetAllPortfolioQuery, useGetPortfolioOnIdQuery } = portfolioAPI;

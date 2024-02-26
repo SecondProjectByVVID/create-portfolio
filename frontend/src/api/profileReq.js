@@ -9,10 +9,12 @@ const profileReq = {
     try {
       const { data } = await request.patch(`${ConfigApi.profile}${id}/`, profile, {
         headers: {
-          'X-CSRFToken': csrftoken
+          'X-CSRFToken': csrftoken,
+          'Content-Type': 'multipart/form-data'
         },
         withCredentials: true
       });
+      console.log(data);
       return data;
     } catch (error) {
       return false;

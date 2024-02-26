@@ -9,6 +9,7 @@ import './ProfileCard.scss';
 import { uploadImage } from '../../helpers/uploadImage';
 import profileReq from '../../api/profileReq';
 import ApiConfig from './../../config/config.request.json';
+
 const ProfileCard = () => {
   const {
     data: userProfile,
@@ -17,14 +18,24 @@ const ProfileCard = () => {
     refetch
   } = useFetchInfoProfileQuery(localStorageService.getUserId());
   const { position } = usePosition();
-  const [profile, setProfile] = useState({});
+  const [profile, setProfile] = useState({
+    id: 0,
+    first_name: '',
+    last_name: '',
+    email: '',
+    mobile: '',
+    profession: '',
+    location: '',
+    description: '',
+    image: null
+  });
   const [image, setImage] = useState(null);
   useEffect(() => {
     if (position) {
       setProfile((prevState) => ({ ...prevState, location: position }));
     }
     if (userProfile) {
-      setProfile((prevState) => ({ ...userProfile[0], ...prevState }));
+      setProfile((prevState) => ({ ...prevState, ...userProfile[0] }));
     }
   }, [userProfile]);
   const profileChange = ({ target }) => {
@@ -37,15 +48,15 @@ const ProfileCard = () => {
   };
   const profileSubmit = (e) => {
     e.preventDefault();
-    const formDataWithImage = new FormData();
-
-    formDataWithImage.append('image', profile.image);
-
-    for (const key in profile) {
-      formDataWithImage.append(key, profile[key]);
-    }
-    console.log(profile.image);
-    profileReq.updateProfile(localStorageService.getUserId(), formDataWithImage);
+    console.log(profile);
+    // const formDataWithImage = new FormData();
+    // for (const key in profile) {
+    //   formDataWithImage.append(key, profile[key]);
+    // }
+    // for (const key in profile) {
+    //   console.log(formDataWithImage.getAll(key));
+    // }
+    profileReq.updateProfile(localStorageService.getUserId(), profile);
     refetch();
   };
   const cancelProfile = async () => {
@@ -56,7 +67,6 @@ const ProfileCard = () => {
   if (isLoading || isError) {
     return <Loader />;
   }
-  console.log(userProfile);
   return (
     <div className="profile__card">
       <div className="profile__card-container">
@@ -64,7 +74,7 @@ const ProfileCard = () => {
           <UploadFile
             withExtendedField={true}
             extendedText={'Добавьте фото'}
-            image={profile.image ? `${ApiConfig.url}${profile.image}` : image}
+            image={profile.image && !image ? `${ApiConfig.url}${profile.image}` : image}
             setImage={setImage}
             onChange={profileChange}
             id={'profile-image__upload'}
@@ -82,7 +92,7 @@ const ProfileCard = () => {
                 id={'first_name'}
               />
             </label>
-            <label htmlFor="first_name" className="profile__description-label">
+            <label htmlFor="last_name" className="profile__description-label">
               <p>Фамилия:</p>
               <InputForm
                 value={profile.last_name}
@@ -91,7 +101,7 @@ const ProfileCard = () => {
                 id={'last_name'}
               />
             </label>
-            <label htmlFor="first_name" className="profile__description-label">
+            <label htmlFor="email" className="profile__description-label">
               <p>E-mail:</p>
               <InputForm
                 value={profile.email}
@@ -100,7 +110,7 @@ const ProfileCard = () => {
                 id={'email'}
               />
             </label>
-            <label htmlFor="first_name" className="profile__description-label">
+            <label htmlFor="mobile" className="profile__description-label">
               <p>Телефон:</p>
               <InputForm
                 value={profile.mobile}
@@ -109,7 +119,7 @@ const ProfileCard = () => {
                 id={'mobile'}
               />
             </label>
-            <label htmlFor="first_name" className="profile__description-label">
+            <label htmlFor="profession" className="profile__description-label">
               <p>Профессия:</p>
               <InputForm
                 value={profile.profession}

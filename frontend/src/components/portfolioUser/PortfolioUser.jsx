@@ -127,12 +127,13 @@ const PortfolioUser = () => {
             </div>
           </div>
           <div className="portfolio__description">
-            <img
-              src={getIconKey('CalendarIcon')}
-              alt="calendar icon portfolio"
-              className="portfolio__date-work"
-              onClick={handleDateMessage}
-            />
+            <div className="portfolio__date-block" onClick={handleDateMessage}>
+              <img
+                src={getIconKey('CalendarIcon')}
+                alt="calendar icon portfolio"
+                className="portfolio__date-work"
+              />
+            </div>
             <Message
               severity="info"
               text={`Проект выполнен ${portfolio.date_work}`}

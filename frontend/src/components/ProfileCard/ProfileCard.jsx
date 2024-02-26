@@ -8,7 +8,7 @@ import Loader from './../../UI/Loader/Loader';
 import './ProfileCard.scss';
 import { uploadImage } from '../../helpers/uploadImage';
 import profileReq from '../../api/profileReq';
-import ApiConfig from './../../config/config.request.json';
+// import ApiConfig from './../../config/config.request.json';
 const ProfileCard = () => {
   const {
     data: userProfile,
@@ -39,11 +39,12 @@ const ProfileCard = () => {
     e.preventDefault();
     const formDataWithImage = new FormData();
 
-    // formDataWithImage.append('image', profile.image);
+    formDataWithImage.append('image', profile.image);
 
     for (const key in profile) {
       formDataWithImage.append(key, profile[key]);
     }
+    console.log(profile.image);
     profileReq.updateProfile(localStorageService.getUserId(), formDataWithImage);
     refetch();
   };
@@ -62,7 +63,7 @@ const ProfileCard = () => {
           <UploadFile
             withExtendedField={true}
             extendedText={'Добавьте фото'}
-            image={`${ApiConfig.url}${profile.image}` ?? image}
+            image={image}
             setImage={setImage}
             onChange={profileChange}
             id={'profile-image__upload'}

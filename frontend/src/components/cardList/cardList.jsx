@@ -12,6 +12,7 @@ const CardList = () => {
       </div>
     );
   }
+  console.log(allPortfolio);
   return (
     <div className={styles.card__list}>
       {allPortfolio.map((item) => (

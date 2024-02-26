@@ -1,9 +1,6 @@
 import request from './../service/request.service';
 import { localStorageService } from '../service/localStorage.service';
 import configApi from './../config/config.request.json';
-import getCookie from '../helpers/getCsrfToken';
-
-const csrftoken = getCookie('csrftoken');
 
 const userReq = {
   create: async (postInfo) => {
@@ -17,9 +14,6 @@ const userReq = {
   auth: async (postInfo) => {
     try {
       const { data } = await request.post(configApi.authenticateAndPoint, postInfo, {
-        headers: {
-          'X-CSRFToken': csrftoken
-        },
         withCredentials: true
       });
       localStorageService.setIsLogin(true);

@@ -35,6 +35,7 @@ class PortfolioSerializer(serializers.ModelSerializer):
         return portfolio
     
 class PortfolioListSerializer(serializers.ModelSerializer):
+    user = serializers.SlugRelatedField(slug_field='username', read_only=True)
     images = PortfolioImageSerializer(many=True)
     class Meta:
         model = Portfolio

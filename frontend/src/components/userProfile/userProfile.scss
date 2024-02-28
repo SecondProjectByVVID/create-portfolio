@@ -59,3 +59,23 @@
     border-radius: 50%;
   }
 }
+.contact-card + .contact-card{
+  margin-top: 1.4rem;
+}
+
+.card-content {
+  height: 100%;
+  overflow: hidden;
+}
+
+.p-card-title{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.contact__card-description{
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}

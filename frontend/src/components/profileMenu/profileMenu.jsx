@@ -4,50 +4,41 @@ import './profileMenu.scss';
 import { useAuth } from '../../hooks/useAuth';
 import AppImage from '../../UI/appImages/AppImage';
 import Skeleton from './../../UI/skeleton/Skeleton';
-import { localStorageService } from './../../service/localStorage.service';
-import { useFetchInfoUserQuery } from './../../store/user/UserSlice';
 import PropTypes from 'prop-types';
 import useWindowSize from '../../hooks/useWindowSize';
-const ProfileMenu = ({ refProp, handleClickOutside, setVisible }) => {
-  const {
-    data: userInfo,
-    error,
-    isLoading
-  } = useFetchInfoUserQuery(localStorageService.getUserId()?.toString() || 1);
+const ProfileMenu = ({ refProp, handleClickOutside, setVisible, userInfo }) => {
   const { logout } = useAuth();
   const { windowSize } = useWindowSize();
   const handleClick = () => {
     logout();
   };
-  console.log(userInfo);
   return (
     <div className="profile__container" ref={refProp} onClick={handleClickOutside}>
       <div className="profile">
         <div className="profile__user">
           <div className="profile__user-img">
-            <AppImage
-              src={getIconKey('AvatarIcon')}
-              alt={'avatar icon'}
-              className={'profile__user-icon'}
-              fallback={<Skeleton size={{ width: '100%', height: '100%', borderRadius: '50%' }} />}
-            />
+            <>
+              <AppImage
+                src={userInfo.image ?? getIconKey('AvatarIcon')}
+                alt={'avatar icon'}
+                className={'profile__user-icon'}
+                fallback={
+                  <Skeleton size={{ width: '100%', height: '100%', borderRadius: '50%' }} />
+                }
+              />
+            </>
           </div>
           <div className="profile__user-info">
-            {error && 'Ошибка загрузки данных'}
-            {isLoading ? (
-              <Skeleton size={{ width: '145px', height: '40px', borderRadius: '9px' }} />
-            ) : (
-              <>
-                <h3 className="profile__user-name">
-                  <abbr
-                    title={`${userInfo.first_name} ${userInfo.last_name}`}>{`${userInfo.first_name} ${userInfo.last_name}`}</abbr>
-                </h3>
-                <p className="profile__user-email">
-                  {' '}
-                  <abbr title={`${userInfo.email}`}>{`${userInfo.email}`}</abbr>
-                </p>
-              </>
-            )}
+            <>
+              <h3 className="profile__user-name">
+                <abbr
+                  title={`${userInfo.first_name} ${userInfo.last_name}`}>{`${userInfo.first_name} ${userInfo.last_name}`}</abbr>
+              </h3>
+              <p className="profile__user-email">
+                {' '}
+                <abbr title={`${userInfo.email}`}>{`${userInfo.email}`}</abbr>
+              </p>
+            </>
           </div>
         </div>
         <ul className="profile__list">

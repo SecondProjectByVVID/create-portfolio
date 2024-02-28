@@ -1,8 +1,10 @@
 {
   "url":"http://localhost:8000/",
   "users":"user-list/",
+  "userMenu":"user-menu/",
   "profile":"user-profile/",
   "portfolio":"portfolio/",
+  "portfolioAll":"portfolio-list/",
   "contactUs":"contact-us/",
   "authenticateAndPoint":"login/",
   "logout":"logout/",

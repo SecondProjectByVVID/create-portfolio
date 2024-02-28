@@ -167,22 +167,21 @@
 .portfolio__gallery{
   display: flex;
   flex-wrap: wrap;
-  align-content: flex-start;
   max-width: 800px;
   width: 100%;
   column-gap: 10px;
   row-gap: 10px;
-  &-item{
+  & img{
     height: 170px;
-    display: flex;
-    justify-content: center;
-  }
+    object-fit: cover;
+  } 
   & img{
     border-radius: 20px;
   }
 }
 .portfolio__description{
   max-width: 500px;
+  min-width: 350px;
   position: relative;
   &-title{
     font-family: 'Inter',sans-serif;
@@ -201,7 +200,8 @@
     font-weight: 400;
     text-align: justify;
     width: 100%;
-    height: 550px;
+    max-height: 550px;
+    height: 100%;
     overflow: hidden;
     position: relative;
   }

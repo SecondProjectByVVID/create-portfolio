@@ -46,6 +46,7 @@ const PortfolioUser = () => {
     console.log(form);
     profileReq.sendContactUs(form);
   };
+  console.log(portfolio, data);
   return (
     <div className="portfolio__container">
       <div className="user__block">
@@ -91,62 +92,11 @@ const PortfolioUser = () => {
       <div className="portfolio__block">
         <div className="portfolio__block-list">
           <div className="portfolio__gallery">
-            <div className="portfolio__gallery-item">
-              <Image
-                src="https://primefaces.org/cdn/primereact/images/galleria/galleria10.jpg"
-                alt="Image"
-                width="220"
-                preview
-              />
-            </div>
-            <div className="portfolio__gallery-item">
-              <Image
-                src="https://primefaces.org/cdn/primereact/images/galleria/galleria10.jpg"
-                alt="Image"
-                width="220"
-                preview
-              />
-            </div>
-            <div className="portfolio__gallery-item">
-              <Image
-                src="https://primefaces.org/cdn/primereact/images/galleria/galleria10.jpg"
-                alt="Image"
-                width="220"
-                preview
-              />
-            </div>
-            <div className="portfolio__gallery-item">
-              <Image
-                src="https://primefaces.org/cdn/primereact/images/galleria/galleria10.jpg"
-                alt="Image"
-                width="220"
-                preview
-              />
-            </div>
-            <div className="portfolio__gallery-item">
-              <Image
-                src="https://primefaces.org/cdn/primereact/images/galleria/galleria10.jpg"
-                alt="Image"
-                width="220"
-                preview
-              />
-            </div>
-            <div className="portfolio__gallery-item">
-              <Image
-                src="https://primefaces.org/cdn/primereact/images/galleria/galleria10.jpg"
-                alt="Image"
-                width="220"
-                preview
-              />
-            </div>
-            <div className="portfolio__gallery-item">
-              <Image
-                src="https://primefaces.org/cdn/primereact/images/galleria/galleria10.jpg"
-                alt="Image"
-                width="220"
-                preview
-              />
-            </div>
+            {portfolio.images.map((image, index) => (
+              <div className="portfolio__gallery-item" key={index}>
+                <Image src={image.image} alt="Image" width="200" preview />
+              </div>
+            ))}
           </div>
           <div className="portfolio__description">
             <div className="portfolio__date-block" onClick={handleDateMessage}>

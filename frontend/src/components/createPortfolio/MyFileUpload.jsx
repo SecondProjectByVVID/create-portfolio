@@ -16,16 +16,16 @@ export const MyFileUpload = ({ setCreate }) => {
   const fileUploadRef = useRef(null);
 
   const onTemplateSelect = (e) => {
-    const tempImages = [];
+    // const tempImages = [];
     let _totalSize = totalSize;
 
     e.files.forEach((file) => {
-      tempImages.push({ image: new File([''], file.name, { type: file.type }) });
+      // tempImages.push({ image: new File([''], file.name, { type: file.type }) });
 
       _totalSize += file.size;
     });
 
-    setCreate((prevState) => ({ ...prevState, images: tempImages }));
+    setCreate((prevState) => ({ ...prevState, uploaded_images: e.files }));
     setTotalSize(_totalSize);
 
     toast.success(`Select ${e.files.length} images`);

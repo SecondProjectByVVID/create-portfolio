@@ -20,7 +20,10 @@ const CardList = () => {
           key={item.id}
           portfolioId={item.id}
           title={item.title}
+          userNick={item.username}
           description={item.description}
+          images={item.images}
+          userImage={item.user_image}
           id={item.user}
         />
       ))}

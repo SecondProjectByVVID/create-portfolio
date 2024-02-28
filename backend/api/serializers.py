@@ -41,13 +41,13 @@ class PortfolioSerializer(serializers.ModelSerializer):
         return portfolio
     
 class PortfolioListSerializer(serializers.ModelSerializer):
-    user = serializers.SlugRelatedField(slug_field='username', read_only=True)
+    # user = serializers.SlugRelatedField(slug_field='username', read_only=True)
     user_image = serializers.SerializerMethodField()
     images = PortfolioImageSerializer(many=True)
-    
+    username = serializers.CharField(source='user.username', read_only=True)
     class Meta:
         model = Portfolio
-        fields = ['id', 'user', 'title', 'description', 'images', 'user_image']
+        fields = ['id', 'user', 'username', 'title', 'description', 'images', 'user_image']
         
     def get_user_image(self, obj):
         request = self.context.get('request')

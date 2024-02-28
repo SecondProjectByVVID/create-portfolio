@@ -12,7 +12,7 @@ const CreatePortfolio = () => {
     user: localStorageService.getUserId(),
     title: '',
     description: '',
-    images: [],
+    uploaded_images: [],
     date_work: formatDate(new Date())
   });
   const [date, setDate] = useState({
@@ -31,9 +31,15 @@ const CreatePortfolio = () => {
   const cancelCreate = () => {};
   const createForm = (e) => {
     e.preventDefault();
-
-    console.log(create);
-    portfolio.createPortfolio(create);
+    const formData = new FormData();
+    create.uploaded_images.forEach((file, index) => {
+      formData.append(`uploaded_images`, file);
+    });
+    formData.append('user', create.user);
+    formData.append('title', create.title);
+    formData.append('description', create.description);
+    formData.append('date_work', create.date_work);
+    portfolio.createPortfolio(formData);
   };
   return (
     <div className={styles.create__portfolio}>

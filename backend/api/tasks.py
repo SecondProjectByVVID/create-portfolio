@@ -18,5 +18,3 @@ def delete_old_requests():
     old_requests.delete()
     
     logger.info(f"Deleted {count} requests")
-
-

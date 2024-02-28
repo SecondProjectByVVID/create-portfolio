@@ -151,3 +151,17 @@ class UserUpdateSerializer(serializers.ModelSerializer):
             'profession': {'required': False},
             'location': {'required': False},
         }
+
+class UserMenuSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
+
+    class Meta:
+        model = get_user_model()
+        fields = ['id', 'first_name', 'last_name', 'email', 'image']
+
+    def get_image(self, obj):
+        request = self.context.get('request')
+        if hasattr(obj, 'profile') and obj.profile.image:
+            return request.build_absolute_uri(obj.profile.image.url)
+        return None
+    

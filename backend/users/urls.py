@@ -18,5 +18,6 @@ urlpatterns = [
 
 router = DefaultRouter()
 router.register('user-list', views.UserListView, basename='user-list')
+router.register('user-menu', views.UserMenuView, basename='user-menu')
 
 urlpatterns += router.urls

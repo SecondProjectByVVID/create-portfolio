@@ -11,9 +11,11 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .models import CustomUser
-from .serializers import UserListSerializer, ChangePasswordSerializer, PasswordResetRequestSerializer, PasswordResetConfirmSerializer
+from .serializers import UserListSerializer, ChangePasswordSerializer, PasswordResetRequestSerializer, PasswordResetConfirmSerializer, UserMenuSerializer
 from .tokens import account_activation_token
 from .utils import check_captcha, activateEmail
+
+from api.models import Profile
 
 import requests
 
@@ -72,7 +74,7 @@ class LoginView(APIView):
             if user.is_active:
                 request.session['failed_attempts'] = 0
                 login(request, user)
-                
+    
                 return Response({"message": f"Добро пожаловать {user.first_name}!", "id": user.id}, status=status.HTTP_200_OK)
             else:
                 return Response({"message": "Пожалуйста, подтвердите свой аккаунт перед входом в систему."}, status=status.HTTP_400_BAD_REQUEST)
@@ -156,3 +158,7 @@ def vk_callback(request):
         except requests.RequestException as e:
             print(f'Ошибка при выполнении запроса к VK API: {e}')
     return redirect('/')
+
+class UserMenuView(viewsets.ModelViewSet):
+    serializer_class = UserMenuSerializer
+    queryset = CustomUser.objects.all()

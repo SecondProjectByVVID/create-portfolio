@@ -6,6 +6,7 @@ from django.conf import settings
 from rest_framework import serializers, viewsets, generics, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.parsers import MultiPartParser, FormParser
 
 from .models import Profile, Portfolio, Playlist, ContactUs
 from .serializers import ProfileSerializer, PortfolioSerializer, PortfolioListSerializer, UserProfileSerializer, PlaylistSerializer, ContactUsSerializer
@@ -16,6 +17,7 @@ from users.serializers import UserUpdateSerializer
 from datetime import timedelta
 from uuid import uuid4
 
+import requests
 import os
 
 class ProfileView(viewsets.ModelViewSet):
@@ -25,13 +27,14 @@ class ProfileView(viewsets.ModelViewSet):
 class PortfolioView(viewsets.ModelViewSet):
     serializer_class = PortfolioSerializer
     queryset = Portfolio.objects.all()
+    parser_classes = (MultiPartParser, FormParser)
 
     def create(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             return Response({"message": "Вы должны войти в систему, чтобы создать портфолио"}, status=status.HTTP_403_FORBIDDEN)
         
-        if 'user' in request.data and request.data['user'] != request.user.id:
-            return Response({"message": "Вы не можете создать портфолио для другого пользователя"}, status=status.HTTP_403_FORBIDDEN)
+        # if 'user' in request.data and request.data['user'] != request.user.id:
+            # return Response({"message": "Вы не можете создать портфолио для другого пользователя"}, status=status.HTTP_403_FORBIDDEN)
         
         return super().create(request, *args, **kwargs)
 
@@ -42,21 +45,6 @@ class PortfolioView(viewsets.ModelViewSet):
         
         if request.user != portfolio.user:
             return Response({"message": "Вы не можете изменить портфолио другого пользователя"}, status=status.HTTP_403_FORBIDDEN)
-        
-        if 'image' in request.FILES:
-            file_obj = request.FILES['image']
-            file_name_suffix = file_obj.name.split(".")[-1]
-            if file_name_suffix not in ["jpg", "png", "gif", "jpeg"]:
-                return Response({"message": f"Неверное расширение файла ({file_name_suffix}), поддерживаются .jpg, .png, .gif, .jpeg"}, status=status.HTTP_400_BAD_REQUEST)
-
-            file_path = os.path.join('portfolio_images', str(portfolio.id), file_obj.name)
-
-            if os.path.exists(os.path.join(settings.MEDIA_ROOT, file_path)):
-                file_obj.name = str(uuid4()) + '.' + file_name_suffix
-                file_path = os.path.join('portfolio_images', str(portfolio.id), file_obj.name)
-
-            portfolio.image.save(file_obj.name, file_obj)
-            portfolio.save()
 
         return super().update(request, *args, **kwargs)
     
@@ -83,6 +71,8 @@ class PortfolioListView(generics.ListAPIView):
         return queryset
     
 class UserProfileView(APIView):
+    parser_classes = (MultiPartParser, FormParser)
+    
     def get(self, request, pk=None, format=None):
         if pk:
             user = CustomUser.objects.get(pk=pk)
@@ -112,21 +102,6 @@ class UserProfileView(APIView):
             profile = Profile.objects.get(user=user)
         except Profile.DoesNotExist:
             return Response({'message': "Профиль этого пользователя не существует"}, status=status.HTTP_404_NOT_FOUND)
-
-        if 'image' in request.FILES:
-            file_obj = request.FILES['image']
-            file_name_suffix = file_obj.name.split(".")[-1]
-            if file_name_suffix not in ["jpg", "png", "gif", "jpeg"]:
-                return Response({"message": f"Неверное расширение файла ({file_name_suffix}), поддерживаются .jpg, .png, .gif, .jpeg"}, status=status.HTTP_400_BAD_REQUEST)
-
-            file_path = os.path.join('user_images', str(profile.id), file_obj.name)
-
-            if os.path.exists(os.path.join(settings.MEDIA_ROOT, file_path)):
-                file_obj.name = str(uuid4()) + '.' + file_name_suffix
-                file_path = os.path.join('user_images', str(profile.id), file_obj.name)
-
-            profile.image.save(file_obj.name, file_obj)
-            profile.save()
 
         user_serializer = UserUpdateSerializer(user, data=request.data, partial=True)
         profile_serializer = ProfileSerializer(profile, data=request.data, partial=True)
@@ -180,4 +155,16 @@ class ContactUsView(viewsets.ModelViewSet):
             return Response({"message": "Вы можете отправить только одну заявку в день"}, status=status.HTTP_400_BAD_REQUEST)
         
         return super().create(request, *args, **kwargs)
+    
+class UserContactUs(generics.ListAPIView):
+    serializer_class = ContactUsSerializer
+
+    def get_queryset(self):
+        user_id = self.kwargs['user_id']
+        return ContactUs.objects.filter(user_id=user_id)
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
     

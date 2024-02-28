@@ -14,7 +14,7 @@ urlpatterns = [
     path('portfolio-list/', views.PortfolioListView.as_view(), name="portfolio-list"),
     path('user-profile/', views.UserProfileView.as_view(), name="user-profile"),
     path('user-profile/<int:pk>/', views.UserProfileView.as_view(), name="user-profile-pk"),
+    path('contact-us/<int:user_id>/', views.UserContactUs.as_view(), name='user-contactus'),
 ]
-
 
 urlpatterns += router.urls

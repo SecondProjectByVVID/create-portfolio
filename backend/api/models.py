@@ -80,7 +80,7 @@ class ContactUs(models.Model):
     description = models.TextField(
         "Сообщение", max_length=600, null=True, blank=True)
     created_at = models.DateTimeField(
-        "Дата и время отправки заявки", auto_now=False, auto_now_add=False, null=True, blank=True)
+        "Дата и время отправки заявки", auto_now=False, auto_now_add=True, null=True, blank=True)
 
     def __str__(self):
         return f"Сообщение - {self.user} - {self.created_at}"

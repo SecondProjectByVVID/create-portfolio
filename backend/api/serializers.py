@@ -31,6 +31,11 @@ class PortfolioSerializer(serializers.ModelSerializer):
         model = Portfolio
         fields = ['id', 'user', 'title', 'description', 'images', 'uploaded_images', 'date_work', 'created_at']
         
+    def validate_uploaded_images(self, value):
+        if len(value) > 9:
+            raise serializers.ValidationError("Вы не можете загрузить более 9 изображений")
+        return value
+    
     def create(self, validated_data):
         uploaded_images = validated_data.pop("uploaded_images")
         portfolio = Portfolio.objects.create(**validated_data)
@@ -45,9 +50,11 @@ class PortfolioListSerializer(serializers.ModelSerializer):
     user_image = serializers.SerializerMethodField()
     images = PortfolioImageSerializer(many=True)
     username = serializers.CharField(source='user.username', read_only=True)
+    profession = serializers.CharField(source='user.profession', read_only=True)
+    
     class Meta:
         model = Portfolio
-        fields = ['id', 'user', 'username', 'title', 'description', 'images', 'user_image']
+        fields = ['id', 'user', 'username', 'profession', 'title', 'description', 'images', 'user_image', 'created_at']
         
     def get_user_image(self, obj):
         request = self.context.get('request')

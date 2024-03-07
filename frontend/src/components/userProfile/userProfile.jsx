@@ -7,7 +7,10 @@ import { Sidebar } from 'primereact/sidebar';
 import AppImage from '../../UI/appImages/AppImage';
 import ProfileMenu from '../profileMenu/profileMenu';
 import { localStorageService } from './../../service/localStorage.service';
-import { useFetchContactUsQuery, useFetchInfoUserQuery } from './../../store/user/UserSlice';
+import {
+  useFetchContactUsQuery,
+  useFetchInfoUserQuery,
+} from './../../store/user/UserSlice';
 import { Card } from 'primereact/card';
 
 import './userProfile.scss';
@@ -17,12 +20,12 @@ const UserProfile = () => {
   const {
     data: userInfo,
     error: isError,
-    isLoading
+    isLoading,
   } = useFetchInfoUserQuery(localStorageService.getUserId()?.toString());
   const {
     data: contactUs,
     error: contactError,
-    isLoading: contactLoading
+    isLoading: contactLoading,
   } = useFetchContactUsQuery(localStorageService.getUserId()?.toString());
   const [open, setOpen] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -46,11 +49,17 @@ const UserProfile = () => {
             src={userInfo.image ?? getIconKey('AvatarIcon')}
             alt={'avatar icon'}
             className={'header__user-icon'}
-            fallback={<Skeleton size={{ width: '42px', height: '42px', borderRadius: '50%' }} />}
+            fallback={
+              <Skeleton
+                size={{ width: '42px', height: '42px', borderRadius: '50%' }}
+              />
+            }
           />
         </div>
       ) : (
-        <Skeleton size={{ width: '42px', height: '42px', borderRadius: '50%' }} />
+        <Skeleton
+          size={{ width: '42px', height: '42px', borderRadius: '50%' }}
+        />
       )}
       {open &&
         createPortal(
@@ -60,19 +69,21 @@ const UserProfile = () => {
             setVisible={setVisible}
             userInfo={userInfo}
           />,
-          document.body
+          document.body,
         )}
       {createPortal(
         <Sidebar
           visible={visible}
           onHide={() => setVisible(false)}
-          style={{ maxWidth: '440px', width: '100%' }}>
+          style={{ maxWidth: '440px', width: '100%' }}
+        >
           <h2
             style={{
               fontSize: '1.6rem',
               textAlign: 'center',
-              marginBottom: '1rem'
-            }}>
+              marginBottom: '1rem',
+            }}
+          >
             С вами хотели связаться:
           </h2>
           {!contactError && !contactLoading ? (
@@ -84,20 +95,27 @@ const UserProfile = () => {
                     background: '#eeeeee',
                     boxShadow: `0 2px 4px -2px rgba(0, 0, 0, 0.2),
                 4px 7px 5px 0 rgba(0, 0, 0, 0.14),
-                6px 6px 15px 0 rgba(0, 0, 0, 0.12)`
-                  }}>
-                  <div className="contact__card-description">{item.description}</div>
+                6px 6px 15px 0 rgba(0, 0, 0, 0.12)`,
+                  }}
+                >
+                  <div className="contact__card-description">
+                    {item.description}
+                  </div>
                 </Card>
               </div>
             ))
           ) : (
             <>
-              <Skeleton size={{ width: '100%', height: '100px', borderRadius: '10px' }} />
-              <Skeleton size={{ width: '100%', height: '100px', borderRadius: '10px' }} />
+              <Skeleton
+                size={{ width: '100%', height: '100px', borderRadius: '10px' }}
+              />
+              <Skeleton
+                size={{ width: '100%', height: '100px', borderRadius: '10px' }}
+              />
             </>
           )}
         </Sidebar>,
-        document.body
+        document.body,
       )}
     </div>
   );

@@ -10,9 +10,14 @@ const ScrollTop = () => {
         height="64px"
         viewBox="0 0 24 24"
         fill="none"
-        xmlns="http://www.w3.org/2000/svg">
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-        <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+        <g
+          id="SVGRepo_tracerCarrier"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        ></g>
         <g id="SVGRepo_iconCarrier">
           {' '}
           <path
@@ -20,13 +25,15 @@ const ScrollTop = () => {
             fill="#0889FF"
             fillOpacity="0.15"
             stroke="#0889FF"
-            strokeWidth="1.5"></path>{' '}
+            strokeWidth="1.5"
+          ></path>{' '}
           <path
             d="M12 15.5L12 8.5M12 8.5L9.5 11M12 8.5L14.5 11"
             stroke="#0889FF"
             strokeWidth="1.5"
             strokeLinecap="round"
-            strokeLinejoin="round"></path>{' '}
+            strokeLinejoin="round"
+          ></path>{' '}
         </g>
       </svg>
     </div>

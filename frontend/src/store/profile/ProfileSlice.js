@@ -8,8 +8,8 @@ export const profileAPI = createApi({
   endpoints: (build) => ({
     fetchInfoProfile: build.query({
       query: (id) => `${configApi.profile}${id}/`,
-      providesTags: ['Profile']
-    })
-  })
+      providesTags: ['Profile'],
+    }),
+  }),
 });
 export const { useFetchInfoProfileQuery } = profileAPI;

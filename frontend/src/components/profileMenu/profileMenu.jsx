@@ -13,7 +13,11 @@ const ProfileMenu = ({ refProp, handleClickOutside, setVisible, userInfo }) => {
     logout();
   };
   return (
-    <div className="profile__container" ref={refProp} onClick={handleClickOutside}>
+    <div
+      className="profile__container"
+      ref={refProp}
+      onClick={handleClickOutside}
+    >
       <div className="profile">
         <div className="profile__user">
           <div className="profile__user-img">
@@ -23,7 +27,13 @@ const ProfileMenu = ({ refProp, handleClickOutside, setVisible, userInfo }) => {
                 alt={'avatar icon'}
                 className={'profile__user-icon'}
                 fallback={
-                  <Skeleton size={{ width: '100%', height: '100%', borderRadius: '50%' }} />
+                  <Skeleton
+                    size={{
+                      width: '100%',
+                      height: '100%',
+                      borderRadius: '50%',
+                    }}
+                  />
                 }
               />
             </>
@@ -32,7 +42,8 @@ const ProfileMenu = ({ refProp, handleClickOutside, setVisible, userInfo }) => {
             <>
               <h3 className="profile__user-name">
                 <abbr
-                  title={`${userInfo.first_name} ${userInfo.last_name}`}>{`${userInfo.first_name} ${userInfo.last_name}`}</abbr>
+                  title={`${userInfo.first_name} ${userInfo.last_name}`}
+                >{`${userInfo.first_name} ${userInfo.last_name}`}</abbr>
               </h3>
               <p className="profile__user-email">
                 {' '}
@@ -49,7 +60,13 @@ const ProfileMenu = ({ refProp, handleClickOutside, setVisible, userInfo }) => {
                 src={getIconKey('ProfileIcon')}
                 alt={'profile icon'}
                 fallback={
-                  <Skeleton size={{ width: '28px', height: '28px', borderRadius: '5px' }} />
+                  <Skeleton
+                    size={{
+                      width: '28px',
+                      height: '28px',
+                      borderRadius: '5px',
+                    }}
+                  />
                 }
               />
             </Link>
@@ -61,7 +78,13 @@ const ProfileMenu = ({ refProp, handleClickOutside, setVisible, userInfo }) => {
                 src={getIconKey('ChatIcon')}
                 alt={'chat icon'}
                 fallback={
-                  <Skeleton size={{ width: '28px', height: '28px', borderRadius: '5px' }} />
+                  <Skeleton
+                    size={{
+                      width: '28px',
+                      height: '28px',
+                      borderRadius: '5px',
+                    }}
+                  />
                 }
               />
             </Link>
@@ -71,7 +94,11 @@ const ProfileMenu = ({ refProp, handleClickOutside, setVisible, userInfo }) => {
             <AppImage
               src={getIconKey('ContactIcon')}
               alt={'chat icon'}
-              fallback={<Skeleton size={{ width: '28px', height: '28px', borderRadius: '5px' }} />}
+              fallback={
+                <Skeleton
+                  size={{ width: '28px', height: '28px', borderRadius: '5px' }}
+                />
+              }
             />
           </li>
           {windowSize.width <= 480 && (
@@ -83,7 +110,13 @@ const ProfileMenu = ({ refProp, handleClickOutside, setVisible, userInfo }) => {
                     src={getIconKey('HomeIcon')}
                     alt={'chat icon'}
                     fallback={
-                      <Skeleton size={{ width: '28px', height: '28px', borderRadius: '5px' }} />
+                      <Skeleton
+                        size={{
+                          width: '28px',
+                          height: '28px',
+                          borderRadius: '5px',
+                        }}
+                      />
                     }
                   />
                 </Link>
@@ -95,7 +128,13 @@ const ProfileMenu = ({ refProp, handleClickOutside, setVisible, userInfo }) => {
                     src={getIconKey('FavoritesIcon')}
                     alt={'chat icon'}
                     fallback={
-                      <Skeleton size={{ width: '28px', height: '28px', borderRadius: '5px' }} />
+                      <Skeleton
+                        size={{
+                          width: '28px',
+                          height: '28px',
+                          borderRadius: '5px',
+                        }}
+                      />
                     }
                   />
                 </Link>
@@ -107,7 +146,11 @@ const ProfileMenu = ({ refProp, handleClickOutside, setVisible, userInfo }) => {
             <AppImage
               src={getIconKey('LogoutIcon')}
               alt={'logout icon'}
-              fallback={<Skeleton size={{ width: '28px', height: '28px', borderRadius: '5px' }} />}
+              fallback={
+                <Skeleton
+                  size={{ width: '28px', height: '28px', borderRadius: '5px' }}
+                />
+              }
             />
           </li>
         </ul>
@@ -119,8 +162,8 @@ const ProfileMenu = ({ refProp, handleClickOutside, setVisible, userInfo }) => {
 ProfileMenu.propTypes = {
   refProp: PropTypes.oneOfType([
     PropTypes.func,
-    PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
   ]),
-  handleClickOutside: PropTypes.func
+  handleClickOutside: PropTypes.func,
 };
 export default ProfileMenu;

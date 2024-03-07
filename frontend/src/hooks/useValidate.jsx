@@ -7,14 +7,17 @@ const useValidate = (authData) => {
   const [error, setError] = useState({ name: '' });
   const validateScheme = yup.object().shape({
     profession: yup.string().required(textErrorField),
-    password: yup.string().required(textErrorField).min(6, 'Минимальный размер 6 символов'),
+    password: yup
+      .string()
+      .required(textErrorField)
+      .min(6, 'Минимальный размер 6 символов'),
     repeatPassword: yup
       .string()
       .required(textErrorField)
       .when('password', (password, schema) => {
         return schema.test({
           test: (passwordRepeat) => passwordRepeat === password[0],
-          message: 'Пароли должны совпадать'
+          message: 'Пароли должны совпадать',
         });
       }),
     mobile: yup
@@ -22,11 +25,14 @@ const useValidate = (authData) => {
       .required(textErrorField)
       .matches(
         /^\+?[7][-[\](]?\d{3}\)?-?\d{3}-?\d{2}-?\d{2}$/g,
-        'Введите номер в формате: +79000000000'
+        'Введите номер в формате: +79000000000',
       ),
-    email: yup.string().required(textErrorField).email('Email введён некорректно'),
+    email: yup
+      .string()
+      .required(textErrorField)
+      .email('Email введён некорректно'),
     surname: yup.string().required(textErrorField),
-    name: yup.string().required(textErrorField)
+    name: yup.string().required(textErrorField),
   });
   const validate = () =>
     validateScheme

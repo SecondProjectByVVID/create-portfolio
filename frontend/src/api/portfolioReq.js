@@ -7,18 +7,22 @@ const csrftoken = getCookie('csrftoken');
 const portfolio = {
   createPortfolio: async (newPortfolio) => {
     try {
-      const { data } = await request.post(`${ConfigApi.portfolio}`, newPortfolio, {
-        headers: {
-          'X-CSRFToken': csrftoken
+      const { data } = await request.post(
+        `${ConfigApi.portfolio}`,
+        newPortfolio,
+        {
+          headers: {
+            'X-CSRFToken': csrftoken,
+          },
+          withCredentials: true,
         },
-        withCredentials: true
-      });
+      );
       console.log(data);
       return data;
     } catch (error) {
       return false;
     }
-  }
+  },
 };
 
 export default portfolio;

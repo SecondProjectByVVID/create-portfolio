@@ -8,20 +8,21 @@ import styles from './CreatePortfolio.module.scss';
 import MyFileUpload from './MyFileUpload';
 
 const CreatePortfolio = () => {
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [create, setCreate] = useState({
     user: localStorageService.getUserId(),
     title: '',
     description: '',
     uploaded_images: [],
-    date_work: formatDate(new Date())
+    date_work: formatDate(new Date()),
   });
   const [date, setDate] = useState({
-    date_work: new Date()
+    date_work: new Date(),
   });
   const changeDate = (e) => {
     setCreate((prevState) => ({
       ...prevState,
-      date_work: formatDate(e.value)
+      date_work: formatDate(e.value),
     }));
     setDate((prevState) => ({ ...prevState, date_work: e.value }));
   };
@@ -31,6 +32,10 @@ const CreatePortfolio = () => {
   const cancelCreate = () => {};
   const createForm = (e) => {
     e.preventDefault();
+    setIsButtonDisabled(true);
+    setTimeout(() => {
+      setIsButtonDisabled(false);
+    }, 5000);
     const formData = new FormData();
     create.uploaded_images.forEach((file, index) => {
       formData.append(`uploaded_images`, file);
@@ -76,12 +81,21 @@ const CreatePortfolio = () => {
               rows="10"
               value={create.description}
               onChange={createChange}
-              placeholder="Добавьте описание о вашем проекте"></textarea>
+              placeholder="Добавьте описание о вашем проекте"
+            ></textarea>
             <div className={styles['create__description-btns']}>
-              <button className={styles['create__btn-save']} type="submit">
+              <button
+                className={styles['create__btn-save']}
+                type="submit"
+                disabled={isButtonDisabled}
+              >
                 Сохранить
               </button>
-              <button className={styles['create__btn-cancel']} type="button" onClick={cancelCreate}>
+              <button
+                className={styles['create__btn-cancel']}
+                type="button"
+                onClick={cancelCreate}
+              >
                 Отменить
               </button>
             </div>

@@ -1,4 +1,7 @@
-import { Link, useParams } from 'react-router-dom/dist/umd/react-router-dom.development';
+import {
+  Link,
+  useParams,
+} from 'react-router-dom/dist/umd/react-router-dom.development';
 import { getBgKey, getIconKey } from '../../helpers/getImageKey';
 import { Image } from 'primereact/image';
 import Loader from '../../UI/Loader/Loader';
@@ -20,13 +23,13 @@ const PortfolioUser = () => {
   const { form, formChange } = useForm({
     user: id,
     email: '',
-    description: ''
+    description: '',
   });
   const { data, isLoading, isError } = useFetchInfoProfileQuery(id);
   const {
     data: portfolio,
     isLoading: loading,
-    isError: error
+    isError: error,
   } = useGetPortfolioOnIdQuery(portfolioId);
 
   if (isLoading || isError || loading || error) {
@@ -52,7 +55,9 @@ const PortfolioUser = () => {
       <div className="user__block">
         <div className="user__connect">
           <img
-            src={`${ConfigApi.url}${data[0].image}` ?? getBgKey('CardDefaultBg')}
+            src={
+              `${ConfigApi.url}${data[0].image}` ?? getBgKey('CardDefaultBg')
+            }
             alt="bg user profile"
             className="user__connect-image"
           />
@@ -77,10 +82,15 @@ const PortfolioUser = () => {
             <Link
               className="user__description-link"
               to="https://wa.me/+79515211005"
-              target="_blank">
+              target="_blank"
+            >
               <img src={getIconKey('WhatsappIcon')} alt="whatsapp icon" />
             </Link>
-            <Link className="user__description-link" to="https://t.me/+79515211005" target="_blank">
+            <Link
+              className="user__description-link"
+              to="https://t.me/+79515211005"
+              target="_blank"
+            >
               <img src={getIconKey('TelegramIcon')} alt="whatsapp icon" />
             </Link>
             <Link className="user__description-link" to="#">
@@ -109,10 +119,14 @@ const PortfolioUser = () => {
             <Message
               severity="info"
               text={`Проект выполнен ${portfolio.date_work}`}
-              className={open ? 'date-message date-message--open' : 'date-message'}
+              className={
+                open ? 'date-message date-message--open' : 'date-message'
+              }
             />
             <h2 className="portfolio__description-title">{portfolio.title}</h2>
-            <p className="portfolio__description-text">{portfolio.description}</p>
+            <p className="portfolio__description-text">
+              {portfolio.description}
+            </p>
           </div>
         </div>
       </div>
@@ -121,7 +135,8 @@ const PortfolioUser = () => {
         visible={visible}
         style={{ maxWidth: '600px', width: '100%' }}
         onHide={handleContactUs}
-        modal>
+        modal
+      >
         <InputForm
           img={getIconKey('UserIcon')}
           value={form.email}
@@ -138,8 +153,13 @@ const PortfolioUser = () => {
           name="description"
           cols="30"
           rows="7"
-          placeholder="Ваше сообщение пользователю"></textarea>
-        <ButtonForm textField={'Отправить'} btnClass={'form__contact'} onClick={contactSubmit} />
+          placeholder="Ваше сообщение пользователю"
+        ></textarea>
+        <ButtonForm
+          textField={'Отправить'}
+          btnClass={'form__contact'}
+          onClick={contactSubmit}
+        />
       </Dialog>
     </div>
   );

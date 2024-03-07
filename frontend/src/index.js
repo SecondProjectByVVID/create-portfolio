@@ -23,5 +23,5 @@ root.render(
       </PrimeReactProvider>
     </Provider>
     <ToastContainer />
-  </BrowserRouter>
+  </BrowserRouter>,
 );

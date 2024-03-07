@@ -1,5 +1,8 @@
 import { lazy } from 'react';
-import { Route, Routes } from 'react-router-dom/dist/umd/react-router-dom.development';
+import {
+  Route,
+  Routes,
+} from 'react-router-dom/dist/umd/react-router-dom.development';
 import AuthProvider from './../hooks/useAuth';
 
 const Login = lazy(() => import('./../pages/login/login'));
@@ -21,7 +24,10 @@ const AppRoutes = () => {
       <Routes>
         <Route element={<Layout />}>
           <Route index path="/" element={<Main />} />
-          <Route path="/user-portfolio/:id/:portfolioId" element={<Portfolio />} />
+          <Route
+            path="/user-portfolio/:id/:portfolioId"
+            element={<Portfolio />}
+          />
           <Route path="/profile" element={<Profile />} />
           <Route path="/add-portfolio" element={<AddPortfolio />} />
         </Route>

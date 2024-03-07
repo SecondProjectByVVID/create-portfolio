@@ -5,7 +5,7 @@ import { portfolioAPI } from './portfolio/PortfolioSlice';
 const rootReducer = combineReducers({
   [userAPI.reducerPath]: userAPI.reducer,
   [profileAPI.reducerPath]: profileAPI.reducer,
-  [portfolioAPI.reducerPath]: portfolioAPI.reducer
+  [portfolioAPI.reducerPath]: portfolioAPI.reducer,
 });
 
 export const store = configureStore({
@@ -14,6 +14,6 @@ export const store = configureStore({
     getDefaultMiddleware().concat([
       userAPI.middleware,
       profileAPI.middleware,
-      portfolioAPI.middleware
-    ])
+      portfolioAPI.middleware,
+    ]),
 });

@@ -34,5 +34,5 @@ export const localStorageService = {
   setIsLogin,
   setUserId,
   setCaptcha,
-  removeAllAuth
+  removeAllAuth,
 };

@@ -13,9 +13,13 @@ const userReq = {
   },
   auth: async (postInfo) => {
     try {
-      const { data } = await request.post(configApi.authenticateAndPoint, postInfo, {
-        withCredentials: true
-      });
+      const { data } = await request.post(
+        configApi.authenticateAndPoint,
+        postInfo,
+        {
+          withCredentials: true,
+        },
+      );
       localStorageService.setIsLogin(true);
       localStorageService.setUserId(data.id);
       return true;
@@ -32,7 +36,10 @@ const userReq = {
   },
   resetPassword: async (newPassword, uidb64, token) => {
     try {
-      await request.post(`${configApi.resetPassword}${uidb64}/${token}`, newPassword);
+      await request.post(
+        `${configApi.resetPassword}${uidb64}/${token}`,
+        newPassword,
+      );
       return true;
     } catch {
       return false;
@@ -45,10 +52,10 @@ const userReq = {
         {},
         {
           headers: {
-            'X-CSRFToken': token
+            'X-CSRFToken': token,
           },
-          withCredentials: true
-        }
+          withCredentials: true,
+        },
       );
       console.log(data);
     } catch (error) {
@@ -62,7 +69,7 @@ const userReq = {
     } catch {
       return false;
     }
-  }
+  },
 };
 
 export default userReq;

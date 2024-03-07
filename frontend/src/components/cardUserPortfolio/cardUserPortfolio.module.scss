@@ -1,148 +1,163 @@
-.container{
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0  auto;
+  margin: 0 auto;
   backdrop-filter: blur(10px);
   padding: 3px;
   border-radius: 20px;
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    width: 100%;
+    height: 2px;
+    border-radius: 4px;
+    background-color: #979797;
+  }
 }
-.card__items{
-  width: clamp(300px,80vw,1290px);
+.card__items {
+  width: clamp(300px, 80vw, 1290px);
   display: flex;
   justify-content: start;
   align-items: start;
   column-gap: 2.5rem;
 }
-.slider{
-  width: clamp(240px,40vw,700px);
+.slider {
+  width: clamp(240px, 40vw, 700px);
   height: 360px;
   margin-bottom: 0.8rem;
   border-radius: 15px;
 }
-.slider__img{
+.slider__img {
   width: 100%;
-  //height: 360px;
+  height: 360px;
   border-radius: 12px;
   object-fit: contain;
 }
-.card__item-user{
+.card__item-user {
   display: flex;
   align-items: start;
   justify-content: start;
   column-gap: 0.3rem;
+  width: 100%;
 }
-.card__user-avatar{
+.card__user-avatar {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #FFF;
+  background: #fff;
   border-radius: 50%;
-  border: 2px solid #0889FF;
-  transition: all .5s ease;
+  border: 2px solid #0889ff;
+  transition: all 0.5s ease;
   cursor: pointer;
-  &:hover{
-    transition: all .5s ease;
-    border-color: #41BBFF;
-    background: #EEF4F8;
+  &:hover {
+    transition: all 0.5s ease;
+    border-color: #41bbff;
+    background: #eef4f8;
   }
 }
-.card__user-icon{
-  width:36px;
+.card__user-icon {
+  width: 36px;
   height: 36px;
   border-radius: 50%;
   object-fit: cover;
 }
-.card__id{
+.card__id,
+.card__profession {
   color: #000;
   font-family: Arimo;
-  font-size: 14px;
+  font-size: 16px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   line-height: normal;
   letter-spacing: 1px;
 }
-.card__item-right{
+.card__id {
+  margin-left: auto;
+}
+.card__item-right {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
   width: 100%;
   background-color: #fff;
+  border: 2px solid #41bbff;
   overflow: hidden;
 }
-.card__item-title{
+.card__item-title {
   color: #000;
   font-family: Arimo;
-  font-size: clamp(16px,50vw,36px);
+  font-size: clamp(16px, 50vw, 36px);
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   letter-spacing: 2px;
-  
 
   -webkit-line-clamp: 1; /* Число отображаемых строк */
-    display: -webkit-box; /* Включаем флексбоксы */
-    -webkit-box-orient: vertical; /* Вертикальная ориентация */
-    overflow: hidden;
+  display: -webkit-box; /* Включаем флексбоксы */
+  -webkit-box-orient: vertical; /* Вертикальная ориентация */
+  overflow: hidden;
 }
-.card__item-text{
+.card__item-text {
   padding: 8px 6px 2px 6px;
   border-radius: 7px;
-  border: 2px solid #0889FF;
   color: #000;
-  font-family: Inter,sans-serif;
-  font-size: clamp(12px,20vw,16px);
+  font-family: Inter, sans-serif;
+  font-size: clamp(12px, 20vw, 16px);
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  text-align:justify;
+  text-align: justify;
   background-color: #fff;
   max-width: 100%;
 
   -webkit-line-clamp: 15; /* Число отображаемых строк */
   display: -webkit-box; /* Включаем флексбоксы */
-  -webkit-box-orient: vertical; 
+  -webkit-box-orient: vertical;
   overflow: hidden;
 }
-.card__user-add{
+.card__user-add {
   padding: 4px 7px;
   border-radius: 20px;
   background-color: #bcbcbc84;
-  margin-left:auto;
+  margin-left: auto;
   display: flex;
   align-items: center;
   column-gap: 15px;
 }
-.card__user-favorite,.card__user-playlist{
+.card__user-favorite,
+.card__user-playlist {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 35px;
   height: 40px;
   cursor: pointer;
-  transition: all .5s ease;
-  &:hover svg path{
-    transition: all .5s ease;
-    fill: #0889FF;
+  transition: all 0.5s ease;
+  &:hover svg path {
+    transition: all 0.5s ease;
+    fill: #0889ff;
   }
 }
-.card__user-playlist:hover{
-  & svg path{
-    transition: all .5s ease;
-    fill:none;
-    stroke: #0889FF;
+.card__user-playlist:hover {
+  & svg path {
+    transition: all 0.5s ease;
+    fill: none;
+    stroke: #0889ff;
   }
 }
 
-@media(max-width:480px){
-  .card__items{
+@media (max-width: 480px) {
+  .card__items {
     display: flex;
     flex-direction: column;
     align-items: center;
-    row-gap: 1rem
+    row-gap: 1rem;
   }
-  .slider{
-    width: clamp(240px,80vw,700px);
+  .slider {
+    width: clamp(240px, 80vw, 700px);
   }
 }

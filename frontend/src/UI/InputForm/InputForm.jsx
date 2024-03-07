@@ -1,7 +1,16 @@
 import PropTypes from 'prop-types';
 import './InputForm.scss';
 
-const InputForm = ({ img, value, type, placeholder, onChange, error, id, inputClass }) => {
+const InputForm = ({
+  img,
+  value,
+  type,
+  placeholder,
+  onChange,
+  error,
+  id,
+  inputClass,
+}) => {
   return (
     <div className="form__email">
       {img ? <img src={img} className="form__email-icon" /> : ''}
@@ -26,7 +35,7 @@ InputForm.defaultProps = {
   type: 'text',
   img: '',
   error: '',
-  inputClass: ''
+  inputClass: '',
 };
 InputForm.propTypes = {
   img: PropTypes.string,
@@ -36,7 +45,7 @@ InputForm.propTypes = {
   onChange: PropTypes.func,
   error: PropTypes.string,
   id: PropTypes.string,
-  inputClass: PropTypes.string
+  inputClass: PropTypes.string,
 };
 
 export default InputForm;

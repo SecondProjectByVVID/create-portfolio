@@ -17,7 +17,7 @@ import { useState } from 'react';
 const SingIn = () => {
   const [auth] = useState({
     email: '',
-    password: ''
+    password: '',
   });
   const { signIn } = useAuth();
   const { form, formChange, setForm } = useForm(auth);
@@ -62,7 +62,10 @@ const SingIn = () => {
               <p>Нет аккаунта?</p>
             </div>
             <Link to="/signUp" className="link__sing-up">
-              <ButtonForm textField={'Регистрация'} btnClass={'form__sign-up'} />
+              <ButtonForm
+                textField={'Регистрация'}
+                btnClass={'form__sign-up'}
+              />
             </Link>
           </form>
         </div>

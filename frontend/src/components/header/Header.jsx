@@ -21,7 +21,11 @@ const Header = () => {
               src={getIconKey('LogoIcon')}
               alt={'header logo'}
               className={'header__logo-img'}
-              fallback={<Skeleton size={{ width: '100%', height: '50px', borderRadius: '5%' }} />}
+              fallback={
+                <Skeleton
+                  size={{ width: '100%', height: '50px', borderRadius: '5%' }}
+                />
+              }
             />
           </Link>
         </div>
@@ -46,13 +50,21 @@ const Header = () => {
                   alt={'icon location'}
                   className={'header__location-img'}
                   fallback={
-                    <Skeleton size={{ width: '32px', height: '32px', borderRadius: '3px' }} />
+                    <Skeleton
+                      size={{
+                        width: '32px',
+                        height: '32px',
+                        borderRadius: '3px',
+                      }}
+                    />
                   }
                 />
                 <p className="header__location-text">{position}</p>
               </>
             ) : (
-              <Skeleton size={{ width: '100px', height: '50px', borderRadius: '5%' }} />
+              <Skeleton
+                size={{ width: '100px', height: '50px', borderRadius: '5%' }}
+              />
             )}
           </div>
           {isLogin ? (

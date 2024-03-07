@@ -15,7 +15,7 @@ const ProfileCard = () => {
     data: userProfile,
     isLoading,
     isError,
-    refetch
+    refetch,
   } = useFetchInfoProfileQuery(localStorageService.getUserId());
   const { position } = usePosition();
   const [profile, setProfile] = useState({
@@ -27,7 +27,7 @@ const ProfileCard = () => {
     profession: '',
     location: '',
     description: '',
-    image: null
+    image: null,
   });
   const [image, setImage] = useState(null);
   useEffect(() => {
@@ -40,10 +40,16 @@ const ProfileCard = () => {
   }, [userProfile]);
   const profileChange = ({ target }) => {
     if (target.name !== 'image') {
-      setProfile((prevState) => ({ ...prevState, [target.name]: target.value }));
+      setProfile((prevState) => ({
+        ...prevState,
+        [target.name]: target.value,
+      }));
     } else {
       uploadImage(target, setImage);
-      setProfile((prevState) => ({ ...prevState, [target.name]: target.files[0] }));
+      setProfile((prevState) => ({
+        ...prevState,
+        [target.name]: target.files[0],
+      }));
     }
   };
   const profileSubmit = (e) => {
@@ -74,7 +80,11 @@ const ProfileCard = () => {
           <UploadFile
             withExtendedField={true}
             extendedText={'Добавьте фото'}
-            image={profile.image && !image ? `${ApiConfig.url}${profile.image}` : image}
+            image={
+              profile.image && !image
+                ? `${ApiConfig.url}${profile.image}`
+                : image
+            }
             setImage={setImage}
             onChange={profileChange}
             id={'profile-image__upload'}
@@ -137,12 +147,17 @@ const ProfileCard = () => {
               rows="10"
               value={profile.description}
               onChange={profileChange}
-              placeholder="Добавьте описание о себе и ваших навыках..."></textarea>
+              placeholder="Добавьте описание о себе и ваших навыках..."
+            ></textarea>
             <div className="profile__description-btns">
               <button className="profile__btn-save" type="submit">
                 Сохранить
               </button>
-              <button className="profile__btn-cancel" type="button" onClick={cancelProfile}>
+              <button
+                className="profile__btn-cancel"
+                type="button"
+                onClick={cancelProfile}
+              >
                 Отменить
               </button>
             </div>

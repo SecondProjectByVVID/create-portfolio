@@ -8,7 +8,10 @@ import InputForm from '../../UI/InputForm/InputForm';
 import ButtonForm from '../../UI/ButtonForm/ButtonForm';
 
 import './ResetPassword.scss';
-import { useNavigate, useParams } from 'react-router-dom/dist/umd/react-router-dom.development';
+import {
+  useNavigate,
+  useParams,
+} from 'react-router-dom/dist/umd/react-router-dom.development';
 import userReq from '../../api/userReq';
 
 const ResetPassword = () => {
@@ -17,13 +20,17 @@ const ResetPassword = () => {
   const [resetPassword] = useState({
     new_password: '',
     uidb64: params.uidb64,
-    token: params.token
+    token: params.token,
   });
   const { form, formChange } = useForm(resetPassword);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await userReq.resetPassword(form, params.uidb64, params.token);
+    const response = await userReq.resetPassword(
+      form,
+      params.uidb64,
+      params.token,
+    );
     if (response) navigate('/login');
   };
   return (

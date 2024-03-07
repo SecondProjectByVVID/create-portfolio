@@ -1,4 +1,7 @@
-import { useNavigate, Link } from 'react-router-dom/dist/umd/react-router-dom.development';
+import {
+  useNavigate,
+  Link,
+} from 'react-router-dom/dist/umd/react-router-dom.development';
 
 import './NotFound.scss';
 const NotFound = () => {
@@ -27,7 +30,9 @@ const NotFound = () => {
           <div className="shadow"></div>
         </div>
         <div className="bottom">
-          <p className="notfound__text">Boo, looks like a ghost stole this page!</p>
+          <p className="notfound__text">
+            Boo, looks like a ghost stole this page!
+          </p>
           <div className="buttons">
             <button className="btn" onClick={() => navigate(-1)}>
               Back

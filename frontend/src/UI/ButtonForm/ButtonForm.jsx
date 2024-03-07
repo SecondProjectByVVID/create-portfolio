@@ -11,12 +11,12 @@ const ButtonForm = ({ textField, btnClass, onClick }) => {
 };
 
 ButtonForm.defaultProps = {
-  onClick: () => {}
+  onClick: () => {},
 };
 ButtonForm.propTypes = {
   textField: PropTypes.string,
   btnClass: PropTypes.string,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
 };
 
 export default ButtonForm;

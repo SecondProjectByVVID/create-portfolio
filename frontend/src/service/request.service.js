@@ -11,7 +11,7 @@ function handlerCaptchaError({ data }) {
 const http = axios.create({
   baseURL: configApi.url,
   xsrfHeaderName: 'X-CSRFToken',
-  xsrfCookieName: 'csrftoken'
+  xsrfCookieName: 'csrftoken',
 });
 http.interceptors.request.use(
   function (request) {
@@ -19,7 +19,7 @@ http.interceptors.request.use(
   },
   function (error) {
     return Promise.reject(error);
-  }
+  },
 );
 http.interceptors.response.use(
   function (response) {
@@ -34,7 +34,7 @@ http.interceptors.response.use(
     const { message } = error.response.data;
     toast.error(message || otherMessage[0][0]);
     return Promise.reject(error);
-  }
+  },
 );
 
 const request = {
@@ -42,7 +42,7 @@ const request = {
   post: http.post,
   put: http.put,
   patch: http.patch,
-  delete: http.delete
+  delete: http.delete,
 };
 
 export default request;

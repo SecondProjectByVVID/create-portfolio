@@ -1,7 +1,15 @@
 import styles from './UploadFile.module.scss';
 import PropTypes from 'prop-types';
 import { getIconKey } from '../../helpers/getImageKey';
-const UploadFile = ({ accept, withExtendedField, extendedText, id, image, setImage, onChange }) => {
+const UploadFile = ({
+  accept,
+  withExtendedField,
+  extendedText,
+  id,
+  image,
+  setImage,
+  onChange,
+}) => {
   // console.log(image);
   return (
     <div className={`${styles['group__upload-file']}`}>
@@ -27,7 +35,13 @@ const UploadFile = ({ accept, withExtendedField, extendedText, id, image, setIma
         name="image"
         onChange={onChange}
       />
-      {image && <img className={styles['upload__image-bg']} src={image} alt="Uploaded" />}
+      {image && (
+        <img
+          className={styles['upload__image-bg']}
+          src={image}
+          alt="Uploaded"
+        />
+      )}
     </div>
   );
 };
@@ -35,7 +49,7 @@ const UploadFile = ({ accept, withExtendedField, extendedText, id, image, setIma
 UploadFile.defaultProps = {
   withExtendedField: false,
   extendedText: '',
-  accept: 'image/*'
+  accept: 'image/*',
 };
 UploadFile.propTypes = {
   accept: PropTypes.string,
@@ -44,6 +58,6 @@ UploadFile.propTypes = {
   withExtendedField: PropTypes.bool,
   image: PropTypes.string,
   setImage: PropTypes.func,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
 };
 export default UploadFile;

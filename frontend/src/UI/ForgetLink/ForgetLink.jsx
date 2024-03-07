@@ -19,7 +19,7 @@ const ForgetLink = ({ text, type }) => {
 
 ForgetLink.propTypes = {
   text: PropTypes.string,
-  type: PropTypes.string
+  type: PropTypes.string,
 };
 
 export default ForgetLink;

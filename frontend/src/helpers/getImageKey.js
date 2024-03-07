@@ -43,7 +43,7 @@ const getIcon = {
   FavoritesIcon,
   HomeIcon,
   CalendarIcon,
-  ContactIcon
+  ContactIcon,
 };
 const getBg = {};
 

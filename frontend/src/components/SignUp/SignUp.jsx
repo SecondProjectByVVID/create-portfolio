@@ -22,8 +22,8 @@ const SignUp = () => {
       password: '',
       password2: '',
       profession: '',
-      location: ''
-    }
+      location: '',
+    },
   );
   const { form, formChange } = useForm(reg);
   const { signUp, errors } = useAuth();
@@ -97,7 +97,10 @@ const SignUp = () => {
               />
             </div>
             <div className="reg__sign_up">
-              <ButtonForm textField={'Регистрация'} btnClass={'form__sign-up'} />
+              <ButtonForm
+                textField={'Регистрация'}
+                btnClass={'form__sign-up'}
+              />
             </div>
           </form>
         </div>

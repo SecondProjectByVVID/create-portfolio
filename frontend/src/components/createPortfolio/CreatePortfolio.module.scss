@@ -1,34 +1,34 @@
-.create{
-  &__portfolio{
+.create {
+  &__portfolio {
     padding: 1rem;
-    font-family: 'Arimo',sans-serif;
+    font-family: 'Arimo', sans-serif;
   }
-  &__portfolio-top{
+  &__portfolio-top {
     display: flex;
     align-items: start;
     justify-content: start;
     column-gap: 3rem;
   }
-  &__top-info{
+  &__top-info {
     width: 500px;
   }
-  &__images{
+  &__images {
     max-width: 1000px;
-    width:100%;
+    width: 100%;
   }
-  &__content{
+  &__content {
     display: flex;
     align-items: start;
     column-gap: 3rem;
   }
-  &__description-title{
+  &__description-title {
     color: rgb(79, 79, 79);
     font-size: 32px;
     font-weight: 700;
     line-height: 62px;
     letter-spacing: 5%;
   }
-  &__textarea{
+  &__textarea {
     max-width: 1000px;
     width: 100%;
     border: 2px solid #717171;
@@ -44,34 +44,34 @@
     line-height: 28px;
     letter-spacing: 5%;
     outline: none;
-    transition: all .5s ease;
+    transition: all 0.5s ease;
   }
-  &__textarea:focus{
-    transition: all .5s ease;
-    border: 2px solid #0889FF;
+  &__textarea:focus {
+    transition: all 0.5s ease;
+    border: 2px solid #0889ff;
     box-shadow: 0 0 0 0.25rem rgba(158, 158, 158, 0.25);
   }
-  &__description-btns{
+  &__description-btns {
     display: flex;
     align-items: center;
     column-gap: 20px;
   }
-  &__btn-save{
+  &__btn-save {
     outline: none;
     padding: 7px 34px 7px 7px;
 
     border: 2px solid rgb(8, 137, 255);
     border-radius: 20px;
     background: rgb(255, 255, 255);
-    
+
     color: rgb(87, 87, 87);
     font-size: 18px;
     font-weight: 700;
     letter-spacing: 10%;
     position: relative;
-    transition: all .5s ease;
+    transition: all 0.5s ease;
   }
-  &__btn-save::after{
+  &__btn-save::after {
     content: '';
     position: absolute;
     background-image: url('./../../assets/icons/save-icon.svg');
@@ -83,12 +83,16 @@
     width: 20px;
     height: 20px;
   }
-  &__btn-save:hover{
-    transition: all .5s ease;
+  &__btn-save:hover {
+    transition: all 0.5s ease;
     background: rgb(24, 143, 255);
     color: #fff;
   }
-  &__btn-cancel{
+  &__btn-save:disabled {
+    pointer-events: none;
+    opacity: 0.4;
+  }
+  &__btn-cancel {
     outline: none;
     padding: 7px;
 
@@ -98,10 +102,10 @@
     font-weight: 700;
     letter-spacing: 10%;
     border: 2px solid transparent;
-    transition: all .5s ease;
+    transition: all 0.5s ease;
   }
-  &__btn-cancel:hover{
-    transition: all .5s ease;
+  &__btn-cancel:hover {
+    transition: all 0.5s ease;
     border-color: rgb(87, 87, 87);
   }
 }
@@ -109,24 +113,27 @@
 .calendar {
   margin-top: 1.5rem;
   width: 100%;
-  & input{
+  & input {
     font-size: 1rem;
     color: #4b5563;
     background: #ffffff;
     padding: 0.75rem 0.75rem;
     border: 2px solid #d1d5db;
-    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    transition:
+      background-color 0.2s,
+      color 0.2s,
+      border-color 0.2s,
+      box-shadow 0.2s;
     appearance: none;
     border-radius: 6px 0px 0px 6px;
   }
-  & button{
+  & button {
     color: #ffffff;
     background: #06b6d4;
     border: 1px solid #06b6d4;
   }
 }
 
-
-.create__input{
+.create__input {
   width: 100%;
 }

@@ -1,5 +1,5 @@
-.portfolio__container{
-  font-family: 'Arimo',sans-serif;
+.portfolio__container {
+  font-family: 'Arimo', sans-serif;
   font-size: 20px;
   font-weight: 700;
   line-height: 23px;
@@ -12,28 +12,29 @@
   column-gap: 35px;
 }
 
-.user__block{
+.user__block {
   display: flex;
   flex-direction: column;
   align-items: start;
   row-gap: 20px;
 }
-.user__connect{
+.user__connect {
   display: flex;
   align-items: center;
   column-gap: 40px;
-  &-image{
-    width: 280px;
+  &-image {
+    max-width: 280px;
+    width: 100%;
     height: 310px;
     border-radius: 22px;
   }
-  &-btn{
+  &-btn {
     display: flex;
     flex-direction: column;
     align-items: start;
     row-gap: 20px;
   }
-  &-tel{
+  &-tel {
     padding: 15px;
     border-radius: 5px;
     background: rgb(34, 216, 74);
@@ -43,13 +44,14 @@
     font-weight: 700;
     line-height: 23px;
     letter-spacing: 3px;
-    transition: all .5s ease;
+    transition: all 0.5s ease;
   }
-  &-tel:hover{
-    transition: all .5s ease;
+  &-tel:hover {
+    transition: all 0.5s ease;
     background: rgb(27, 172, 58);
   }
-  &-write,&-contact{
+  &-write,
+  &-contact {
     outline: none;
     border: 2px solid transparent;
     max-width: 220px;
@@ -63,27 +65,27 @@
     border-radius: 5px;
     background: rgb(8, 137, 255);
     padding: 14px 2px;
-    transition: all .5s ease;
+    transition: all 0.5s ease;
   }
-  &-contact{
+  &-contact {
     background: rgb(50, 97, 141);
   }
-  &-contact:hover{
-    transition: all .5s ease;
-    background:rgb(6, 98, 183);
+  &-contact:hover {
+    transition: all 0.5s ease;
+    background: rgb(6, 98, 183);
   }
-  &-write:hover{
-    transition: all .5s ease;
-    background:rgb(6, 98, 183); 
+  &-write:hover {
+    transition: all 0.5s ease;
+    background: rgb(6, 98, 183);
   }
 }
-.user__description{
+.user__description {
   display: flex;
   align-items: start;
   flex-direction: column;
-  &-title{
+  &-title {
     color: rgb(0, 0, 0);
-    font-family: Inter,sans-serif;
+    font-family: Inter, sans-serif;
     text-align: center;
     width: 100%;
     font-size: 40px;
@@ -91,7 +93,7 @@
     line-height: 48px;
     margin-bottom: 15px;
   }
-  &-text{
+  &-text {
     max-width: 420px;
     width: 100%;
     border: 2px solid rgb(8, 137, 255);
@@ -105,55 +107,54 @@
     line-height: 33px;
     margin-bottom: 20px;
   }
-  &-email{
+  &-email {
     font-family: inherit;
     color: rgb(3, 163, 253);
     font-size: 28px;
   }
-  &-email span{
+  &-email span {
     color: rgb(90, 90, 90);
     margin-right: 10px;
   }
-  &-links{
+  &-links {
     display: flex;
     align-items: center;
     column-gap: 10px;
     margin-top: 20px;
   }
-  &-link{
+  &-link {
     width: 55px;
     height: 55px;
     padding: 7px 7px 7px 6px;
     border-radius: 50%;
     background-color: transparent;
-    transition: all .5s ease;
+    transition: all 0.5s ease;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  &-link:nth-child(1):hover{
-    transition: all .5s ease;
+  &-link:nth-child(1):hover {
+    transition: all 0.5s ease;
     background-color: #00e677a2;
   }
-  &-link:nth-child(2):hover{
-    transition: all .5s ease;
+  &-link:nth-child(2):hover {
+    transition: all 0.5s ease;
     background-color: #4291ff61;
   }
-  &-link:nth-child(3):hover{
-    transition: all .5s ease;
+  &-link:nth-child(3):hover {
+    transition: all 0.5s ease;
     background-color: #4291ff88;
   }
 }
 
-
-.portfolio__block{
+.portfolio__block {
   background-color: white;
   border-radius: 20px;
   width: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  &-list{
+  &-list {
     overflow: hidden;
     max-width: 1250px;
     width: 100%;
@@ -164,27 +165,27 @@
     column-gap: 20px;
   }
 }
-.portfolio__gallery{
+.portfolio__gallery {
   display: flex;
   flex-wrap: wrap;
   max-width: 800px;
   width: 100%;
   column-gap: 10px;
   row-gap: 10px;
-  & img{
+  & img {
     height: 170px;
     object-fit: cover;
-  } 
-  & img{
+  }
+  & img {
     border-radius: 20px;
   }
 }
-.portfolio__description{
+.portfolio__description {
   max-width: 500px;
   min-width: 350px;
   position: relative;
-  &-title{
-    font-family: 'Inter',sans-serif;
+  &-title {
+    font-family: 'Inter', sans-serif;
     font-weight: 700;
     font-size: 30px;
     text-align: center;
@@ -194,8 +195,8 @@
     -webkit-box-orient: vertical; /* Вертикальная ориентация */
     overflow: hidden;
   }
-  &-text{
-    font-family: 'Inter',sans-serif;
+  &-text {
+    font-family: 'Inter', sans-serif;
     color: #1e1e1e;
     font-weight: 400;
     text-align: justify;
@@ -205,7 +206,7 @@
     overflow: hidden;
     position: relative;
   }
-  &-text:after{
+  &-text:after {
     content: '';
     position: absolute;
     left: 0;
@@ -215,7 +216,7 @@
     background: linear-gradient(180deg, transparent, #ffffff 40%);
   }
 }
-.portfolio__date-work{
+.portfolio__date-work {
   position: absolute;
   right: -14px;
   top: -18px;
@@ -225,25 +226,25 @@
   padding: 5px;
   border-radius: 7px;
   cursor: pointer;
-  transition: all .5s ease;
-  &:hover{
-    transition: all .5s ease;
+  transition: all 0.5s ease;
+  &:hover {
+    transition: all 0.5s ease;
     background-color: #cececed0;
   }
 }
-.date-message{
+.date-message {
   position: absolute;
   background-color: rgb(219 234 254);
-  border: 2px solid #0889FF;
+  border: 2px solid #0889ff;
   z-index: 100;
   transform: translateY(-200%);
-  transition: all .5s ease;
+  transition: all 0.5s ease;
 }
-.date-message--open{
-  transition: all .5s ease;
+.date-message--open {
+  transition: all 0.5s ease;
   transform: translateY(0);
 }
-.contact__textarea{
+.contact__textarea {
   resize: none;
   outline: none;
   padding: 0.6rem 0.8rem;
@@ -251,4 +252,13 @@
   border-radius: 10px;
   margin: 1rem 0;
   width: 100%;
+}
+
+@media (max-width: 768px) {
+  .portfolio__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1.5rem;
+  }
 }

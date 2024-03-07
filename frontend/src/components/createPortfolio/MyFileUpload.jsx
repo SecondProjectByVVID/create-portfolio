@@ -44,7 +44,9 @@ export const MyFileUpload = ({ setCreate }) => {
     const { className, chooseButton, cancelButton } = options;
     const value = totalSize / 10000;
     const formatedValue =
-      fileUploadRef && fileUploadRef.current ? fileUploadRef.current.formatSize(totalSize) : '0 B';
+      fileUploadRef && fileUploadRef.current
+        ? fileUploadRef.current.formatSize(totalSize)
+        : '0 B';
 
     return (
       <div
@@ -53,8 +55,9 @@ export const MyFileUpload = ({ setCreate }) => {
           backgroundColor: 'transparent',
           display: 'flex',
           alignItems: 'center',
-          padding: '0.5em'
-        }}>
+          padding: '0.5em',
+        }}
+      >
         {chooseButton}
         {cancelButton}
         <ProgressBar
@@ -64,8 +67,9 @@ export const MyFileUpload = ({ setCreate }) => {
             width: '300px',
             height: '20px',
             marginLeft: 'auto',
-            fontSize: '0.7em'
-          }}></ProgressBar>
+            fontSize: '0.7em',
+          }}
+        ></ProgressBar>
       </div>
     );
   };
@@ -74,17 +78,27 @@ export const MyFileUpload = ({ setCreate }) => {
     return (
       <div className="flex align-items-center flex-wrap">
         <div className="flex align-items-center" style={{ width: '40%' }}>
-          <img alt={file.name} role="presentation" src={file.objectURL} width={100} />
+          <img
+            alt={file.name}
+            role="presentation"
+            src={file.objectURL}
+            width={100}
+          />
           <span
             className="flex flex-column text-left ml-3"
             style={{
-              fontSize: '0.8em'
-            }}>
+              fontSize: '0.8em',
+            }}
+          >
             <abbr title={file.name}>{file.name.slice(0, 9) + '...'}</abbr>
             <small>{new Date().toLocaleDateString()}</small>
           </span>
         </div>
-        <Tag value={props.formatSize} severity="warning" className="px-1 py-1 ml-auto" />
+        <Tag
+          value={props.formatSize}
+          severity="warning"
+          className="px-1 py-1 ml-auto"
+        />
         <Button
           type="button"
           icon="pi pi-times"
@@ -105,9 +119,13 @@ export const MyFileUpload = ({ setCreate }) => {
             borderRadius: '50%',
             backgroundColor: 'var(--surface-b)',
             border: '2px solid #ccc',
-            color: 'var(--surface-d)'
-          }}></i>
-        <span style={{ fontSize: '1.2em', color: 'var(--text-color-secondary)' }} className="my-5">
+            color: 'var(--surface-d)',
+          }}
+        ></i>
+        <span
+          style={{ fontSize: '1.2em', color: 'var(--text-color-secondary)' }}
+          className="my-5"
+        >
           Добавьте фото для портфолио
         </span>
       </div>
@@ -117,12 +135,13 @@ export const MyFileUpload = ({ setCreate }) => {
   const chooseOptions = {
     icon: 'pi pi-fw pi-images',
     iconOnly: true,
-    className: 'custom-choose-btn p-button-rounded p-button-outlined'
+    className: 'custom-choose-btn p-button-rounded p-button-outlined',
   };
   const cancelOptions = {
     icon: 'pi pi-fw pi-times',
     iconOnly: true,
-    className: 'custom-cancel-btn p-button-danger p-button-rounded p-button-outlined'
+    className:
+      'custom-cancel-btn p-button-danger p-button-rounded p-button-outlined',
   };
 
   return (
@@ -143,13 +162,13 @@ export const MyFileUpload = ({ setCreate }) => {
       style={{
         backgroundColor: '#f0f0f0',
         border: '2px solid #ccc',
-        borderRadius: '7px'
+        borderRadius: '7px',
       }}
     />
   );
 };
 
 MyFileUpload.propTypes = {
-  setCreate: PropTypes.func
+  setCreate: PropTypes.func,
 };
 export default MyFileUpload;

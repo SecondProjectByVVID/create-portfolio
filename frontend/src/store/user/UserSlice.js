@@ -8,12 +8,12 @@ export const userAPI = createApi({
   endpoints: (build) => ({
     fetchInfoUser: build.query({
       query: (id) => `${configApi.userMenu}${id}/`,
-      providesTags: ['User']
+      providesTags: ['User'],
     }),
     fetchContactUs: build.query({
       query: (id) => `${configApi.contactUs}${id}/`,
-      providesTags: ['User']
-    })
-  })
+      providesTags: ['User'],
+    }),
+  }),
 });
 export const { useFetchInfoUserQuery, useFetchContactUsQuery } = userAPI;

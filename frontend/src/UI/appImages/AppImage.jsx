@@ -25,13 +25,13 @@ const AppImage = (props) => {
 
 AppImage.defaultProps = {
   alt: 'image',
-  className: ''
+  className: '',
 };
 AppImage.propTypes = {
   src: PropTypes.string,
   alt: PropTypes.string,
   className: PropTypes.string,
   fallback: PropTypes.node,
-  errFallback: PropTypes.node
+  errFallback: PropTypes.node,
 };
 export default AppImage;

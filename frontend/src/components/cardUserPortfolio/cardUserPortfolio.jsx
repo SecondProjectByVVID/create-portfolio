@@ -10,6 +10,7 @@ import 'swiper/css/navigation';
 
 // import required modules
 import { Pagination, Navigation } from 'swiper/modules';
+import { useState } from 'react';
 
 const CardUserPortfolio = ({
   title,
@@ -21,6 +22,10 @@ const CardUserPortfolio = ({
   userImage,
   profession,
 }) => {
+  const [favorite, setFavorite] = useState(false);
+  const handleFavorite = () => {
+    setFavorite((prevState) => !prevState);
+  };
   return (
     <div className={styles.container}>
       <div className={styles.card__items}>
@@ -62,64 +67,47 @@ const CardUserPortfolio = ({
               <p className={styles.card__profession}>{profession}</p>
             </Link>
             <span className={styles.card__id}>{username}</span>
-            {/* <div className={styles['card__user-add']}>
-              <div className={styles['card__user-favorite']}>
-                <svg
-                  width="64px"
-                  height="64px"
-                  viewBox="0 0 64 64"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-                  <g
-                    id="SVGRepo_tracerCarrier"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  ></g>
-                  <g id="SVGRepo_iconCarrier">
-                    {' '}
-                    <path
-                      d="M45.35 6.1709H19.41C16.8178 6.17618 14.3333 7.20827 12.5003 9.04123C10.6674 10.8742 9.63528 13.3587 9.62999 15.9509V52.2709C9.6272 53.3655 9.92973 54.4392 10.5036 55.3713C11.0775 56.3034 11.9 57.057 12.8787 57.5474C13.8573 58.0377 14.9533 58.2454 16.0435 58.1471C17.1337 58.0488 18.1748 57.6484 19.05 56.9909L31.25 47.8509C31.5783 47.6074 31.9762 47.4759 32.385 47.4759C32.7938 47.4759 33.1917 47.6074 33.52 47.8509L45.71 56.9809C46.5842 57.6387 47.6246 58.0397 48.7142 58.1387C49.8038 58.2378 50.8994 58.0311 51.8779 57.5418C52.8565 57.0525 53.6793 56.3001 54.2537 55.3689C54.8282 54.4378 55.1317 53.365 55.13 52.2709V15.9509C55.1247 13.3587 54.0926 10.8742 52.2597 9.04123C50.4267 7.20827 47.9422 6.17618 45.35 6.1709Z"
-                      fill="#7d7d7d"
-                    ></path>{' '}
-                  </g>
-                </svg>
-              </div>
-              <div className={styles['card__user-playlist']}>
-                <svg
-                  width="64px"
-                  height="64px"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-                  <g
-                    id="SVGRepo_tracerCarrier"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  ></g>
-                  <g id="SVGRepo_iconCarrier">
-                    {' '}
-                    <path
-                      d="M14 7V13M11 10H17M14 21C11 21 8 21 5 21C3.89543 21 3.00001 20.1069 3.00001 19.0023C3 16.2888 3 11.5934 3 10M9 17H19C20.1046 17 21 16.1046 21 15V5C21 3.89543 20.1046 3 19 3H9C7.89543 3 7 3.89543 7 5V15C7 16.1046 7.89543 17 9 17Z"
-                      stroke="#7d7d7d"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    ></path>{' '}
-                  </g>
-                </svg>
-              </div>
-            </div> */}
           </div>
         </div>
         <div className={styles['card__item-right']}>
-          <h3 className={styles['card__item-title']}>
-            <abbr title={title}>{title}</abbr>
-          </h3>
-          <p className={styles['card__item-text']}>{description}</p>
+          <div className={styles['card__right-top']}>
+            <h3 className={styles['card__item-title']}>
+              <abbr title={title}>{title}</abbr>
+            </h3>
+            <p className={styles['card__item-text']}>{description}</p>
+          </div>
+          <div className={styles['card__user-add']}>
+            <div
+              className={styles['card__user-favorite']}
+              onClick={handleFavorite}
+            >
+              <svg
+                height="64px"
+                width="64px"
+                version="1.1"
+                id="_x32_"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+              >
+                <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></g>
+                <g id="SVGRepo_iconCarrier" fill="#ff0808">
+                  {' '}
+                  <g>
+                    {favorite ? (
+                      <path d="M380.63,32.196C302.639,33.698,264.47,88.893,256,139.075c-8.47-50.182-46.638-105.378-124.63-106.879 C59.462,30.814,0,86.128,0,187.076c0,129.588,146.582,189.45,246.817,286.25c3.489,3.371,2.668,3.284,2.668,3.284 c1.647,2.031,4.014,3.208,6.504,3.208v0.011c0,0,0.006,0,0.011,0c0,0,0.006,0,0.011,0v-0.011c2.489,0,4.856-1.177,6.503-3.208 c0,0-0.821,0.086,2.669-3.284C365.418,376.526,512,316.664,512,187.076C512,86.128,452.538,30.814,380.63,32.196z"></path>
+                    ) : (
+                      <path d="M373.597,29.736c-0.938,0-1.856,0.009-2.795,0.03C313.675,30.864,276.726,59.028,256,93.182 c-20.726-34.154-57.675-62.318-114.802-63.416c-0.928-0.021-1.866-0.03-2.796-0.03c-38.566,0-73.559,15.465-98.518,43.538 C13.797,102.626,0,143.789,0,192.309c0,95.273,76.404,153.378,150.284,209.566c28.513,21.684,57.975,44.098,83.483,68.688 l1.138,1.547c5.062,6.24,12.419,9.904,20.296,10.134l0.8,0.02l0.838-0.02c7.847-0.24,15.186-3.894,20.247-10.114l1.158-1.578 c25.498-24.59,54.97-47.003,83.473-68.678C435.596,345.687,512,287.583,512,192.309C512,96.586,455.083,29.736,373.597,29.736z M371.391,357.748c-37.12,28.952-78.172,57.866-113.654,92.099c-0.689,0.668-1.248,1.238-1.747,1.777 c-0.519-0.549-1.018-1.088-1.726-1.777c-47.303-45.615-104.52-81.895-149.116-121.202c-22.313-19.618-41.412-39.904-54.79-62.088 c-13.378-22.204-21.184-46.164-21.215-74.248c0.02-44.228,12.81-77.493,32.528-99.677c19.757-22.164,46.573-33.705,76.733-33.764 l2.237,0.03c33.775,0.708,57.835,12.67,75.017,29.681c17.132,17.022,27.165,39.556,30.77,60.99 c0.788,4.682,4.821,8.097,9.574,8.097c4.752,0,8.785-3.414,9.574-8.097c3.604-21.434,13.638-43.967,30.77-60.99 c17.181-17.012,41.242-28.973,75.017-29.681l2.236-0.03c30.161,0.059,56.976,11.6,76.735,33.764 c19.717,22.184,32.507,55.449,32.526,99.677c-0.03,28.084-7.837,52.044-21.215,74.248 C441.605,299.833,408.54,328.815,371.391,357.748z"></path>
+                    )}
+                  </g>{' '}
+                </g>
+              </svg>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -6,8 +6,10 @@ import portfolio from '../../api/portfolioReq';
 import formatDate from './../../helpers/getFormatDate';
 import styles from './CreatePortfolio.module.scss';
 import MyFileUpload from './MyFileUpload';
+import { useNavigate } from 'react-router-dom/dist/umd/react-router-dom.development';
 
 const CreatePortfolio = () => {
+  const navigate = useNavigate();
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [create, setCreate] = useState({
     user: localStorageService.getUserId(),
@@ -30,7 +32,7 @@ const CreatePortfolio = () => {
     setCreate((prevState) => ({ ...prevState, [target.name]: target.value }));
   };
   const cancelCreate = () => {};
-  const createForm = (e) => {
+  const createForm = async (e) => {
     e.preventDefault();
     setIsButtonDisabled(true);
     setTimeout(() => {
@@ -44,7 +46,8 @@ const CreatePortfolio = () => {
     formData.append('title', create.title);
     formData.append('description', create.description);
     formData.append('date_work', create.date_work);
-    portfolio.createPortfolio(formData);
+    const response = await portfolio.createPortfolio(formData);
+    if (response) navigate('/');
   };
   return (
     <div className={styles.create__portfolio}>

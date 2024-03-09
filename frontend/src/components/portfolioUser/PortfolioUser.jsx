@@ -8,7 +8,6 @@ import Loader from '../../UI/Loader/Loader';
 import './PortfolioUser.scss';
 import { useFetchInfoProfileQuery } from '../../store/profile/ProfileSlice';
 import { useGetPortfolioOnIdQuery } from '../../store/portfolio/PortfolioSlice';
-import { Message } from 'primereact/message';
 import { useState } from 'react';
 import ConfigApi from './../../config/config.request.json';
 import { Dialog } from 'primereact/dialog';
@@ -18,7 +17,6 @@ import ButtonForm from '../../UI/ButtonForm/ButtonForm';
 import profileReq from '../../api/profileReq';
 const PortfolioUser = () => {
   const { id, portfolioId } = useParams();
-  const [open, setOpen] = useState(false);
   const [visible, setVisible] = useState(false);
   const { form, formChange } = useForm({
     user: id,
@@ -39,9 +37,6 @@ const PortfolioUser = () => {
       </div>
     );
   }
-  const handleDateMessage = () => {
-    setOpen((prevState) => !prevState);
-  };
   const handleContactUs = () => {
     setVisible((prevState) => !prevState);
   };
@@ -109,20 +104,7 @@ const PortfolioUser = () => {
             ))}
           </div>
           <div className="portfolio__description">
-            <div className="portfolio__date-block" onClick={handleDateMessage}>
-              <img
-                src={getIconKey('CalendarIcon')}
-                alt="calendar icon portfolio"
-                className="portfolio__date-work"
-              />
-            </div>
-            <Message
-              severity="info"
-              text={`Проект выполнен ${portfolio.date_work}`}
-              className={
-                open ? 'date-message date-message--open' : 'date-message'
-              }
-            />
+            <span className="date-message">{portfolio.date_work}</span>
             <h2 className="portfolio__description-title">{portfolio.title}</h2>
             <p className="portfolio__description-text">
               {portfolio.description}

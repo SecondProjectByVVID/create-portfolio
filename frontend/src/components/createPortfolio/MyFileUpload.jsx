@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { useRef, useState } from 'react';
 import { FileUpload } from 'primereact/fileupload';
 import { ProgressBar } from 'primereact/progressbar';
-import { Button } from 'primereact/button';
+// import { Button } from 'primereact/button';
 import { Tag } from 'primereact/tag';
 import { toast } from 'react-toastify';
 
@@ -20,8 +20,6 @@ export const MyFileUpload = ({ setCreate }) => {
     let _totalSize = totalSize;
 
     e.files.forEach((file) => {
-      // tempImages.push({ image: new File([''], file.name, { type: file.type }) });
-
       _totalSize += file.size;
     });
 
@@ -31,13 +29,15 @@ export const MyFileUpload = ({ setCreate }) => {
     toast.success(`Select ${e.files.length} images`);
   };
 
-  const onTemplateRemove = (file, callback) => {
-    setTotalSize(totalSize - file.size);
-    callback();
-  };
+  // const onTemplateRemove = (file, callback) => {
+  //   setTotalSize(totalSize - file.size);
+  //   console.log(file);
+  //   callback();
+  // };
 
   const onTemplateClear = () => {
     setTotalSize(0);
+    setCreate((prevState) => ({ ...prevState, uploaded_images: [] }));
   };
 
   const headerTemplate = (options) => {
@@ -99,12 +99,12 @@ export const MyFileUpload = ({ setCreate }) => {
           severity="warning"
           className="px-1 py-1 ml-auto"
         />
-        <Button
+        {/* <Button
           type="button"
           icon="pi pi-times"
           className="p-button-outlined p-button-rounded p-button-danger ml-auto"
           onClick={() => onTemplateRemove(file, props.onRemove)}
-        />
+        /> */}
       </div>
     );
   };

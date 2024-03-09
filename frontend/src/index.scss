@@ -7,20 +7,19 @@
 
 body {
   margin: 0;
-  font-family: 'Arimo','Inter', sans-serif;
+  font-family: 'Arimo', 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x:hidden;
+  overflow-x: hidden;
 }
 
-
-.container{
-  margin:0 auto;
-  max-width:1920px;
-  width:100%;
+.container {
+  margin: 0 auto;
+  max-width: 1920px;
+  width: 100%;
 }
 
-.client__bg{
+.client__bg {
   background-image: url('./assets/background/client-bg.png');
   background-repeat: no-repeat;
   background-size: cover;
@@ -28,5 +27,3 @@ body {
   width: 100%;
   background-attachment: fixed;
 }
-
-

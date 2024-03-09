@@ -26,7 +26,7 @@
 }
 .slider {
   width: clamp(240px, 40vw, 700px);
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.4rem;
   border-radius: 15px;
 }
 
@@ -35,6 +35,7 @@
   height: 360px;
   border-radius: 12px;
   object-fit: cover;
+  border: 1px solid #000000;
 }
 .card__item-user {
   display: flex;
@@ -74,6 +75,11 @@
   line-height: normal;
   letter-spacing: 1px;
 }
+.card__profession {
+  font-size: 22px;
+  line-height: 130%;
+}
+
 .card__id {
   margin-left: auto;
 }
@@ -81,10 +87,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
+  height: 400px;
   width: 100%;
-  background-color: #fff;
-  border: 2px solid #41bbff;
   overflow: hidden;
 }
 .card__item-title {
@@ -120,13 +124,7 @@
   overflow: hidden;
 }
 .card__user-add {
-  padding: 4px 7px;
-  border-radius: 20px;
-  background-color: #bcbcbc84;
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  column-gap: 15px;
+  margin-right: auto;
 }
 .card__user-favorite,
 .card__user-playlist {
@@ -137,10 +135,6 @@
   height: 40px;
   cursor: pointer;
   transition: all 0.5s ease;
-  &:hover svg path {
-    transition: all 0.5s ease;
-    fill: #0889ff;
-  }
 }
 .card__user-playlist:hover {
   & svg path {

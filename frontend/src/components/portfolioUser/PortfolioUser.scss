@@ -216,33 +216,13 @@
     background: linear-gradient(180deg, transparent, #ffffff 40%);
   }
 }
-.portfolio__date-work {
-  position: absolute;
-  right: -14px;
-  top: -18px;
-  width: 40px;
-  height: 40px;
-  outline: none;
-  padding: 5px;
-  border-radius: 7px;
-  cursor: pointer;
-  transition: all 0.5s ease;
-  &:hover {
-    transition: all 0.5s ease;
-    background-color: #cececed0;
-  }
-}
 .date-message {
   position: absolute;
-  background-color: rgb(219 234 254);
-  border: 2px solid #0889ff;
+  bottom: -15px;
+  right: 0;
   z-index: 100;
-  transform: translateY(-200%);
+  padding: 5px;
   transition: all 0.5s ease;
-}
-.date-message--open {
-  transition: all 0.5s ease;
-  transform: translateY(0);
 }
 .contact__textarea {
   resize: none;

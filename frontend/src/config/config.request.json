@@ -11,5 +11,6 @@
   "createAndPoint": "register/",
   "reset": "password_reset/",
   "resetPassword": "reset/",
+  "search":"portfolio-list/?search=",
   "keyCaptcha": "6LcfxkopAAAAAHRGGDR2r1OjBmt5wyH5WAipiPL1"
 }

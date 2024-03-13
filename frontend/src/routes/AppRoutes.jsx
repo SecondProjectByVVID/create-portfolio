@@ -1,29 +1,39 @@
-import { lazy } from 'react';
+import { lazy } from "react";
 import {
   Route,
   Routes,
-} from 'react-router-dom/dist/umd/react-router-dom.development';
-import AuthProvider from './../hooks/useAuth';
+} from "react-router-dom/dist/umd/react-router-dom.development";
+import AuthProvider from "./../hooks/useAuth";
+import SearchProvider from "./../hooks/useSearch";
 
-const Login = lazy(() => import('./../pages/login/login'));
-const Main = lazy(() => import('../pages/main/main'));
-const NotFound = lazy(() => import('../pages/NotFound/NotFound'));
-const Registration = lazy(() => import('../pages/registration/registration'));
-const Restore = lazy(() => import('../pages/restore/restore'));
-const Reset = lazy(() => import('../pages/reset/reset'));
-const Profile = lazy(() => import('../pages/profile/Profile'));
-const AddPortfolio = lazy(() => import('../pages/addPortfolio/AddPortfolio'));
+const Login = lazy(() => import("./../pages/login/login"));
+const Main = lazy(() => import("../pages/main/main"));
+const NotFound = lazy(() => import("../pages/NotFound/NotFound"));
+const Registration = lazy(() => import("../pages/registration/registration"));
+const Restore = lazy(() => import("../pages/restore/restore"));
+const Reset = lazy(() => import("../pages/reset/reset"));
+const Profile = lazy(() => import("../pages/profile/Profile"));
+const AddPortfolio = lazy(() => import("../pages/addPortfolio/AddPortfolio"));
 
-const Layout = lazy(() => import('./../components/layout/Layout'));
-const ActiveEmail = lazy(() => import('./../pages/activeEmail/ActiveEmail'));
-const Portfolio = lazy(() => import('./../pages/portfolio/Portfolio'));
+const Layout = lazy(() => import("./../components/layout/Layout"));
+const ActiveEmail = lazy(() => import("./../pages/activeEmail/ActiveEmail"));
+const Portfolio = lazy(() => import("./../pages/portfolio/Portfolio"));
 
 const AppRoutes = () => {
   return (
     <AuthProvider>
       <Routes>
         <Route element={<Layout />}>
-          <Route index path="/" element={<Main />} />
+          <Route
+            index
+            path="/"
+            element={
+              <SearchProvider>
+                {" "}
+                <Main />
+              </SearchProvider>
+            }
+          />
           <Route
             path="/user-portfolio/:id/:portfolioId"
             element={<Portfolio />}

@@ -54,14 +54,6 @@ const ProfileCard = () => {
   };
   const profileSubmit = (e) => {
     e.preventDefault();
-    console.log(profile);
-    // const formDataWithImage = new FormData();
-    // for (const key in profile) {
-    //   formDataWithImage.append(key, profile[key]);
-    // }
-    // for (const key in profile) {
-    //   console.log(formDataWithImage.getAll(key));
-    // }
     profileReq.updateProfile(localStorageService.getUserId(), profile);
     refetch();
   };

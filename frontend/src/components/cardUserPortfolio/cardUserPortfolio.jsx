@@ -10,8 +10,11 @@ import 'swiper/css/navigation';
 
 // import required modules
 import { Pagination, Navigation } from 'swiper/modules';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import getCookie from './../../helpers/getCsrfToken';
 
+const csrftoken = getCookie('csrftoken');
 const CardUserPortfolio = ({
   title,
   description,
@@ -21,11 +24,43 @@ const CardUserPortfolio = ({
   username,
   userImage,
   profession,
+  favorites,
+  userId,
+  cb,
 }) => {
-  const [favorite, setFavorite] = useState(false);
+  const [favorite, setFavorite] = useState(
+    favorites?.find((favorite) => favorite === id) ?? false,
+  );
   const handleFavorite = () => {
     setFavorite((prevState) => !prevState);
   };
+  useEffect(() => {
+    const responseFavorite = async () => {
+      if (favorite) {
+        try {
+          const response = await axios.patch(
+            `http://localhost:8000/user-profile/${userId}/`,
+            {
+              portfolio_favorites: id,
+            },
+            {
+              headers: {
+                'X-CSRFToken': csrftoken,
+                'Content-Type': 'multipart/form-data',
+              },
+              withCredentials: true,
+            },
+          );
+          console.log(response);
+        } catch (error) {
+          console.log(error);
+        } finally {
+          cb();
+        }
+      }
+    };
+    responseFavorite();
+  }, [favorite]);
   return (
     <div className={styles.container}>
       <div className={styles.card__items}>

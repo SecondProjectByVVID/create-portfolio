@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-o@zkhr4z3lc*1ckmh7y*6(#(fx)$g251mec^ml)8h*wekw_tmt'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,6 +32,9 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    # 'daphne',
+    # 'channels',
+    'chat',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -119,6 +123,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'project.wsgi.application'
 
+# Daphne # Channels
+
+# ASGI_APPLICATION = "project.asgi.application"
+# CHANNEL_LAYERS = {
+    # "default": {
+        # "BACKEND": "channels_redis.core.RedisChannelLayer",
+        # "CONFIG": {
+            # "hosts": [("127.0.0.1", 6379)],
+        # },
+    # },
+# }
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -126,11 +141,11 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'django',
-        'USER': 'postgres',
-        'PASSWORD': '12345',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT'),
     }
 }
 
@@ -174,19 +189,13 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-RECAPTCHA_PUBLIC_KEY = '6LcfxkopAAAAAHRGGDR2r1OjBmt5wyH5WAipiPL1'
-RECAPTCHA_PRIVATE_KEY = '6LcfxkopAAAAADvhS_IEDevylkxhjJJAWTY5wX37'
+RECAPTCHA_PUBLIC_KEY = config('RECAPTCHA_PUBLIC_KEY')
+RECAPTCHA_PRIVATE_KEY = config('RECAPTCHA_PRIVATE_KEY')
 SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
 
 #Cookie and session 
 
 SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
-
-
-
-
-
-
 
 CORS_ALLOW_HEADERS = ('Access-Control-Allow-Origin', 
                       'Access-Control-Allow-Credentials', 
@@ -205,13 +214,6 @@ SESSION_COOKIE_HTTPONLY = False
 CSRF_USE_SESSIONS = False
 CSRF_COOKIE_SECURE = False
 
-
-
-
-
-
-
-
 SESSION_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_SECURE = True
 
@@ -222,15 +224,21 @@ CORS_ALLOW_CREDENTIALS = True
 
 # Emailing settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_FROM = 'tigr12112004@gmail.com'
-EMAIL_HOST_USER = 'tigr12112004@gmail.com'
-EMAIL_HOST_PASSWORD = 'zarstwdvbqimrmxk'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_FROM = config('EMAIL_FROM')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = config('EMAIL_PORT', cast=int)
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
+EMAIL_USE_SSL = config('EMAIL_USE_SSL', cast=bool)
 
-PASSWORD_RESET_TIMEOUT = 14400
+PASSWORD_RESET_TIMEOUT = config('PASSWORD_RESET_TIMEOUT', cast=int)
+
+# Vk settings
+
+VK_CLIENT_ID = '51853648'
+VK_CLIENT_SECRET = 'bmMf6IyfeuN3BUUS2PJI'
+VK_REDIRECT_URI = 'https://localhost/vk/callback'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

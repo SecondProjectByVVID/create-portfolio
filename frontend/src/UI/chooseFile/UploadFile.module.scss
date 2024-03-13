@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+
+.group__upload-file{
+  margin: 0.5em 0;
+  width: 390px;
+  position: relative;
+  transition: all .5s ease;
+}
+
+.input__upload-file{
+  color: #212529;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.1rem;
+  font-weight:400;
+
+  outline: none;
+  border: 1px solid #bbbdc0;
+  padding: 0.6em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all .5s ease;
+  &::file-selector-button{
+    margin-right: 1.2em;
+    outline: none;
+    border: 1px solid transparent;
+    background-color: #00ba92;
+    padding: 0.5rem 1rem;
+    border-radius: 3px;
+    color: #faf4f4;
+    cursor: pointer;
+  }
+  &::file-selector-button:hover{
+    transition: all .5s ease;
+    background-color: #009272;
+  }
+  &:hover{
+    transition: all .5s ease;
+    color: inherit;
+    background-color: #fff;
+    border-color: #009272;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(13, 253, 121, 0.345);
+  }
+}
+.upload__container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  gap: 1.5em;
+  padding: 1em;
+  height: 420px;
+  width: 100%;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  color: #444;
+  cursor: pointer;
+  transition: inherit;
+  background: rgb(232, 232, 232);
+  box-shadow: 11px 11px 5px 0px rgba(168, 168, 168, 0.7);
+  &:hover{
+    border: 2px dashed #00ba92;
+  }
+}
+.input__upload-extended{
+  position: absolute;
+  bottom: 1em;
+  left: 0.6em;
+  width: 90%;
+  visibility: hidden;
+}
+.upload__title{
+  color: rgb(8, 137, 255);
+  font-family: Arimo,sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 41px;
+  letter-spacing: 5%;
+  text-align: left;
+}
+
+.upload__image-bg{
+  border-radius: 11px;
+  position:absolute;
+  top: 0;
+  width: 100%; 
+  height: 100%;
+  object-fit: cover;
+}

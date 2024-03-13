@@ -1,0 +1,12 @@
+{
+  "url":"http://127.0.0.1:8000/",
+  "users":"user-list/",
+  "profile":"profile/",
+  "portfolio":"portfolio/",
+  "authenticateAndPoint":"login/",
+  "logout":"logout/",
+  "createAndPoint":"register/",
+  "reset":"password_reset/",
+  "resetPassword":"reset/",
+  "keyCaptcha":"6LcfxkopAAAAAHRGGDR2r1OjBmt5wyH5WAipiPL1"
+}

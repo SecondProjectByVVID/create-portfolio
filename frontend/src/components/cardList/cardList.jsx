@@ -14,13 +14,17 @@ const CardList = () => {
     refetch,
   } = useFetchInfoProfileQuery(localStorageService.getUserId());
   const { searchCards } = useSearch();
-  if (isLoading || isError || profileLoading || profileError) {
+  if (isLoading || isError) {
     return (
       <div className={styles.card__list}>
         <Skeleton size={{ width: "80%", height: "360px" }} />
         <Skeleton size={{ width: "80%", height: "360px" }} />
       </div>
     );
+  }
+  const isFavorites = (id) => {
+    const res = profile[0].portfolio_favorites?.find((favorite) => favorite === id)
+    return res
   }
   return (
     <div className={styles.card__list}>
@@ -29,7 +33,7 @@ const CardList = () => {
             <CardUserPortfolio
               key={item.id}
               userImage={item.user_image}
-              favorites={profile[0].portfolio_favorites}
+              favorites={!profileLoading && localStorageService.getUserId() ? isFavorites(item.id) : false}
               cb={refetch}
               userId={localStorageService.getUserId()}
               {...item}

@@ -40,8 +40,8 @@ class PortfolioView(viewsets.ModelViewSet):
         if 'user' in request.data and int(request.data['user']) != request.user.id:
             return Response({"message": "Вы не можете создать проект для другого пользователя"}, status=status.HTTP_403_FORBIDDEN)
         
-        if len(request.data.get('uploaded_images', [])) > 9:
-            return Response({"message": "Вы не можете загрузить более 9 изображений"}, status=status.HTTP_400_BAD_REQUEST)
+        # if len(request.data.get('uploaded_images', [])) > 9:
+           # return Response({"message": "Вы не можете загрузить более 9 изображений"}, status=status.HTTP_400_BAD_REQUEST)
         
         response = super().create(request, *args, **kwargs)
         if response.status_code == status.HTTP_201_CREATED:

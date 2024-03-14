@@ -10,7 +10,7 @@ class Profile(models.Model):
     image = models.ImageField(
         "Фото", upload_to="user_images/", blank=True, null=True)
     portfolio_favorites = models.ManyToManyField(
-        'Portfolio', verbose_name="Избранные портфолио", related_name='portfolio_favorites_users', max_length=20, blank=True)
+        'Portfolio', verbose_name="Избранные проекты", related_name='portfolio_favorites_users', max_length=20, blank=True)
     
     vk = models.URLField(
         "Вконтакте", blank=True, default='')

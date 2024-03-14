@@ -12,7 +12,6 @@ const SearchProvider = ({ children }) => {
   const [searchText, setSearchText] = useState("");
   const [searchCards, setSearchCards] = useState([]);
   const searchHandle = ({ target }) => {
-    console.log(target.value);
     setSearchText(target.value);
   };
 

@@ -1,6 +1,10 @@
 import { getIconKey } from '../../helpers/getImageKey';
 import './searchInput.scss';
 const SearchInput = ({ searchHandle, searchText, searchSubmit }) => {
+  const keyEvent = (event) => {
+    console.log(event.key);
+    if(event.key === 'Enter') searchSubmit()
+  }
   return (
     <div className="search">
       <input
@@ -9,6 +13,7 @@ const SearchInput = ({ searchHandle, searchText, searchSubmit }) => {
         placeholder="поиск портфолио"
         onChange={searchHandle}
         value={searchText}
+        onKeyPress={keyEvent}
       />
       <div className="search__block" onClick={searchSubmit}>
         <img

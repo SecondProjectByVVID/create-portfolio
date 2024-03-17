@@ -77,9 +77,19 @@ class UserProfileSerializer(serializers.ModelSerializer):
         fields = ['id', 'username', 'first_name', 'last_name', 'email', 'mobile', 'profession', 'location', 'description', 'image', 'vk', 'wa', 'tg', 'portfolio_favorites']
 
 class PlaylistSerializer(serializers.ModelSerializer):
+    image_preview = serializers.SerializerMethodField()
+
     class Meta:
         model = Playlist
-        fields = ['id', 'title', 'projects', 'user']
+        fields = ['id', 'title', 'projects', 'user', 'image_preview']
+        
+    def get_image_preview(self, obj):
+        request = self.context.get('request')
+        if obj.projects.exists():
+            last_project = obj.projects.order_by('-id').first()
+            if last_project.images.exists():
+                return request.build_absolute_uri(last_project.images.first().image.url)
+        return None
 
 class ContactUsSerializer(serializers.ModelSerializer):
     class Meta:

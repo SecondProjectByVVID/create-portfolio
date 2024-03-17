@@ -1,12 +1,14 @@
 from django.shortcuts import render
+from django.contrib.postgres.search import SearchVector, SearchQuery, TrigramSimilarity
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 from django.conf import settings
+from django.http.request import QueryDict
 
 from rest_framework import serializers, viewsets, generics, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 
 from .models import Profile, Portfolio, Playlist, ContactUs
 from .serializers import ProfileSerializer, PortfolioSerializer, PortfolioListSerializer, UserProfileSerializer, PlaylistSerializer, ContactUsSerializer
@@ -14,15 +16,12 @@ from .serializers import ProfileSerializer, PortfolioSerializer, PortfolioListSe
 from users.models import CustomUser
 from users.serializers import UserUpdateSerializer
 
+# from psycopg2.extensions import adapt
 from datetime import timedelta
 from uuid import uuid4
 
 import requests
 import os
-
-from django.contrib.postgres.search import SearchVector, SearchQuery
-from django.db.models import Q
-from psycopg2.extensions import adapt
 
 class ProfileView(viewsets.ModelViewSet):
     serializer_class = ProfileSerializer
@@ -31,7 +30,7 @@ class ProfileView(viewsets.ModelViewSet):
 class PortfolioView(viewsets.ModelViewSet):
     serializer_class = PortfolioSerializer
     queryset = Portfolio.objects.all()
-    parser_classes = (MultiPartParser, FormParser)
+    parser_classes = (MultiPartParser, FormParser, JSONParser)
 
     def create(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
@@ -40,8 +39,15 @@ class PortfolioView(viewsets.ModelViewSet):
         if 'user' in request.data and int(request.data['user']) != request.user.id:
             return Response({"message": "Вы не можете создать проект для другого пользователя"}, status=status.HTTP_403_FORBIDDEN)
         
-        # if len(request.data.get('uploaded_images', [])) > 9:
-           # return Response({"message": "Вы не можете загрузить более 9 изображений"}, status=status.HTTP_400_BAD_REQUEST)
+        if isinstance(request.data, QueryDict):
+            data = request.data.dict()
+        else:
+            data = request.data
+
+        uploaded_images = [value for key, value in data.items() if key == 'uploaded_images']
+
+        if len(uploaded_images) > 9:
+            return Response({"message": "Вы не можете загрузить более 9 изображений"}, status=status.HTTP_400_BAD_REQUEST)
         
         response = super().create(request, *args, **kwargs)
         if response.status_code == status.HTTP_201_CREATED:
@@ -76,7 +82,7 @@ class PortfolioView(viewsets.ModelViewSet):
 
 class PrefixedSearchQuery(SearchQuery):
     def as_sql(self, compiler, connection):
-        params = ['%s:*' % self.source_expressions[0].value]
+        params = [' & '.join('%s:*' % word for word in self.source_expressions[0].value.split())]
         return 'to_tsquery(%s)', params
 
 class PortfolioListView(generics.ListAPIView):
@@ -86,15 +92,17 @@ class PortfolioListView(generics.ListAPIView):
         queryset = Portfolio.objects.all().order_by('-created_at')
         search = self.request.query_params.get('search', None)
 
-        if search is not None:
-            vector = SearchVector('title', 'description', 'user__profession')
-            query = PrefixedSearchQuery(search)
-            queryset = queryset.annotate(search=vector).filter(search=query)
+        if search is not None and search != '':
+            queryset = queryset.annotate(
+                similarity=TrigramSimilarity('title', search) +
+                TrigramSimilarity('description', search) +
+                TrigramSimilarity('user__profession', search)
+            ).filter(similarity__gt=0.3)
 
         return queryset
-    
+
 class UserProfileView(APIView):
-    parser_classes = (MultiPartParser, FormParser)
+    parser_classes = (MultiPartParser, FormParser, JSONParser)
     
     def get(self, request, pk=None, format=None):
         if pk:

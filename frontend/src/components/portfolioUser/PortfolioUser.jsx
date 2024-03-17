@@ -44,14 +44,13 @@ const PortfolioUser = () => {
     console.log(form);
     profileReq.sendContactUs(form);
   };
-  console.log(portfolio, data);
   return (
     <div className="portfolio__container">
       <div className="user__block">
         <div className="user__connect">
           <img
             src={
-              `${ConfigApi.url}${data[0].image}` ?? getBgKey('CardDefaultBg')
+              data[0].image ? `${ConfigApi.url}${data[0].image}` : getBgKey('AvatarDefaultBg')
             }
             alt="bg user profile"
             className="user__connect-image"

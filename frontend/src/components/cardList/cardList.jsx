@@ -10,7 +10,6 @@ const CardList = () => {
   const {
     data: profile,
     isLoading: profileLoading,
-    isError: profileError,
     refetch,
   } = useFetchInfoProfileQuery(localStorageService.getUserId());
   const { searchCards } = useSearch();

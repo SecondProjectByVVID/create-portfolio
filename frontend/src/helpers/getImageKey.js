@@ -19,6 +19,7 @@ import HomeIcon from './../assets/icons/home-icon.svg';
 import FavoritesIcon from './../assets/icons/favorites-icon.svg';
 import ContactIcon from './../assets/icons/contact-icon.svg';
 import CardDefaultBg from './../assets/background/default-card-bg.jpg';
+import AvatarDefaultBg from './../assets/background/default-avatar-bg.webp';
 
 const getIcon = {
   UserIcon,
@@ -43,7 +44,9 @@ const getIcon = {
   HomeIcon,
   ContactIcon,
 };
-const getBg = {};
+const getBg = {
+  AvatarDefaultBg
+};
 
 export function getIconKey(keyIcon) {
   return getIcon[keyIcon];

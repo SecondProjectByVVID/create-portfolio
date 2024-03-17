@@ -10,7 +10,6 @@ import 'swiper/css/navigation';
 
 // import required modules
 import { Pagination, Navigation } from 'swiper/modules';
-import { useEffect} from 'react';
 import axios from 'axios';
 import getCookie from './../../helpers/getCsrfToken';
 
@@ -33,7 +32,7 @@ const CardUserPortfolio = ({
     if (favorites) {
       const newFavorites = updateFavoritesProject(id);
       try {
-        const response = await axios.patch(
+        await axios.patch(
           `http://localhost:8000/user-profile/${userId}/`,
           {
             portfolio_favorites: newFavorites,
@@ -55,7 +54,7 @@ const CardUserPortfolio = ({
     else {
       const newFavorites = updateFavoritesProject(id);
       try {
-        const response = await axios.patch(
+        await axios.patch(
           `http://localhost:8000/user-profile/${userId}/`,
           {
             portfolio_favorites: newFavorites,
@@ -68,7 +67,6 @@ const CardUserPortfolio = ({
             withCredentials: true,
           },
         );
-        console.log(response);
       } catch (error) {
         console.log(error);
       } finally {

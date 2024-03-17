@@ -14,6 +14,7 @@ const Restore = lazy(() => import("../pages/restore/restore"));
 const Reset = lazy(() => import("../pages/reset/reset"));
 const Profile = lazy(() => import("../pages/profile/Profile"));
 const AddPortfolio = lazy(() => import("../pages/addPortfolio/AddPortfolio"));
+const Favorites = lazy(() => import("../pages/favorites/Favorites"));
 
 const Layout = lazy(() => import("./../components/layout/Layout"));
 const ActiveEmail = lazy(() => import("./../pages/activeEmail/ActiveEmail"));
@@ -40,6 +41,7 @@ const AppRoutes = () => {
           />
           <Route path="/profile" element={<Profile />} />
           <Route path="/add-portfolio" element={<AddPortfolio />} />
+          <Route path="/favorites" element={<Favorites />} />
         </Route>
         <Route path="/signUp" element={<Registration />} />
         <Route path="/login" element={<Login />} />

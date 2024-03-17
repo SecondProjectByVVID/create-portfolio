@@ -114,9 +114,9 @@ const CardUserPortfolio = ({
               </Link>
             </div>
             <Link to={`/user-portfolio/${user}/${id}`}>
-              <p className={styles.card__profession}>{profession}</p>
+              <span className={styles.card__id}>{username}</span>
             </Link>
-            <span className={styles.card__id}>{username}</span>
+            <p className={styles.card__profession}>{profession}</p>
           </div>
         </div>
         <div className={styles['card__item-right']}>

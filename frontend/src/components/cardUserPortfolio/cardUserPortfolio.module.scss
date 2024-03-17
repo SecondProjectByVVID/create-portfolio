@@ -52,6 +52,8 @@
   border-radius: 50%;
   border: 2px solid #0889ff;
   transition: all 0.5s ease;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
   &:hover {
     transition: all 0.5s ease;
@@ -60,8 +62,6 @@
   }
 }
 .card__user-icon {
-  width: 36px;
-  height: 36px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -74,15 +74,12 @@
   font-weight: 500;
   line-height: normal;
   letter-spacing: 1px;
-}
-.card__profession {
-  font-size: 22px;
   line-height: 130%;
 }
-
-.card__id {
+.card__profession {
   margin-left: auto;
 }
+
 .card__item-right {
   display: flex;
   flex-direction: column;

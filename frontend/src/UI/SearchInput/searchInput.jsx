@@ -10,7 +10,7 @@ const SearchInput = ({ searchHandle, searchText, searchSubmit }) => {
       <input
         className="search__input"
         type="text"
-        placeholder="поиск портфолио"
+        placeholder="поиск проектов"
         onChange={searchHandle}
         value={searchText}
         onKeyPress={keyEvent}

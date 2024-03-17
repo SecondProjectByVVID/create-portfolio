@@ -68,7 +68,9 @@ const PortfolioUser = () => {
         </div>
         <div className="user__description">
           <h2 className="user__description-title">{`${data[0].first_name} ${data[0].last_name}`}</h2>
-          <p className="user__description-text">{data[0].description}</p>
+          <pre>
+            <p className="user__description-text">{data[0].description}</p>
+          </pre>
           <p className="user__description-email">
             <span>Почта:</span>
             <Link to="mailto:zvorygin04@inbox.ru">{data[0].email}</Link>

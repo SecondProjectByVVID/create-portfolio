@@ -6,9 +6,11 @@ from . import views
 
 router = DefaultRouter()
 router.register('portfolio', views.PortfolioView, basename='portfolio')
+router.register('portfolios-user', views.PortfoliosRequestUser, basename='portfolios-request-user')
 router.register('profile', views.ProfileView, basename='profile')
 router.register('playlist', views.PlaylistView, basename='playlist')
 router.register('contact-us', views.ContactUsView, basename='contact-us')
+router.register('user-favorites', views.FavoritePortfolios, basename='user_favorite_portfolios')
 
 urlpatterns = [
     path('portfolio-list/', views.PortfolioListView.as_view(), name="portfolio-list"),

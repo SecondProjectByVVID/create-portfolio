@@ -37,13 +37,15 @@ class Portfolio(models.Model):
         "Дата реализации", auto_now=False, auto_now_add=False, null=True, blank=True)
     created_at = models.DateField(
         "Дата публикации проекта", auto_now=False, auto_now_add=True, null=True, blank=True)    
+    views = models.IntegerField(
+        "Счётчик просмотров", default=0)
     
     def __str__(self):
         return f"{self.title} - {self.user}"
 
     class Meta:
-        verbose_name = 'Портфолио'
-        verbose_name_plural = 'Портфолио'
+        verbose_name = 'Проект'
+        verbose_name_plural = 'Проекты'
         
 class PortfolioImage(models.Model):
     """Изображение портфолио"""
@@ -56,9 +58,9 @@ class PortfolioImage(models.Model):
         return f"{self.portfolio} - {self.image}"
 
     class Meta:
-        verbose_name = 'Портфолио изображение'
-        verbose_name_plural = 'Портфолио изображения'
-        
+        verbose_name = 'Изображение проекта'
+        verbose_name_plural = 'Изображение проекта'
+
 class Playlist(models.Model):
     """Плейлист"""
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
@@ -69,8 +71,8 @@ class Playlist(models.Model):
         return self.title
     
     class Meta:
-        verbose_name = 'Плейлист проектов'
-        verbose_name_plural = 'Плейлисты проектов'
+        verbose_name = 'Плейлист'
+        verbose_name_plural = 'Плейлисты'
 
 class ContactUs(models.Model):
     """Связаться с нами"""

@@ -29,7 +29,7 @@ class PortfolioSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Portfolio
-        fields = ['id', 'user', 'title', 'description', 'images', 'uploaded_images', 'date_work', 'created_at']
+        fields = ['id', 'user', 'title', 'description', 'images', 'uploaded_images', 'date_work', 'created_at', 'views']
         
     def validate_uploaded_images(self, value):
         if len(value) > 9:

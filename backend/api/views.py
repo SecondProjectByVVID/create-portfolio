@@ -32,6 +32,18 @@ class PortfolioView(viewsets.ModelViewSet):
     queryset = Portfolio.objects.all()
     parser_classes = (MultiPartParser, FormParser, JSONParser)
 
+    def retrieve(self, request, *args, **kwargs):
+        portfolio = self.get_object()
+        portfolio_id = str(portfolio.id)
+
+        if portfolio_id not in request.COOKIES:
+            portfolio.views += 1
+            portfolio.save()
+
+        response = super().retrieve(request, *args, **kwargs)
+        response.set_cookie(portfolio_id, 'viewed', max_age=3600*24*365)
+        return response
+
     def create(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             return Response({"message": "Вы должны войти в систему, чтобы создать проект"}, status=status.HTTP_403_FORBIDDEN)
@@ -89,7 +101,11 @@ class PortfolioListView(generics.ListAPIView):
     serializer_class = PortfolioListSerializer
 
     def get_queryset(self):
-        queryset = Portfolio.objects.all().order_by('-created_at')
+        sort = self.request.query_params.get('sort', 'desc')
+        if sort == 'popular':
+            queryset = Portfolio.objects.all().order_by('-views')
+        else:
+            queryset = Portfolio.objects.all().order_by('-created_at' if sort == 'desc' else 'created_at')
         search = self.request.query_params.get('search', None)
 
         if search is not None and search != '':
@@ -100,7 +116,36 @@ class PortfolioListView(generics.ListAPIView):
             ).filter(similarity__gt=0.3)
 
         return queryset
+    
+class FavoritePortfolios(viewsets.ReadOnlyModelViewSet):
+    serializer_class = PortfolioSerializer
 
+    def get_queryset(self):
+        user = self.request.user
+        if not user.is_authenticated:
+            return Portfolio.objects.none()  
+        profile = Profile.objects.get(user=user)
+        return profile.portfolio_favorites.all()
+
+    def list(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return Response({"message": "Вы должны войти в систему, чтобы увидеть избранные проекты"}, status=status.HTTP_403_FORBIDDEN)
+        return super().list(request, *args, **kwargs)
+    
+class PortfoliosRequestUser(viewsets.ReadOnlyModelViewSet):
+    serializer_class = PortfolioSerializer
+    
+    def get_queryset(self):
+        user = self.request.user
+        if not user.is_authenticated:
+            return Portfolio.objects.none()
+        return Portfolio.objects.filter(user=user)
+    
+    def list(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return Response({"message": "Вы должны войти в систему, чтобы увидеть свои проекты"}, status=status.HTTP_403_FORBIDDEN)
+        return super().list(request, *args, **kwargs)
+    
 class UserProfileView(APIView):
     parser_classes = (MultiPartParser, FormParser, JSONParser)
     

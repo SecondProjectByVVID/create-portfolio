@@ -27,25 +27,25 @@ const CardUserPortfolio = ({
   favorites,
   userId,
   cb,
+  updateFavoritesProject,
 }) => {
   const handleFavorite = async () => {
-    console.log(favorites);
     if (favorites) {
+      const newFavorites = updateFavoritesProject(id);
       try {
         const response = await axios.patch(
           `http://localhost:8000/user-profile/${userId}/`,
           {
-            portfolio_favorites: 2,
+            portfolio_favorites: newFavorites,
           },
           {
             headers: {
               'X-CSRFToken': csrftoken,
-              'Content-Type': 'multipart/form-data',
+              'Content-Type': 'application/json',
             },
             withCredentials: true,
           },
         );
-        console.log(response);
       } catch (error) {
         console.log(error);
       } finally {
@@ -53,16 +53,17 @@ const CardUserPortfolio = ({
       }
     }
     else {
+      const newFavorites = updateFavoritesProject(id);
       try {
         const response = await axios.patch(
           `http://localhost:8000/user-profile/${userId}/`,
           {
-            portfolio_favorites: id,
+            portfolio_favorites: newFavorites,
           },
           {
             headers: {
               'X-CSRFToken': csrftoken,
-              'Content-Type': 'multipart/form-data',
+              'Content-Type': 'application/json',
             },
             withCredentials: true,
           },

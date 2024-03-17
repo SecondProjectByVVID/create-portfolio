@@ -22,6 +22,16 @@ const CardList = () => {
       </div>
     );
   }
+  const updateFavoritesProject = (id) => {
+    const favorites = profile[0].portfolio_favorites
+    if (favorites.includes(id)) {
+      return favorites.filter((item) => item !== id)
+    } else {
+      const newArr = [...favorites]
+      newArr.push(id);
+      return newArr;
+    }
+  }
   const isFavorites = (id) => {
     const res = profile[0].portfolio_favorites?.find((favorite) => favorite === id)
     return res
@@ -35,7 +45,8 @@ const CardList = () => {
               userImage={item.user_image}
               favorites={!profileLoading && localStorageService.getUserId() ? isFavorites(item.id) : false}
               cb={refetch}
-              userId={localStorageService.getUserId()}
+            userId={localStorageService.getUserId()}
+          updateFavoritesProject={updateFavoritesProject}
               {...item}
             />
           ))

@@ -15,6 +15,7 @@ const Reset = lazy(() => import("../pages/reset/reset"));
 const Profile = lazy(() => import("../pages/profile/Profile"));
 const AddPortfolio = lazy(() => import("../pages/addPortfolio/AddPortfolio"));
 const Favorites = lazy(() => import("../pages/favorites/Favorites"));
+const UserProjects = lazy(() => import("../pages/userProjects/UserProjects"));
 
 const Layout = lazy(() => import("./../components/layout/Layout"));
 const ActiveEmail = lazy(() => import("./../pages/activeEmail/ActiveEmail"));
@@ -42,6 +43,7 @@ const AppRoutes = () => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/add-portfolio" element={<AddPortfolio />} />
           <Route path="/favorites" element={<Favorites />} />
+          <Route path="/my-projects" element={<UserProjects />} />
         </Route>
         <Route path="/signUp" element={<Registration />} />
         <Route path="/login" element={<Login />} />

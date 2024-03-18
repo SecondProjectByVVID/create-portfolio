@@ -118,7 +118,7 @@ class PortfolioListView(generics.ListAPIView):
         return queryset
     
 class FavoritePortfolios(viewsets.ReadOnlyModelViewSet):
-    serializer_class = PortfolioSerializer
+    serializer_class = PortfolioListSerializer
 
     def get_queryset(self):
         user = self.request.user

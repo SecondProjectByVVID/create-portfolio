@@ -139,6 +139,24 @@ const ProfileMenu = ({ refProp, handleClickOutside, setVisible, userInfo }) => {
                   />
                 </Link>
               </li>
+              <li className="profile__list-item">
+                <Link to="/my-projects">
+                  <p className="profile__list-text">Мои проекты</p>
+                  <AppImage
+                    src={getIconKey('FavoritesIcon')}
+                    alt={'chat icon'}
+                    fallback={
+                      <Skeleton
+                        size={{
+                          width: '28px',
+                          height: '28px',
+                          borderRadius: '5px',
+                        }}
+                      />
+                    }
+                  />
+                </Link>
+              </li>
             </>
           )}
           <li className="profile__list-item" onClick={() => handleClick()}>

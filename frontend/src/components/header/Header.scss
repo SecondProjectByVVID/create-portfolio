@@ -37,26 +37,14 @@
   }
   &__list-item{
     color: #111;
-    position: relative;
     transition: all .5s ease;
-    &::after{
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      height: 2px;
-      width: 0;
-      border-radius: 10px;
-      background: #0889FF;
-      transition: all .5s ease;
-    }
-    &:hover::after{
-      transition: all .5s ease;
-      width: 100%;
-    }
+    cursor: pointer;
     &:hover{
       color: #0889FF;
     }
+  }
+  &__list-item a{
+    padding: 1.35rem 0.5rem;    
   }
   &__list-link{
     font-size: clamp(10px,2vw,20px);
@@ -86,7 +74,11 @@
     height: 32px;
   }
 }
-
+.link--active{
+  transition: all .5s ease;
+  background-color: #0889FF;
+  color: #ffffff;
+}
 @media(max-width:480px){
   .header__list{
     display: none;

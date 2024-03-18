@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom/dist/umd/react-router-dom.development';
+import { Link, useLocation } from 'react-router-dom/dist/umd/react-router-dom.development';
 import { getIconKey } from './../../helpers/getImageKey';
 import ButtonForm from '../../UI/ButtonForm/ButtonForm';
 import UserProfile from '../userProfile/userProfile';
@@ -8,10 +8,11 @@ import { localStorageService } from '../../service/localStorage.service';
 import Skeleton from './../../UI/skeleton/Skeleton';
 import AppImage from './../../UI/appImages/AppImage';
 import './Header.scss';
+
 const Header = () => {
   const [isLogin] = useState(localStorageService.getIsLogin());
   const { position } = usePosition();
-
+  const { pathname } = useLocation()
   return (
     <div className="header">
       <div className="header__inner">
@@ -32,13 +33,18 @@ const Header = () => {
         <nav className="header__navbar">
           <ul className="header__list">
             <li className="header__list-item">
-              <Link to="/" className="header__list-link">
+              <Link to="/" className={pathname === '/' ? `header__list-link link--active` : `header__list-link`}>
                 Главная
               </Link>
             </li>
             <li className="header__list-item">
-              <Link to="/favorites" className="header__list-link">
+              <Link to="/favorites" className={pathname === '/favorites' ? `header__list-link link--active` : `header__list-link`}>
                 Избранное
+              </Link>
+            </li>
+            <li className="header__list-item">
+              <Link to="/my-projects" className={pathname === '/my-projects' ? `header__list-link link--active` : `header__list-link`}>
+                Мои проекты
               </Link>
             </li>
           </ul>

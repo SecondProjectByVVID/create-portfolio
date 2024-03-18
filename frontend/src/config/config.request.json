@@ -5,6 +5,7 @@
   "profile": "user-profile/",
   "portfolio": "portfolio/",
   "portfolioAll": "portfolio-list/",
+  "favorites":"user-favorites/",
   "contactUs": "contact-us/",
   "authenticateAndPoint": "login/",
   "logout": "logout/",

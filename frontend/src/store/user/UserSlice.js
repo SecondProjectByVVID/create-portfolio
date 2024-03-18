@@ -3,7 +3,7 @@ import configApi from './../../config/config.request.json';
 
 export const userAPI = createApi({
   reducerPath: 'userAPI',
-  baseQuery: fetchBaseQuery({ baseUrl: configApi.url }),
+  baseQuery: fetchBaseQuery({ baseUrl: configApi.url,credentials: 'include' }),
   tagTypes: ['User'],
   endpoints: (build) => ({
     fetchInfoUser: build.query({

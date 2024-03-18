@@ -3,7 +3,7 @@ import configApi from './../../config/config.request.json';
 
 export const profileAPI = createApi({
   reducerPath: 'profileAPI',
-  baseQuery: fetchBaseQuery({ baseUrl: configApi.url }),
+  baseQuery: fetchBaseQuery({ baseUrl: configApi.url,credentials: 'include' }),
   tagTypes: ['Profile'],
   endpoints: (build) => ({
     fetchInfoProfile: build.query({

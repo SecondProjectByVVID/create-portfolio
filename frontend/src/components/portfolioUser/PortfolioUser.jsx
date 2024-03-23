@@ -15,6 +15,7 @@ import InputForm from '../../UI/InputForm/InputForm';
 import useForm from '../../hooks/useForm';
 import ButtonForm from '../../UI/ButtonForm/ButtonForm';
 import profileReq from '../../api/profileReq';
+import ShareDialog from '../shareDialog/ShareDialog';
 const PortfolioUser = () => {
   const { id, portfolioId } = useParams();
   const [visible, setVisible] = useState(false);
@@ -41,7 +42,6 @@ const PortfolioUser = () => {
     setVisible((prevState) => !prevState);
   };
   const contactSubmit = (e) => {
-    console.log(form);
     profileReq.sendContactUs(form);
   };
   return (
@@ -66,6 +66,7 @@ const PortfolioUser = () => {
           </div>
         </div>
         <div className="user__description">
+          <Link className="user__all-project">Посмотреть все проекты</Link>
           <h2 className="user__description-title">{`${data[0].first_name} ${data[0].last_name}`}</h2>
           <pre>
             <p className="user__description-text">{data[0].description}</p>
@@ -112,6 +113,7 @@ const PortfolioUser = () => {
             </p>
           </div>
         </div>
+        <ShareDialog/>
       </div>
       <Dialog
         header="Свяжитесь со мной"

@@ -1,0 +1,189 @@
+.myProjects__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 1.6rem 0 4.5rem;
+  margin: 0 auto;
+  width: clamp(260px, 70vw, 1200px);
+  min-height: 90vh;
+}
+.default__text{
+  position: absolute;
+  font-family: Arimo,sans-serif;
+  font-size: 88px;
+  text-align: center;
+  color: #BBBBBB;
+}
+.myProjects__search{
+  margin-bottom: 35px;
+  position: relative;
+  &::after{
+    content: '';
+    position: absolute;
+    bottom: -17px;
+    left: 0;
+    width: 100%;
+    height: 1.5px;
+    border-radius: 5px;
+    background-color: #9D9D9D;
+  }
+}
+.playlist__list{
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-wrap: wrap;
+  column-gap: 30px;
+  position: relative;
+  width: 100%;
+  &--add{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }  
+  &--add:hover svg path{
+    transition: all .3s ease;
+    fill: #ffffff;
+    stroke: #ffffff;
+  }
+  &-item{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    cursor: pointer;
+  }
+  &::after{
+    content: '';
+    position: absolute;
+    bottom: -17px;
+    left: 0;
+    width: 100%;
+    height: 1.5px;
+    border-radius: 5px;
+    background-color: #9D9D9D;
+  }
+  &-bg{
+    background-color: #D9D9D9;
+    border: 2px solid #474141;
+    border-radius: 15px;
+    width: 210px;
+    height: 110px;
+    transition: all .3s ease;
+    overflow: hidden;
+  }
+  &-bg img{
+    width: 210px;
+    height: 110px;
+    object-fit: cover;
+  }
+  &-bg:hover{
+    transition: all .3s ease;
+    border: 2px solid #41BBFF;
+  }
+  &-count{
+    position: absolute;
+    right: 8px;
+    bottom: 28%;
+    background-color: #28241D;
+    opacity: 80%;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    column-gap: 3px;
+    padding: 3px 5px;
+    border-radius: 5px;
+  }
+  &-count span{
+    font-size: 11px;
+  }
+}
+.playlist__subtitle{
+  font-family: Arimo, sans-serif;
+  font-size: 20px;
+}
+.myProjects__delimiter{
+  margin-top: 40px;
+}
+.myProjects__list{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  column-gap: 120px;
+  row-gap: 60px;
+  position: relative;
+  &-item{
+    width: 580px;
+    height: 320px;
+    position: relative;
+  }
+  &-item::after{
+    content: '';
+    position: absolute;
+    bottom: -60px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    border-radius: 5px;
+    background-color: #9D9D9D;
+  }
+  &-title{
+    font-family: Arimo,sans-serif;
+    font-size: 36px;
+    font-weight: 500;
+  }
+  &-item:nth-child(even)::before{
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: -60px;
+    width: 2px;
+    height: 90%;
+    border-radius: 5px;
+    background-color: #9D9D9D;
+  }
+  &-image{
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #474141;
+  }
+  &-share:hover svg path{
+    transition: all .5s ease;
+    fill: #41BBFF;
+    cursor: pointer;
+  }
+  &-bottom{
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    margin-top: 2px;
+  }
+  &-bottom p{
+    font-family: Arimo,sans-serif;
+    font-size: 18px;
+    color: #000;
+  }
+  &-options{
+    position: absolute;
+    top: 25px;
+    right: -30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+  }
+  &-edit,&-delete{
+    cursor: pointer;
+  }
+  &-edit:hover svg path{
+    transition: all .3s ease;
+    fill: #898989;
+  }
+  &-delete:hover svg path:nth-child(1),&-delete:hover svg path:nth-child(2){
+    transition: all .3s ease;
+    fill: #CB1A1A;
+  }
+}

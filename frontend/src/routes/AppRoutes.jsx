@@ -43,7 +43,7 @@ const AppRoutes = () => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/add-portfolio" element={<AddPortfolio />} />
           <Route path="/favorites" element={<Favorites />} />
-          <Route path="/my-projects" element={<UserProjects />} />
+          <Route path="/my-projects" element={<SearchProvider><UserProjects /></SearchProvider>} />
         </Route>
         <Route path="/signUp" element={<Registration />} />
         <Route path="/login" element={<Login />} />

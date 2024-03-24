@@ -19,6 +19,7 @@ import HomeIcon from './../assets/icons/home-icon.svg';
 import FavoritesIcon from './../assets/icons/favorites-icon.svg';
 import ShareIcon from './../assets/icons/share-icon.svg';
 import ContactIcon from './../assets/icons/contact-icon.svg';
+import CountIcon from './../assets/icons/count-icon.svg';
 import CardDefaultBg from './../assets/background/default-card-bg.jpg';
 import AvatarDefaultBg from './../assets/background/default-avatar-bg.webp';
 
@@ -44,7 +45,8 @@ const getIcon = {
   FavoritesIcon,
   HomeIcon,
   ContactIcon,
-  ShareIcon
+  ShareIcon,
+  CountIcon
 };
 const getBg = {
   AvatarDefaultBg

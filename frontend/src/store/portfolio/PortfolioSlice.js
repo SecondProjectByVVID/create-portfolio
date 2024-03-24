@@ -15,7 +15,10 @@ export const portfolioAPI = createApi({
     getAllFavorites: build.query({
       query: (id) => `${configApi.favorites}`,
     }),
+    getMyProjects: build.query({
+      query: () => `${configApi.myProjects}`,
+    })
   }),
 });
-export const { useGetAllPortfolioQuery, useGetPortfolioOnIdQuery,useGetAllFavoritesQuery } =
+export const { useGetAllPortfolioQuery, useGetPortfolioOnIdQuery,useGetAllFavoritesQuery,useGetMyProjectsQuery } =
   portfolioAPI;

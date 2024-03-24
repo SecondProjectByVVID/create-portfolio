@@ -6,6 +6,7 @@
   "portfolio": "portfolio/",
   "portfolioAll": "portfolio-list/",
   "favorites":"user-favorites/",
+  "myProjects":"portfolios-user/",
   "contactUs": "contact-us/",
   "authenticateAndPoint": "login/",
   "logout": "logout/",

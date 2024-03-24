@@ -6,7 +6,7 @@ import 'primeicons/primeicons.css';
 import './ShareDialog.scss'
 import { toast } from 'react-toastify';
 import { getIconKey } from '../../helpers/getImageKey';
-const ShareDialog = ({}) => {
+const ShareDialog = () => {
   const [visible, setVisible] = useState(false);
 
  const handleShare = () => {

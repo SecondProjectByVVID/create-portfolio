@@ -5,6 +5,7 @@ import Skeleton from "./../../UI/skeleton/Skeleton";
 import { useFetchInfoProfileQuery } from "../../store/profile/ProfileSlice";
 import { localStorageService } from "../../service/localStorage.service";
 import { useSearch } from "../../hooks/useSearch";
+
 const CardList = () => {
   const { data: allPortfolio, isLoading, isError } = useGetAllPortfolioQuery();
   const {

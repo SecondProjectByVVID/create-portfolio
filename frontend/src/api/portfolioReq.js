@@ -22,6 +22,19 @@ const portfolio = {
       return false;
     }
   },
+  deletePortfolio: async (id) => {
+    try {
+      const { data } = await request.delete(`${ConfigApi.myProjects}${id}/`, {
+        headers: {
+          'X-CSRFToken': csrftoken,
+        },
+        withCredentials: true,
+      });
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
 };
 
 export default portfolio;

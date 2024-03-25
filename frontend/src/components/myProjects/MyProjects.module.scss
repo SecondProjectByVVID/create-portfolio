@@ -187,3 +187,52 @@
     fill: #CB1A1A;
   }
 }
+
+.dialog__text{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 70%;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1.8rem;
+  color: #000;
+  font-weight: 500;
+  font-size: 20px;
+}
+.dialog__buttons{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 2.5rem;
+}
+.dialog__cancel,.dialog__delete{
+  padding: 10px 60px; 
+  outline: none;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: 500;
+  transition: all .5s ease;
+}
+.dialog__cancel{
+  border: 1px solid #000;
+  color: #000;
+  &:hover{
+    transition: all .5s ease;
+    border-color: transparent;
+    background-color: #000000a1;
+    color: #fff;
+  }
+}
+.dialog__delete{
+  color: #fff;
+  background-color: #FF0000;
+  border: 1px solid transparent;
+  &:hover{
+    transition: all .5s ease;
+    border: 1px solid #FF0000;
+    background-color: transparent;
+    color: #000;
+  }
+}

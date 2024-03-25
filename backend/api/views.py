@@ -132,7 +132,7 @@ class FavoritePortfolios(viewsets.ReadOnlyModelViewSet):
             return Response({"message": "Вы должны войти в систему, чтобы увидеть избранные проекты"}, status=status.HTTP_403_FORBIDDEN)
         return super().list(request, *args, **kwargs)
     
-class PortfoliosRequestUser(viewsets.ReadOnlyModelViewSet):
+class PortfoliosRequestUser(viewsets.ModelViewSet):
     serializer_class = PortfolioSerializer
     
     def get_queryset(self):
